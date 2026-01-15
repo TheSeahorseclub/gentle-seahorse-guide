@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/store/appStore';
 import { Activity, Sparkles, BookOpen, Calendar, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import seahorseMascot from '@/assets/seahorse-mascot.png';
 
 const developmentWindows = [
   { ageRange: [0, 3], focus: 'Regulation and co-regulation', description: 'Your child is learning to feel safe in the world through your presence.' },
@@ -40,18 +39,11 @@ export const Home: React.FC = () => {
     <MobileLayout>
       <div className="px-6 pt-8 pb-4">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="animate-fade-in">
-            <p className="text-muted-foreground text-base">{greeting()}</p>
-            <h1 className="font-display text-2xl font-bold text-foreground">
-              The Seahorse Club
-            </h1>
-          </div>
-          <img 
-            src={seahorseMascot} 
-            alt="Seahorse mascot" 
-            className="w-14 h-14 object-contain animate-float drop-shadow-md"
-          />
+        <div className="mb-6 animate-fade-in">
+          <p className="text-muted-foreground text-base">{greeting()}</p>
+          <h1 className="font-display text-2xl font-bold text-foreground">
+            The Seahorse Club
+          </h1>
         </div>
 
         {/* Quick Actions */}
