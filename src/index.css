@@ -10,118 +10,120 @@
 
 @layer base {
   :root {
-    /* Ocean-inspired calming palette */
-    --background: 180 25% 98%;
-    --foreground: 200 25% 20%;
+    /* Maldives Ocean Turquoise Palette */
+    --background: 182 45% 97%;
+    --foreground: 185 35% 18%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 200 25% 20%;
+    --card: 180 30% 99%;
+    --card-foreground: 185 35% 18%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 200 25% 20%;
+    --popover: 180 30% 99%;
+    --popover-foreground: 185 35% 18%;
 
-    /* Soft teal - primary brand */
-    --primary: 174 42% 55%;
+    /* Maldives turquoise - primary brand */
+    --primary: 180 65% 45%;
     --primary-foreground: 0 0% 100%;
 
-    /* Warm sand */
-    --secondary: 35 35% 94%;
-    --secondary-foreground: 200 25% 25%;
+    /* Lighter turquoise */
+    --secondary: 182 50% 92%;
+    --secondary-foreground: 185 40% 22%;
 
-    /* Light sea foam */
-    --muted: 175 20% 94%;
-    --muted-foreground: 200 15% 45%;
+    /* Soft turquoise mist */
+    --muted: 180 35% 94%;
+    --muted-foreground: 185 25% 40%;
 
-    /* Soft coral accent */
-    --accent: 12 65% 85%;
-    --accent-foreground: 12 45% 35%;
+    /* Crystal lagoon accent */
+    --accent: 175 55% 85%;
+    --accent-foreground: 180 50% 25%;
 
-    /* Gentle coral for highlights */
-    --coral: 12 75% 75%;
-    --coral-foreground: 12 50% 25%;
+    /* Deep ocean */
+    --coral: 185 60% 55%;
+    --coral-foreground: 0 0% 100%;
 
-    /* Calm blue for trust */
-    --calm: 200 45% 70%;
-    --calm-foreground: 200 50% 20%;
+    /* Shallow water */
+    --calm: 178 55% 65%;
+    --calm-foreground: 185 50% 15%;
 
-    /* Soft lavender for reflection */
-    --lavender: 260 30% 90%;
-    --lavender-foreground: 260 25% 35%;
+    /* Sea glass */
+    --lavender: 176 40% 88%;
+    --lavender-foreground: 180 35% 30%;
 
-    /* Warm cream */
-    --cream: 40 40% 96%;
-    --cream-foreground: 35 30% 30%;
+    /* Sandy shore hint */
+    --cream: 180 25% 96%;
+    --cream-foreground: 185 30% 25%;
 
-    --destructive: 0 60% 60%;
+    --destructive: 0 55% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 175 15% 88%;
-    --input: 175 15% 88%;
-    --ring: 174 42% 55%;
+    --border: 180 30% 85%;
+    --input: 180 30% 85%;
+    --ring: 180 65% 45%;
 
     --radius: 1rem;
 
-    /* Custom shadows */
-    --shadow-soft: 0 4px 20px -4px hsl(175 30% 50% / 0.12);
-    --shadow-card: 0 2px 12px -2px hsl(175 30% 50% / 0.08);
-    --shadow-float: 0 8px 30px -8px hsl(175 30% 50% / 0.15);
+    /* Custom shadows - turquoise tinted */
+    --shadow-soft: 0 4px 20px -4px hsl(180 50% 40% / 0.15);
+    --shadow-card: 0 2px 12px -2px hsl(180 50% 40% / 0.10);
+    --shadow-float: 0 8px 30px -8px hsl(180 50% 40% / 0.18);
 
-    /* Gradients */
-    --gradient-ocean: linear-gradient(135deg, hsl(174 42% 55%), hsl(185 45% 60%));
-    --gradient-sunrise: linear-gradient(135deg, hsl(35 50% 95%), hsl(12 65% 90%));
-    --gradient-calm: linear-gradient(180deg, hsl(180 25% 98%), hsl(175 20% 95%));
+    /* Maldives gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(180 65% 45%), hsl(175 60% 55%));
+    --gradient-sunrise: linear-gradient(135deg, hsl(178 50% 70%), hsl(182 55% 60%));
+    --gradient-calm: linear-gradient(180deg, hsl(182 45% 97%), hsl(180 40% 92%));
+    --gradient-lagoon: linear-gradient(135deg, hsl(175 55% 50%), hsl(185 60% 45%));
+    --gradient-shallow: linear-gradient(180deg, hsl(180 60% 75%), hsl(178 55% 55%));
 
-    /* Sidebar - optional */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar - turquoise themed */
+    --sidebar-background: 182 45% 97%;
+    --sidebar-foreground: 185 35% 22%;
+    --sidebar-primary: 180 65% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 180 40% 92%;
+    --sidebar-accent-foreground: 185 40% 20%;
+    --sidebar-border: 180 30% 88%;
+    --sidebar-ring: 180 65% 45%;
   }
 
   .dark {
-    --background: 200 25% 10%;
-    --foreground: 175 20% 95%;
+    --background: 185 40% 8%;
+    --foreground: 180 30% 92%;
 
-    --card: 200 25% 12%;
-    --card-foreground: 175 20% 95%;
+    --card: 185 35% 10%;
+    --card-foreground: 180 30% 92%;
 
-    --popover: 200 25% 12%;
-    --popover-foreground: 175 20% 95%;
+    --popover: 185 35% 10%;
+    --popover-foreground: 180 30% 92%;
 
-    --primary: 174 45% 50%;
+    --primary: 180 55% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 200 20% 18%;
-    --secondary-foreground: 175 20% 90%;
+    --secondary: 185 30% 15%;
+    --secondary-foreground: 180 25% 88%;
 
-    --muted: 200 20% 18%;
-    --muted-foreground: 175 15% 60%;
+    --muted: 185 25% 15%;
+    --muted-foreground: 180 20% 55%;
 
-    --accent: 12 45% 30%;
-    --accent-foreground: 12 60% 85%;
+    --accent: 178 40% 25%;
+    --accent-foreground: 175 50% 85%;
 
-    --coral: 12 55% 45%;
-    --coral-foreground: 12 70% 90%;
+    --coral: 180 50% 40%;
+    --coral-foreground: 178 60% 90%;
 
-    --calm: 200 35% 40%;
-    --calm-foreground: 200 40% 90%;
+    --calm: 178 45% 35%;
+    --calm-foreground: 180 40% 88%;
 
-    --lavender: 260 20% 25%;
-    --lavender-foreground: 260 30% 85%;
+    --lavender: 180 30% 20%;
+    --lavender-foreground: 178 35% 82%;
 
-    --cream: 40 20% 15%;
-    --cream-foreground: 35 35% 90%;
+    --cream: 182 25% 12%;
+    --cream-foreground: 180 30% 88%;
 
-    --destructive: 0 50% 45%;
+    --destructive: 0 45% 40%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 200 20% 20%;
-    --input: 200 20% 20%;
-    --ring: 174 45% 50%;
+    --border: 185 25% 18%;
+    --input: 185 25% 18%;
+    --ring: 180 55% 45%;
   }
 }
 
