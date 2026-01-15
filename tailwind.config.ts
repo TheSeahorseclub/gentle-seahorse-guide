@@ -118,21 +118,26 @@ export default {
           "0%, 100%": { transform: "scale(1)" },
           "50%": { transform: "scale(1.02)" },
         },
-        "cloud-drift-slow": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(calc(100vw + 320px))" },
+        "wave-slow": {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(-25%)" },
         },
-        "cloud-drift-slower": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(calc(100vw + 350px))" },
+        "wave-medium": {
+          "0%, 100%": { transform: "translateX(-10%)" },
+          "50%": { transform: "translateX(-35%)" },
         },
-        "cloud-drift-medium": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(calc(100vw + 220px))" },
+        "wave-fast": {
+          "0%, 100%": { transform: "translateX(-5%)" },
+          "50%": { transform: "translateX(-30%)" },
         },
-        "cloud-drift-fast": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(calc(100vw + 170px))" },
+        "bubble-rise": {
+          "0%": { transform: "translateY(0) scale(1)", opacity: "0.4" },
+          "50%": { opacity: "0.6" },
+          "100%": { transform: "translateY(-100vh) scale(0.5)", opacity: "0" },
+        },
+        "shimmer": {
+          "0%, 100%": { opacity: "0.3" },
+          "50%": { opacity: "0.6" },
         },
       },
       animation: {
@@ -144,10 +149,11 @@ export default {
         "pulse-soft": "pulse-soft 3s ease-in-out infinite",
         "float": "float 4s ease-in-out infinite",
         "breathe": "breathe 4s ease-in-out infinite",
-        "cloud-drift-slow": "cloud-drift-slow 60s linear infinite",
-        "cloud-drift-slower": "cloud-drift-slower 80s linear infinite",
-        "cloud-drift-medium": "cloud-drift-medium 45s linear infinite",
-        "cloud-drift-fast": "cloud-drift-fast 35s linear infinite",
+        "wave-slow": "wave-slow 8s ease-in-out infinite",
+        "wave-medium": "wave-medium 6s ease-in-out infinite",
+        "wave-fast": "wave-fast 4s ease-in-out infinite",
+        "bubble-rise": "bubble-rise 12s ease-in-out infinite",
+        "shimmer": "shimmer 6s ease-in-out infinite",
       },
       spacing: {
         "safe-bottom": "env(safe-area-inset-bottom)",

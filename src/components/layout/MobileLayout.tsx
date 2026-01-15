@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Home, Activity, Sparkles, BookOpen, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { CloudBackground } from '@/components/shared/CloudBackground';
+import { OceanBackground } from '@/components/shared/OceanBackground';
 
 interface MobileLayoutProps {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ export const MobileLayout: React.FC<MobileLayoutProps> = ({ children, showNav = 
 
   return (
     <div className="min-h-screen bg-background flex flex-col relative">
-      <CloudBackground />
+      <OceanBackground />
       {/* Main content */}
       <main className={cn(
         "flex-1 overflow-y-auto",
