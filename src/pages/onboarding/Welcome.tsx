@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { SeahorseIcon } from '@/components/shared/SeahorseIcon';
 
 export const Welcome: React.FC = () => {
   const navigate = useNavigate();
@@ -9,6 +10,10 @@ export const Welcome: React.FC = () => {
     <div className="min-h-screen gradient-calm flex flex-col items-center justify-center px-8 py-12">
       {/* Hero illustration area */}
       <div className="flex-1 flex flex-col items-center justify-center max-w-sm">
+        <div className="mb-8 animate-fade-in">
+          <SeahorseIcon className="w-24 h-24" animated />
+        </div>
+
         <h1 className="font-display text-3xl font-bold text-foreground text-center mb-4 animate-fade-in">
           The Seahorse Club
         </h1>
