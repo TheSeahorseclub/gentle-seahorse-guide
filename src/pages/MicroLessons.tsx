@@ -3,7 +3,9 @@ import { MobileLayout } from '@/components/layout/MobileLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Download, Play, Clock, BookOpen, Brain, Heart, Shield } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Download, Play, Clock, BookOpen, Brain, Heart, Shield, GraduationCap } from 'lucide-react';
+import { WeeklyLearning } from '@/components/learn/WeeklyLearning';
 import type { MicroLesson, LessonTopic } from '@/types';
 
 const topicIcons: Record<LessonTopic, React.ElementType> = {
@@ -96,79 +98,98 @@ export const MicroLessons: React.FC = () => {
   return (
     <MobileLayout>
       <PageHeader 
-        title="Micro lessons" 
-        subtitle="Short, calm educational videos to deepen your understanding. No pressure, no judgement—just knowledge."
+        title="Learn" 
+        subtitle="Gentle, evidence-informed guidance to support your journey. No pressure, no judgement."
       />
 
-      <div className="px-6 space-y-8 pb-8">
-        {(Object.entries(groupedLessons) as [LessonTopic, MicroLesson[]][]).map(([topic, topicLessons]) => {
-          const TopicIcon = topicIcons[topic];
-          
-          return (
-            <div key={topic} className="animate-fade-in">
-              <div className="flex items-center gap-2 mb-4">
-                <TopicIcon className="w-5 h-5 text-primary" />
-                <h2 className="font-display font-semibold text-foreground">
-                  {topicLabels[topic]}
-                </h2>
-              </div>
+      <div className="px-6 pb-8">
+        <Tabs defaultValue="weekly" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-6">
+            <TabsTrigger value="weekly" className="gap-2">
+              <GraduationCap className="w-4 h-4" />
+              Weekly Guide
+            </TabsTrigger>
+            <TabsTrigger value="lessons" className="gap-2">
+              <Play className="w-4 h-4" />
+              Video Lessons
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="weekly" className="mt-0">
+            <WeeklyLearning />
+          </TabsContent>
+
+          <TabsContent value="lessons" className="mt-0 space-y-8">
+            {(Object.entries(groupedLessons) as [LessonTopic, MicroLesson[]][]).map(([topic, topicLessons]) => {
+              const TopicIcon = topicIcons[topic];
               
-              <div className="space-y-3">
-                {topicLessons.map((lesson) => (
-                  <Card key={lesson.id} variant="interactive" className="p-4">
-                    <div className="flex gap-4">
-                      {/* Thumbnail placeholder */}
-                      <div className="w-20 h-20 rounded-xl gradient-ocean flex items-center justify-center flex-shrink-0">
-                        <Play className="w-8 h-8 text-primary-foreground" />
-                      </div>
-                      
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-medium text-foreground mb-1 leading-tight">
-                          {lesson.title}
-                        </h3>
-                        
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                          <Clock className="w-3.5 h-3.5" />
-                          <span>{lesson.duration}</span>
+              return (
+                <div key={topic} className="animate-fade-in">
+                  <div className="flex items-center gap-2 mb-4">
+                    <TopicIcon className="w-5 h-5 text-primary" />
+                    <h2 className="font-display font-semibold text-foreground">
+                      {topicLabels[topic]}
+                    </h2>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {topicLessons.map((lesson) => (
+                      <Card key={lesson.id} variant="interactive" className="p-4">
+                        <div className="flex gap-4">
+                          {/* Thumbnail placeholder */}
+                          <div className="w-20 h-20 rounded-xl gradient-ocean flex items-center justify-center flex-shrink-0">
+                            <Play className="w-8 h-8 text-primary-foreground" />
+                          </div>
+                          
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-medium text-foreground mb-1 leading-tight">
+                              {lesson.title}
+                            </h3>
+                            
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                              <Clock className="w-3.5 h-3.5" />
+                              <span>{lesson.duration}</span>
+                            </div>
+                            
+                            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                              {lesson.description}
+                            </p>
+                          </div>
                         </div>
                         
-                        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
-                          {lesson.description}
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-4 flex gap-2">
-                      <Button 
-                        variant="soft" 
-                        size="sm" 
-                        className="flex-1"
-                        onClick={() => handleDownload(lesson)}
-                      >
-                        <Download className="w-4 h-4" />
-                        Download
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="flex-1"
-                      >
-                        <Play className="w-4 h-4" />
-                        Watch now
-                      </Button>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          );
-        })}
-        
-        <Card variant="soft" className="p-4">
-          <p className="text-center text-sm text-muted-foreground italic leading-relaxed">
-            All content is evidence-informed and NHS-aligned. These lessons are educational and do not constitute medical advice.
-          </p>
-        </Card>
+                        <div className="mt-4 flex gap-2">
+                          <Button 
+                            variant="soft" 
+                            size="sm" 
+                            className="flex-1"
+                            onClick={() => handleDownload(lesson)}
+                          >
+                            <Download className="w-4 h-4" />
+                            Download
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="flex-1"
+                          >
+                            <Play className="w-4 h-4" />
+                            Watch now
+                          </Button>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+            
+            <Card variant="soft" className="p-4">
+              <p className="text-center text-sm text-muted-foreground italic leading-relaxed">
+                All content is evidence-informed and NHS-aligned. These lessons are educational and do not constitute medical advice.
+              </p>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </div>
     </MobileLayout>
   );
