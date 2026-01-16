@@ -30,6 +30,13 @@ interface AppState {
   weeklyReflections: WeeklyReflection[];
   addWeeklyReflection: (reflection: WeeklyReflection) => void;
   
+  // Learning Progress
+  completedWeeks: string[]; // Format: "month-week" e.g., "1-1", "1-2"
+  markWeekComplete: (month: number, week: number) => void;
+  markWeekIncomplete: (month: number, week: number) => void;
+  isWeekComplete: (month: number, week: number) => boolean;
+  getMonthProgress: (month: number, totalWeeks: number) => number;
+  
   // Utility
   resetApp: () => void;
 }
@@ -92,12 +99,33 @@ export const useAppStore = create<AppState>()(
         weeklyReflections: [...state.weeklyReflections, reflection]
       })),
       
+      // Learning Progress
+      completedWeeks: [],
+      markWeekComplete: (month, week) => set((state) => {
+        const key = `${month}-${week}`;
+        if (state.completedWeeks.includes(key)) return state;
+        return { completedWeeks: [...state.completedWeeks, key] };
+      }),
+      markWeekIncomplete: (month, week) => set((state) => {
+        const key = `${month}-${week}`;
+        return { completedWeeks: state.completedWeeks.filter(w => w !== key) };
+      }),
+      isWeekComplete: (month, week) => {
+        const key = `${month}-${week}`;
+        return get().completedWeeks.includes(key);
+      },
+      getMonthProgress: (month, totalWeeks) => {
+        const completed = get().completedWeeks.filter(w => w.startsWith(`${month}-`)).length;
+        return Math.round((completed / totalWeeks) * 100);
+      },
+      
       // Utility
       resetApp: () => set({
         userProfile: null,
         dailySignals: [],
         dailyInsights: [],
-        weeklyReflections: []
+        weeklyReflections: [],
+        completedWeeks: []
       })
     }),
     {
