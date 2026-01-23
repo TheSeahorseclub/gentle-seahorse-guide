@@ -15,6 +15,7 @@ import { Confidence } from "./pages/onboarding/Confidence";
 import { Home } from "./pages/Home";
 import { SignalTracker } from "./pages/SignalTracker";
 import { DailyInsight } from "./pages/DailyInsight";
+import { InsightHistory } from "./pages/InsightHistory";
 import { Milestones } from "./pages/Milestones";
 import { MicroLessons } from "./pages/MicroLessons";
 import { WeeklyReflection } from "./pages/WeeklyReflection";
@@ -67,6 +68,14 @@ const AppRoutes = () => {
         element={
           onboardingComplete 
             ? <DailyInsight /> 
+            : <Navigate to="/welcome" replace />
+        } 
+      />
+      <Route 
+        path="/insight-history" 
+        element={
+          onboardingComplete 
+            ? <InsightHistory /> 
             : <Navigate to="/welcome" replace />
         } 
       />
