@@ -1,155 +1,290 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { MobileLayout } from '@/components/layout/MobileLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/store/appStore';
-import { FileText, Download, Check, AlertCircle } from 'lucide-react';
+import { useSignalAnalytics } from '@/hooks/useSignalAnalytics';
+import { getDevelopmentalContext } from '@/utils/developmentalContext';
+import { generateClinicalPdf } from '@/utils/generateClinicalPdf';
+import { ClinicalSummaryPreview } from '@/components/export/ClinicalSummaryPreview';
+import { FileText, Download, Eye, Loader2, AlertCircle } from 'lucide-react';
+
+function generateClinicalReflection(
+  analytics: ReturnType<typeof useSignalAnalytics>,
+  childAgeMonths: number
+): string {
+  if (analytics.daysWithData === 0) {
+    return 'No observations have been recorded during this period. Regular logging of daily signals can help build a clearer picture over time.';
+  }
+
+  const { aggregations, overallTrend, daysWithData } = analytics;
+  
+  // Count overall signal categories
+  const positiveSignals = ['Restful', 'Calm day', 'Settled', 'Connected', 'Smooth'];
+  const challengingSignals = ['Unsettled', 'More than usual', 'Challenging', 'Seeking comfort', 'Finding it hard'];
+  
+  let positiveCount = 0;
+  let challengingCount = 0;
+  let totalCount = 0;
+  
+  aggregations.forEach(agg => {
+    Object.entries(agg.frequencies).forEach(([category, count]) => {
+      totalCount += count;
+      if (positiveSignals.includes(category)) positiveCount += count;
+      if (challengingSignals.includes(category)) challengingCount += count;
+    });
+  });
+
+  const positiveRatio = totalCount > 0 ? positiveCount / totalCount : 0;
+  const challengingRatio = totalCount > 0 ? challengingCount / totalCount : 0;
+
+  let reflection = `Over ${daysWithData} day${daysWithData > 1 ? 's' : ''} of parent-reported observations, `;
+
+  if (positiveRatio > 0.6) {
+    reflection += 'signals have predominantly reflected settled patterns across most categories. ';
+  } else if (challengingRatio > 0.5) {
+    reflection += 'observations have shown periods requiring additional support and attunement. ';
+  } else {
+    reflection += 'observations have shown a mix of settled periods and times requiring additional support. ';
+  }
+
+  // Add trend context
+  if (overallTrend.trend === 'increasing-stability') {
+    reflection += 'There appears to be a gentle movement toward more consistent patterns. ';
+  } else if (overallTrend.trend === 'variable') {
+    reflection += 'Some day-to-day variability has been observed, which is common in early development. ';
+  }
+
+  // Age-appropriate closing
+  if (childAgeMonths <= 6) {
+    reflection += 'At this early age, establishing rhythms is an ongoing developmental process.';
+  } else if (childAgeMonths <= 12) {
+    reflection += 'These observations can support ongoing conversations about developmental support.';
+  } else {
+    reflection += 'This summary may be helpful context for discussions with healthcare providers.';
+  }
+
+  return reflection;
+}
 
 export const Export: React.FC = () => {
-  const { userProfile, dailySignals } = useAppStore();
+  const { userProfile } = useAppStore();
+  const analytics = useSignalAnalytics(7);
+  const [showPreview, setShowPreview] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [generated, setGenerated] = useState(false);
 
-  const handleGenerateSummary = async () => {
+  const childAgeMonths = userProfile?.childAgeMonths || 0;
+  const developmentalContext = useMemo(
+    () => getDevelopmentalContext(childAgeMonths),
+    [childAgeMonths]
+  );
+  const clinicalReflection = useMemo(
+    () => generateClinicalReflection(analytics, childAgeMonths),
+    [analytics, childAgeMonths]
+  );
+
+  const handleDownloadPdf = async () => {
     setIsGenerating(true);
     
-    // Simulate generation delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsGenerating(false);
-    setGenerated(true);
+    try {
+      // Small delay for UX feedback
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      const pdf = generateClinicalPdf({
+        childAgeMonths,
+        analytics,
+        developmentalContext,
+        clinicalReflection,
+      });
+      
+      pdf.save(`clinical-signals-summary-${new Date().toISOString().split('T')[0]}.pdf`);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
-  const signalCount = dailySignals.length;
-  const daysCovered = signalCount > 0 
-    ? Math.ceil((new Date().getTime() - new Date(dailySignals[0].date).getTime()) / (1000 * 60 * 60 * 24))
-    : 0;
+  if (analytics.isLoading) {
+    return (
+      <MobileLayout>
+        <PageHeader 
+          title="Export summary" 
+          subtitle="Preparing your clinical signals summary..."
+        />
+        <div className="flex items-center justify-center py-20">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      </MobileLayout>
+    );
+  }
 
   return (
     <MobileLayout>
       <PageHeader 
         title="Export summary" 
-        subtitle="Generate a neutral summary of your observations. No diagnoses, no scores, no labels."
+        subtitle="A professional summary of parent-reported observations."
       />
 
-      <div className="px-6 space-y-6">
-        {/* Summary preview */}
-        <Card variant="soft" className="p-5 animate-fade-in">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-              <FileText className="w-6 h-6 text-primary" />
+      <div className="px-6 space-y-4 pb-8">
+        {/* Summary info card */}
+        {!showPreview && (
+          <>
+            <Card variant="soft" className="p-5 animate-fade-in">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <FileText className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-display font-semibold text-foreground mb-2">
+                    Clinical Signals Summary
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    A structured summary of parent-reported signals, designed to support clinical discussion. Not a diagnostic tool.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-3 animate-slide-up">
+              <Card variant="default" className="p-4 text-center">
+                <p className="text-3xl font-display font-bold text-primary mb-1">
+                  {analytics.daysWithData}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Days logged
+                </p>
+              </Card>
+              <Card variant="default" className="p-4 text-center">
+                <p className="text-3xl font-display font-bold text-primary mb-1">
+                  {childAgeMonths}m
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Child's age
+                </p>
+              </Card>
             </div>
-            <div>
-              <h3 className="font-display font-semibold text-foreground mb-2">
-                Observation summary
+
+            {/* What's included */}
+            <Card variant="sunrise" className="p-5 animate-fade-in">
+              <h3 className="font-display font-semibold text-coral-foreground mb-3">
+                What's included
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                A neutral record of the signals you've observed, presented in calm, descriptive language suitable for sharing with healthcare providers if you choose.
-              </p>
+              <ul className="space-y-2 text-sm text-coral-foreground/80">
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
+                  <span>7-day observation period analysis</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
+                  <span>Signal frequency per category</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
+                  <span>Neutral trend description</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
+                  <span>Age-appropriate developmental context</span>
+                </li>
+              </ul>
+            </Card>
+
+            {/* Disclaimer */}
+            <Card variant="soft" className="p-5 animate-fade-in">
+              <div className="flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
+                <div>
+                  <h3 className="font-display font-semibold text-foreground mb-2">
+                    Important note
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    This summary organises parent-reported signals and does not provide diagnosis, assessment, or prediction. It is designed to support, not replace, clinical discussion.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Action buttons */}
+            <div className="pt-4 space-y-3 animate-slide-up">
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full"
+                onClick={() => setShowPreview(true)}
+                disabled={analytics.daysWithData === 0}
+              >
+                <Eye className="w-5 h-5" />
+                Preview summary
+              </Button>
+              
+              <Button
+                variant="ocean"
+                size="lg"
+                className="w-full"
+                onClick={handleDownloadPdf}
+                disabled={isGenerating || analytics.daysWithData === 0}
+              >
+                {isGenerating ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Generating...
+                  </>
+                ) : analytics.daysWithData === 0 ? (
+                  'Log signals to generate summary'
+                ) : (
+                  <>
+                    <Download className="w-5 h-5" />
+                    Download PDF
+                  </>
+                )}
+              </Button>
+            </div>
+          </>
+        )}
+
+        {/* Preview mode */}
+        {showPreview && (
+          <div className="space-y-4 animate-fade-in">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowPreview(false)}
+              className="mb-2"
+            >
+              ← Back to export
+            </Button>
+            
+            <ClinicalSummaryPreview
+              childAgeMonths={childAgeMonths}
+              analytics={analytics}
+              developmentalContext={developmentalContext}
+              clinicalReflection={clinicalReflection}
+            />
+            
+            <div className="pt-4 sticky bottom-4">
+              <Button
+                variant="ocean"
+                size="lg"
+                className="w-full shadow-lg"
+                onClick={handleDownloadPdf}
+                disabled={isGenerating}
+              >
+                {isGenerating ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Download className="w-5 h-5" />
+                    Download PDF
+                  </>
+                )}
+              </Button>
             </div>
           </div>
-        </Card>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 gap-3 animate-slide-up">
-          <Card variant="default" className="p-4 text-center">
-            <p className="text-3xl font-display font-bold text-primary mb-1">
-              {signalCount}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Days logged
-            </p>
-          </Card>
-          <Card variant="default" className="p-4 text-center">
-            <p className="text-3xl font-display font-bold text-primary mb-1">
-              {userProfile?.childAgeMonths || 0}m
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Child's age
-            </p>
-          </Card>
-        </div>
-
-        {/* What's included */}
-        <Card variant="sunrise" className="p-5 animate-fade-in">
-          <h3 className="font-display font-semibold text-coral-foreground mb-3">
-            What's included
-          </h3>
-          <ul className="space-y-2 text-sm text-coral-foreground/80">
-            <li className="flex items-start gap-2">
-              <Check className="w-4 h-4 mt-0.5 flex-shrink-0" />
-              <span>Observation period and child's age</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Check className="w-4 h-4 mt-0.5 flex-shrink-0" />
-              <span>Summary of daily signal patterns</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Check className="w-4 h-4 mt-0.5 flex-shrink-0" />
-              <span>Descriptive language only—no scores or labels</span>
-            </li>
-          </ul>
-        </Card>
-
-        {/* What's NOT included */}
-        <Card variant="soft" className="p-5 animate-fade-in">
-          <h3 className="font-display font-semibold text-foreground mb-3">
-            What's not included
-          </h3>
-          <ul className="space-y-2 text-sm text-muted-foreground">
-            <li className="flex items-start gap-2">
-              <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-muted-foreground" />
-              <span>No diagnoses or clinical assessments</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-muted-foreground" />
-              <span>No developmental scores or comparisons</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-muted-foreground" />
-              <span>No recommendations requiring professional input</span>
-            </li>
-          </ul>
-        </Card>
-
-        {/* Generate button */}
-        <div className="pt-4 pb-8 animate-slide-up">
-          {generated ? (
-            <Card variant="calm" className="p-5 text-center">
-              <Check className="w-12 h-12 mx-auto text-primary mb-3" />
-              <h3 className="font-display font-semibold text-foreground mb-2">
-                Summary ready
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Your observation summary has been generated.
-              </p>
-              <Button variant="ocean" size="lg" className="w-full">
-                <Download className="w-5 h-5" />
-                Download PDF
-              </Button>
-            </Card>
-          ) : (
-            <Button
-              variant="ocean"
-              size="lg"
-              className="w-full"
-              onClick={handleGenerateSummary}
-              disabled={isGenerating || signalCount === 0}
-            >
-              {isGenerating ? (
-                'Generating...'
-              ) : signalCount === 0 ? (
-                'Log signals to generate summary'
-              ) : (
-                <>
-                  <FileText className="w-5 h-5" />
-                  Generate summary
-                </>
-              )}
-            </Button>
-          )}
-        </div>
+        )}
       </div>
     </MobileLayout>
   );
