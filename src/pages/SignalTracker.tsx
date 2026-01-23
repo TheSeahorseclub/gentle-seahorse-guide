@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MobileLayout } from '@/components/layout/MobileLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/store/appStore';
-import { Moon, MessageCircle, Utensils, Heart, RefreshCw, Check } from 'lucide-react';
+import { Moon, MessageCircle, Utensils, Heart, RefreshCw, Check, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
+import { useLocalUserId } from '@/hooks/useLocalUserId';
+import { useToast } from '@/hooks/use-toast';
 import type { SleepSignal, CryingSignal, FeedingSignal, InteractionSignal, TransitionsSignal } from '@/types';
 
 type SignalCategory = 'sleep' | 'crying' | 'feeding' | 'interaction' | 'transitions';
@@ -59,6 +62,8 @@ export const SignalTracker: React.FC = () => {
   const navigate = useNavigate();
   const { addDailySignal, getTodaySignal } = useAppStore();
   const existingSignal = getTodaySignal();
+  const localUserId = useLocalUserId();
+  const { toast } = useToast();
 
   const [currentCategory, setCurrentCategory] = useState<SignalCategory>('sleep');
   const [signals, setSignals] = useState({
@@ -68,10 +73,13 @@ export const SignalTracker: React.FC = () => {
     interaction: existingSignal?.interaction?.engagement || null as InteractionSignal['engagement'] | null,
     transitions: existingSignal?.transitions?.ease || null as TransitionsSignal['ease'] | null,
   });
+  const [savedSignals, setSavedSignals] = useState<Set<SignalCategory>>(new Set());
+  const [isSaving, setIsSaving] = useState(false);
 
   const currentCategoryIndex = categories.findIndex(c => c.key === currentCategory);
   const isLastCategory = currentCategoryIndex === categories.length - 1;
   const allComplete = Object.values(signals).every(v => v !== null);
+  const hasAnySavedSignal = savedSignals.size > 0;
 
   const getOptionsForCategory = (category: SignalCategory) => {
     switch (category) {
@@ -83,8 +91,35 @@ export const SignalTracker: React.FC = () => {
     }
   };
 
-  const handleSelect = (value: string) => {
+  const getLabelForValue = (category: SignalCategory, value: string): string => {
+    const options = getOptionsForCategory(category);
+    return options.find(opt => opt.value === value)?.label || value;
+  };
+
+  const handleSelect = async (value: string) => {
     setSignals(prev => ({ ...prev, [currentCategory]: value }));
+    setIsSaving(true);
+
+    try {
+      const { error } = await supabase.from('signal_entries').insert({
+        user_id: localUserId,
+        signal_type: currentCategory,
+        description: getLabelForValue(currentCategory, value),
+      });
+
+      if (error) throw error;
+
+      setSavedSignals(prev => new Set([...prev, currentCategory]));
+    } catch (error) {
+      console.error('Error saving signal:', error);
+      toast({
+        title: 'Could not save signal',
+        description: 'Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleNext = () => {
@@ -215,9 +250,12 @@ export const SignalTracker: React.FC = () => {
             variant="ocean"
             size="lg"
             className="flex-1"
-            disabled={currentValue === null}
+            disabled={currentValue === null || isSaving || !hasAnySavedSignal}
             onClick={handleNext}
           >
+            {isSaving ? (
+              <Loader2 className="w-4 h-4 animate-spin mr-2" />
+            ) : null}
             {isLastCategory ? (allComplete ? 'See insight' : 'Finish') : 'Next'}
           </Button>
         </div>
