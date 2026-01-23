@@ -1,53 +1,116 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MobileLayout } from '@/components/layout/MobileLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { useAppStore } from '@/store/appStore';
 import { Sparkles, Brain, Heart, Loader2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
+import { getLocalUserId } from '@/hooks/useLocalUserId';
 
-// Placeholder insights based on signal patterns
-const getPlaceholderInsight = () => ({
-  meaning: "Your child's nervous system may be processing new experiences. Unsettled moments often reflect their brain working hard to integrate new learning and sensations.",
-  support: "Stay close and calm. Your regulated presence helps their nervous system learn to find balance. Gentle rhythms—like rocking or soft humming—can be especially settling today."
-});
+interface SignalEntry {
+  id: string;
+  signal_type: string;
+  description: string;
+  created_at: string;
+}
+
+// Generate insight based on signal patterns
+const generateInsight = (signals: SignalEntry[]) => {
+  const signalTypes = signals.map(s => s.signal_type);
+  const descriptions = signals.map(s => s.description.toLowerCase());
+  
+  // Analyze patterns for title
+  const hasUnsettled = descriptions.some(d => 
+    d.includes('unsettled') || d.includes('fussiness') || d.includes('challenging') || d.includes('hard')
+  );
+  const hasCalm = descriptions.some(d => 
+    d.includes('restful') || d.includes('calm') || d.includes('settled') || d.includes('smooth')
+  );
+  
+  let title: string;
+  let meaning: string;
+  let suggestions: string[];
+  
+  if (hasUnsettled && !hasCalm) {
+    title = "A day of big feelings";
+    meaning = "Your little one's nervous system may be working hard to process new experiences today. These signals often reflect their brain actively integrating sensations and learning. Unsettled moments are a natural part of development and may indicate they're reaching for comfort and connection.";
+    suggestions = [
+      "Stay close and calm — your regulated presence helps their nervous system find balance.",
+      "Gentle rhythms like rocking, soft humming, or skin-to-skin contact may be especially settling today."
+    ];
+  } else if (hasCalm && !hasUnsettled) {
+    title = "Signals of a settled day";
+    meaning = "Today's signals suggest your child's nervous system may be in a calm, regulated state. This is a wonderful foundation for connection and gentle exploration. These moments of ease reflect the safety they feel in your care.";
+    suggestions = [
+      "Enjoy this calm window for quiet connection — eye contact, soft voices, and gentle play.",
+      "These settled moments are perfect for introducing new experiences at their pace."
+    ];
+  } else {
+    title = "A day of mixed signals";
+    meaning = "Your child may be moving between different states today, which is completely normal. Their nervous system is learning to navigate various experiences. These mixed signals often reflect their growing capacity to adapt and self-regulate with your support.";
+    suggestions = [
+      "Follow their lead and offer comfort when they signal they need it.",
+      "Create predictable rhythms in your day — consistency helps their nervous system feel safe."
+    ];
+  }
+  
+  return { title, meaning, suggestions };
+};
 
 export const DailyInsight: React.FC = () => {
-  const { getTodaySignal, getTodayInsight, addDailyInsight } = useAppStore();
-  const todaySignal = getTodaySignal();
-  const existingInsight = getTodayInsight();
-  
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [insight, setInsight] = useState<{ meaning: string; support: string } | null>(
-    existingInsight ? { 
-      meaning: existingInsight.nervousSystemMeaning, 
-      support: existingInsight.supportSuggestion 
-    } : null
-  );
+  const [isLoading, setIsLoading] = useState(true);
+  const [todaySignals, setTodaySignals] = useState<SignalEntry[]>([]);
+  const [insight, setInsight] = useState<{ title: string; meaning: string; suggestions: string[] } | null>(null);
 
-  const handleGenerateInsight = async () => {
-    setIsGenerating(true);
+  useEffect(() => {
+    const fetchTodaySignals = async () => {
+      const userId = getLocalUserId();
+      
+      // Get start of today in local time
+      const now = new Date();
+      const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+      
+      const { data, error } = await supabase
+        .from('signal_entries')
+        .select('*')
+        .eq('user_id', userId)
+        .gte('created_at', startOfToday.toISOString())
+        .lte('created_at', now.toISOString())
+        .order('created_at', { ascending: true });
+      
+      if (error) {
+        console.error('Error fetching signals:', error);
+        setIsLoading(false);
+        return;
+      }
+      
+      setTodaySignals(data || []);
+      
+      if (data && data.length > 0) {
+        setInsight(generateInsight(data));
+      }
+      
+      setIsLoading(false);
+    };
     
-    // Simulate AI generation delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    const newInsight = getPlaceholderInsight();
-    setInsight(newInsight);
-    
-    const today = new Date().toISOString().split('T')[0];
-    addDailyInsight({
-      id: `insight-${today}`,
-      date: today,
-      nervousSystemMeaning: newInsight.meaning,
-      supportSuggestion: newInsight.support,
-      generatedAt: new Date().toISOString(),
-    });
-    
-    setIsGenerating(false);
-  };
+    fetchTodaySignals();
+  }, []);
 
-  if (!todaySignal) {
+  if (isLoading) {
+    return (
+      <MobileLayout>
+        <PageHeader 
+          title="Today's insight" 
+          subtitle="Loading your signals..."
+        />
+        <div className="px-6 py-12 flex justify-center">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      </MobileLayout>
+    );
+  }
+
+  if (todaySignals.length === 0) {
     return (
       <MobileLayout>
         <PageHeader 
@@ -77,8 +140,15 @@ export const DailyInsight: React.FC = () => {
       />
 
       <div className="px-6 space-y-6">
-        {insight ? (
+        {insight && (
           <>
+            {/* Insight Title */}
+            <div className="text-center animate-fade-in">
+              <h2 className="font-display text-xl font-semibold text-foreground">
+                {insight.title}
+              </h2>
+            </div>
+
             {/* What this might mean */}
             <Card variant="soft" className="p-5 animate-fade-in">
               <div className="flex items-start gap-4">
@@ -106,53 +176,24 @@ export const DailyInsight: React.FC = () => {
                   <h3 className="font-display font-semibold text-coral-foreground mb-2">
                     How to support today
                   </h3>
-                  <p className="text-coral-foreground/80 leading-relaxed">
-                    {insight.support}
-                  </p>
+                  <ul className="space-y-2">
+                    {insight.suggestions.map((suggestion, index) => (
+                      <li key={index} className="text-coral-foreground/80 leading-relaxed">
+                        {suggestion}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </Card>
 
-            {/* Gentle reminder */}
+            {/* Disclaimer */}
             <Card variant="soft" className="p-4 animate-fade-in-slow">
               <p className="text-center text-sm text-muted-foreground italic">
-                This is educational guidance, not medical advice. Every child is unique, and you know yours best.
+                Educational only — not medical advice. Every child is unique, and you know yours best.
               </p>
             </Card>
           </>
-        ) : (
-          <div className="py-8 text-center animate-fade-in">
-            <div className="w-24 h-24 mx-auto mb-6 rounded-full gradient-ocean flex items-center justify-center animate-breathe">
-              <Sparkles className="w-12 h-12 text-primary-foreground" />
-            </div>
-            
-            <h2 className="font-display text-xl font-semibold text-foreground mb-3">
-              Ready for your insight
-            </h2>
-            <p className="text-muted-foreground mb-8 max-w-xs mx-auto">
-              Based on today's signals, we'll share what this might mean for your child's nervous system.
-            </p>
-            
-            <Button
-              variant="ocean"
-              size="lg"
-              className="min-w-[200px]"
-              onClick={handleGenerateInsight}
-              disabled={isGenerating}
-            >
-              {isGenerating ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  Generating...
-                </>
-              ) : (
-                <>
-                  <Sparkles className="w-5 h-5" />
-                  Generate today's insight
-                </>
-              )}
-            </Button>
-          </div>
         )}
       </div>
     </MobileLayout>
