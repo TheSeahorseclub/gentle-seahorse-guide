@@ -63,12 +63,13 @@ export const DailyInsight: React.FC = () => {
   const [insight, setInsight] = useState<{ title: string; meaning: string; suggestions: string[] } | null>(null);
 
   useEffect(() => {
-    const fetchTodaySignals = async () => {
+    const fetchTodaySignalsAndSaveInsight = async () => {
       const userId = getLocalUserId();
       
       // Get start of today in local time
       const now = new Date();
       const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+      const todayDate = now.toISOString().split('T')[0]; // YYYY-MM-DD format
       
       const { data, error } = await supabase
         .from('signal_entries')
@@ -87,13 +88,32 @@ export const DailyInsight: React.FC = () => {
       setTodaySignals(data || []);
       
       if (data && data.length > 0) {
-        setInsight(generateInsight(data));
+        const generatedInsight = generateInsight(data);
+        setInsight(generatedInsight);
+        
+        // Save insight to database (upsert to avoid duplicates)
+        const { error: insertError } = await supabase
+          .from('daily_insights')
+          .upsert(
+            {
+              user_id: userId,
+              title: generatedInsight.title,
+              insight_text: generatedInsight.meaning,
+              support_sugg: generatedInsight.suggestions.join(' | '),
+              insight_date: todayDate,
+            },
+            { onConflict: 'user_id,insight_date' }
+          );
+        
+        if (insertError) {
+          console.error('Error saving insight:', insertError);
+        }
       }
       
       setIsLoading(false);
     };
     
-    fetchTodaySignals();
+    fetchTodaySignalsAndSaveInsight();
   }, []);
 
   if (isLoading) {
