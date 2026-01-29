@@ -54,15 +54,11 @@ export const getVideoPublicUrl = (videoPath: string): string | null => {
     return null;
   }
   
-  // Encode the path to handle spaces and special characters
-  const encodedPath = videoPath
-    .split('/')
-    .map(segment => encodeURIComponent(segment))
-    .join('/');
-  
+  // Supabase getPublicUrl already handles URL encoding internally
+  // Do NOT encode the path here to avoid double-encoding
   const { data } = supabase.storage
     .from('videos')
-    .getPublicUrl(encodedPath);
+    .getPublicUrl(videoPath);
   
   if (!data?.publicUrl) {
     console.error('Failed to get public URL for video:', videoPath);
