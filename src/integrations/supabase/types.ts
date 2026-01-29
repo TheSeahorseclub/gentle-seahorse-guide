@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      content_videos: {
+        Row: {
+          created_at: string
+          cycle_number: number
+          description: string | null
+          id: string
+          is_published: boolean
+          title: string
+          video_order: number
+          video_path: string
+        }
+        Insert: {
+          created_at?: string
+          cycle_number: number
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          title: string
+          video_order?: number
+          video_path: string
+        }
+        Update: {
+          created_at?: string
+          cycle_number?: number
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          title?: string
+          video_order?: number
+          video_path?: string
+        }
+        Relationships: []
+      }
       daily_insights: {
         Row: {
           created_at: string
