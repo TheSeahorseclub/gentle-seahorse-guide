@@ -61,7 +61,7 @@ export const getVideoPublicUrl = (videoPath: string): string | null => {
     .join('/');
   
   const { data } = supabase.storage
-    .from('content_videos')
+    .from('videos')
     .getPublicUrl(encodedPath);
   
   if (!data?.publicUrl) {
