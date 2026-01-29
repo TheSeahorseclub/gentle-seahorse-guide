@@ -47,15 +47,15 @@ export const VideoLibrary: React.FC = () => {
     );
   }
 
-  const groupedVideos = groupVideosByCycle(videos);
-  const sortedCycles = Object.keys(groupedVideos)
-    .map(Number)
-    .sort((a, b) => a - b);
+  const groupedVideos = videos ? groupVideosByCycle(videos) : {};
+  
+  // Static array of all 12 cycles - always render all sections
+  const allCycles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   return (
     <>
       <div className="space-y-8">
-        {sortedCycles.map((cycleNumber) => {
+        {allCycles.map((cycleNumber) => {
           const cycleVideos = groupedVideos[cycleNumber];
           const ageLabel = cycleLabels[cycleNumber] || `Cycle ${cycleNumber}`;
 
