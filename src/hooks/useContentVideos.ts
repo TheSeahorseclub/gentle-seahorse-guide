@@ -48,10 +48,26 @@ export const useContentVideos = () => {
   });
 };
 
-export const getVideoPublicUrl = (videoPath: string): string => {
+export const getVideoPublicUrl = (videoPath: string): string | null => {
+  if (!videoPath) {
+    console.error('Video path is missing');
+    return null;
+  }
+  
+  // Encode the path to handle spaces and special characters
+  const encodedPath = videoPath
+    .split('/')
+    .map(segment => encodeURIComponent(segment))
+    .join('/');
+  
   const { data } = supabase.storage
     .from('videos')
-    .getPublicUrl(videoPath);
+    .getPublicUrl(encodedPath);
+  
+  if (!data?.publicUrl) {
+    console.error('Failed to get public URL for video:', videoPath);
+    return null;
+  }
   
   return data.publicUrl;
 };
