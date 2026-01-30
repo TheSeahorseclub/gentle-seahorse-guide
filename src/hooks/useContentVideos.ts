@@ -48,37 +48,22 @@ export const useContentVideos = () => {
   });
 };
 
-// Specific path corrections for storage file naming inconsistencies
-const pathCorrections: Record<string, string> = {
-  'cycle-1/module1.mp4': 'cycle-1/Module1.mp4',
-  'cycle-1/module1L2.mp4': 'cycle-1/Module1L2.mp4',
-  // module1L3.mp4 stays lowercase (matches storage)
-};
-
-const normalizeVideoPath = (path: string): string => {
-  return pathCorrections[path] || path;
-};
-
 export const getVideoPublicUrl = (videoPath: string): string | null => {
   if (!videoPath) {
     console.error('Video path is missing');
     return null;
   }
   
-  // Normalize path to match actual file naming in storage
-  const normalizedPath = normalizeVideoPath(videoPath);
-  
   // Supabase getPublicUrl already handles URL encoding internally
   const { data } = supabase.storage
     .from('videos')
-    .getPublicUrl(normalizedPath);
+    .getPublicUrl(videoPath);
   
   if (!data?.publicUrl) {
-    console.error('Failed to get public URL for video:', normalizedPath);
+    console.error('Failed to get public URL for video:', videoPath);
     return null;
   }
   
-  console.log('Video path normalized:', videoPath, '→', normalizedPath);
   return data.publicUrl;
 };
 
