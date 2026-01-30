@@ -48,10 +48,15 @@ export const useContentVideos = () => {
   });
 };
 
-// Normalize path to match actual file naming convention (uppercase Module)
+// Specific path corrections for storage file naming inconsistencies
+const pathCorrections: Record<string, string> = {
+  'cycle-1/module1.mp4': 'cycle-1/Module1.mp4',
+  'cycle-1/module1L2.mp4': 'cycle-1/Module1L2.mp4',
+  // module1L3.mp4 stays lowercase (matches storage)
+};
+
 const normalizeVideoPath = (path: string): string => {
-  // Convert lowercase "module" to uppercase "Module" to match storage files
-  return path.replace(/module(\d)/gi, 'Module$1');
+  return pathCorrections[path] || path;
 };
 
 export const getVideoPublicUrl = (videoPath: string): string | null => {
