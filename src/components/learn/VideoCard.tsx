@@ -3,6 +3,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import type { ContentVideo } from '@/hooks/useContentVideos';
+import { getVideoPublicUrl } from '@/hooks/useContentVideos';
 
 interface VideoCardProps {
   video: ContentVideo;
@@ -10,6 +11,8 @@ interface VideoCardProps {
 }
 
 export const VideoCard: React.FC<VideoCardProps> = ({ video, onPlay }) => {
+  const publicUrl = getVideoPublicUrl(video.video_path);
+  
   return (
     <Card variant="interactive" className="p-4">
       <div className="flex gap-4">
@@ -41,6 +44,13 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onPlay }) => {
           <Play className="w-4 h-4" />
           Play video
         </Button>
+      </div>
+      
+      {/* DEBUG INFO - temporary */}
+      <div className="mt-3 p-2 bg-muted/50 rounded-lg text-xs font-mono space-y-1 border border-dashed border-muted-foreground/30">
+        <p><strong>video_path:</strong> {video.video_path}</p>
+        <p className="break-all"><strong>publicUrl:</strong> {publicUrl || 'NULL'}</p>
+        <p><strong>bucket:</strong> videos</p>
       </div>
     </Card>
   );
