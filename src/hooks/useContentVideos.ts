@@ -54,17 +54,15 @@ export const getVideoPublicUrl = (videoPath: string): string | null => {
     return null;
   }
   
-  // Supabase getPublicUrl already handles URL encoding internally
-  const { data } = supabase.storage
-    .from('videos')
-    .getPublicUrl(videoPath);
-  
-  if (!data?.publicUrl) {
-    console.error('Failed to get public URL for video:', videoPath);
+  // Build the public URL manually using the Supabase URL from env
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+  if (!supabaseUrl) {
+    console.error('VITE_SUPABASE_URL is not configured');
     return null;
   }
   
-  return data.publicUrl;
+  // Format: ${SUPABASE_URL}/storage/v1/object/public/videos/${video_path}
+  return `${supabaseUrl}/storage/v1/object/public/videos/${videoPath}`;
 };
 
 // Group videos by cycle number
