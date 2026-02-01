@@ -28,10 +28,7 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
 
   const videoUrl = getVideoPublicUrl(video.video_path);
 
-  const handleError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    console.error('Video playback failed for path:', video.video_path);
-    console.error('Video URL attempted:', videoUrl);
-    console.error('Error event:', e);
+  const handleError = () => {
     setHasError(true);
   };
 

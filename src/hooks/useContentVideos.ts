@@ -49,19 +49,11 @@ export const useContentVideos = () => {
 };
 
 export const getVideoPublicUrl = (videoPath: string): string | null => {
-  if (!videoPath) {
-    console.error('Video path is missing');
-    return null;
-  }
+  if (!videoPath) return null;
   
-  // Build the public URL manually using the Supabase URL from env
   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-  if (!supabaseUrl) {
-    console.error('VITE_SUPABASE_URL is not configured');
-    return null;
-  }
+  if (!supabaseUrl) return null;
   
-  // Format: ${SUPABASE_URL}/storage/v1/object/public/videos/${video_path}
   return `${supabaseUrl}/storage/v1/object/public/videos/${videoPath}`;
 };
 
