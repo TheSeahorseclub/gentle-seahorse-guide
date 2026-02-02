@@ -51,7 +51,14 @@ export const useContentVideos = () => {
 export const getVideoPublicUrl = (videoPath: string): string | null => {
   if (!videoPath) return null;
   
-  // External storage bucket for video content
+  // Check if it's a Cloudflare Stream ID (32-character hex string)
+  const isCloudflareStreamId = /^[a-f0-9]{32}$/i.test(videoPath);
+  
+  if (isCloudflareStreamId) {
+    return `https://customer-e236ffdew96i1dkq.cloudflarestream.com/${videoPath}/iframe`;
+  }
+  
+  // Fallback to external Supabase storage for legacy paths
   const storageUrl = 'https://pybzakbvislqmveosmcz.supabase.co';
   return `${storageUrl}/storage/v1/object/public/videos/${videoPath}`;
 };
