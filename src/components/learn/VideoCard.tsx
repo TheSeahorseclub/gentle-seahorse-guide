@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
+import { Play, AlertCircle } from 'lucide-react';
 import type { ContentVideo } from '@/hooks/useContentVideos';
+import { getVideoPublicUrl } from '@/hooks/useContentVideos';
 
 interface VideoCardProps {
   video: ContentVideo;
@@ -8,6 +10,9 @@ interface VideoCardProps {
 }
 
 export const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
+  const videoUrl = getVideoPublicUrl(video.video_path);
+  const isCloudflareStream = /^[a-f0-9]{32}$/i.test(video.video_path);
+
   return (
     <Card variant="default" className="p-4">
       <div className="mb-3">
@@ -22,14 +27,21 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
         )}
       </div>
       
-      {/* Cloudflare Stream embedded video player */}
+      {/* Video player - Cloudflare Stream iframe or placeholder */}
       <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-muted">
-        <iframe
-          src="https://customer-e236ffdew96i1dkq.cloudflarestream.com/166d3a4b6c8187eb4c319dc71cf64433/iframe"
-          className="absolute inset-0 w-full h-full border-0"
-          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-          allowFullScreen
-        />
+        {isCloudflareStream && videoUrl ? (
+          <iframe
+            src={videoUrl}
+            className="absolute inset-0 w-full h-full border-0"
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted text-muted-foreground gap-2">
+            <Play className="w-10 h-10" />
+            <p className="text-sm">Video coming soon</p>
+          </div>
+        )}
       </div>
     </Card>
   );
