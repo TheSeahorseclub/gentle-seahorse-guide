@@ -1,46 +1,35 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Play } from 'lucide-react';
 import type { ContentVideo } from '@/hooks/useContentVideos';
 
 interface VideoCardProps {
   video: ContentVideo;
-  onPlay: (video: ContentVideo) => void;
+  onPlay?: (video: ContentVideo) => void;
 }
 
-export const VideoCard: React.FC<VideoCardProps> = ({ video, onPlay }) => {
+export const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
   return (
-    <Card variant="interactive" className="p-4">
-      <div className="flex gap-4">
-        {/* Thumbnail placeholder */}
-        <div className="w-20 h-20 rounded-xl gradient-ocean flex items-center justify-center flex-shrink-0">
-          <Play className="w-8 h-8 text-primary-foreground" />
-        </div>
+    <Card variant="default" className="p-4">
+      <div className="mb-3">
+        <h3 className="font-medium text-foreground mb-1 leading-tight">
+          {video.title}
+        </h3>
         
-        <div className="flex-1 min-w-0">
-          <h3 className="font-medium text-foreground mb-1 leading-tight">
-            {video.title}
-          </h3>
-          
-          {video.description && (
-            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
-              {video.description}
-            </p>
-          )}
-        </div>
+        {video.description && (
+          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+            {video.description}
+          </p>
+        )}
       </div>
       
-      <div className="mt-4">
-        <Button 
-          variant="soft" 
-          size="sm" 
-          className="w-full"
-          onClick={() => onPlay(video)}
-        >
-          <Play className="w-4 h-4" />
-          Play video
-        </Button>
+      {/* Cloudflare Stream embedded video player */}
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-muted">
+        <iframe
+          src="https://customer-e236ffdew96i1dkq.cloudflarestream.com/166d3a4b6c8187eb4c319dc71cf64433/iframe"
+          className="absolute inset-0 w-full h-full border-0"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+        />
       </div>
     </Card>
   );
