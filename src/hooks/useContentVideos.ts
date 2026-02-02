@@ -48,8 +48,24 @@ export const useContentVideos = () => {
   });
 };
 
+// Check if a video path is a Cloudflare Stream ID (32-character hex string)
+export const isCloudflareStreamId = (videoPath: string): boolean => {
+  if (!videoPath) return false;
+  return /^[a-f0-9]{32}$/i.test(videoPath);
+};
+
+// Get Cloudflare Stream iframe URL
+export const getCloudflareIframeUrl = (streamId: string): string => {
+  return `https://customer-e236ffdew96i1dkq.cloudflarestream.com/${streamId}/iframe`;
+};
+
 export const getVideoPublicUrl = (videoPath: string): string | null => {
   if (!videoPath) return null;
+  
+  // If it's a Cloudflare Stream ID, return null (use iframe instead)
+  if (isCloudflareStreamId(videoPath)) {
+    return null;
+  }
   
   // External storage bucket for video content
   const storageUrl = 'https://pybzakbvislqmveosmcz.supabase.co';
