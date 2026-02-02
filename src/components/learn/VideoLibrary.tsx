@@ -49,13 +49,20 @@ export const VideoLibrary: React.FC = () => {
 
   const groupedVideos = videos ? groupVideosByCycle(videos) : {};
   
-  // Static array of all 12 cycles - always render all sections
-  const allCycles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  // Dynamically get cycle numbers from videos (only cycles with content)
+  const cyclesWithVideos = Object.keys(groupedVideos)
+    .map(Number)
+    .sort((a, b) => a - b);
+
+  // Log for debugging
+  console.log(`Loaded ${cyclesWithVideos.length} cycles with videos:`, 
+    cyclesWithVideos.map(c => `Cycle ${c}: ${groupedVideos[c]?.length || 0} videos`).join(', ')
+  );
 
   return (
     <>
       <div className="space-y-8">
-        {allCycles.map((cycleNumber) => {
+        {cyclesWithVideos.map((cycleNumber) => {
           const cycleVideos = groupedVideos[cycleNumber];
           const ageLabel = cycleLabels[cycleNumber] || `Cycle ${cycleNumber}`;
 
@@ -73,25 +80,20 @@ export const VideoLibrary: React.FC = () => {
                   </h2>
                   <p className="text-sm text-muted-foreground">{ageLabel}</p>
                 </div>
+                <span className="ml-auto text-xs text-muted-foreground">
+                  {cycleVideos.length} {cycleVideos.length === 1 ? 'video' : 'videos'}
+                </span>
               </div>
 
-              {cycleVideos && cycleVideos.length > 0 ? (
-                <div className="space-y-3">
-                  {cycleVideos.map((video) => (
-                    <VideoCard
-                      key={video.id}
-                      video={video}
-                      onPlay={handlePlay}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <Card variant="soft" className="p-4">
-                  <p className="text-center text-sm text-muted-foreground italic">
-                    New lessons coming soon.
-                  </p>
-                </Card>
-              )}
+              <div className="space-y-3">
+                {cycleVideos.map((video) => (
+                  <VideoCard
+                    key={video.id}
+                    video={video}
+                    onPlay={handlePlay}
+                  />
+                ))}
+              </div>
             </div>
           );
         })}
