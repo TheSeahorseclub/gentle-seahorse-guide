@@ -51,9 +51,9 @@ export const useContentVideos = () => {
 export const getVideoPublicUrl = (videoPath: string): string | null => {
   if (!videoPath) return null;
   
-  // Use environment variable to point to current project's storage
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-  return `${supabaseUrl}/storage/v1/object/public/videos/${videoPath}`;
+  // External storage bucket for video content
+  const storageUrl = 'https://pybzakbvislqmveosmcz.supabase.co';
+  return `${storageUrl}/storage/v1/object/public/videos/${videoPath}`;
 };
 
 // Group videos by cycle number
