@@ -9,7 +9,7 @@ import {
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { AlertCircle } from 'lucide-react';
 import type { ContentVideo } from '@/hooks/useContentVideos';
-import { getVideoPublicUrl } from '@/hooks/useContentVideos';
+import { getVideoPublicUrl, isCloudflareStreamId, getCloudflareIframeUrl } from '@/hooks/useContentVideos';
 
 interface VideoPlayerModalProps {
   video: ContentVideo | null;
@@ -26,7 +26,9 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
 
   if (!video) return null;
 
-  const videoUrl = getVideoPublicUrl(video.video_path);
+  const isCloudflare = isCloudflareStreamId(video.video_path);
+  const cloudflareUrl = isCloudflare ? getCloudflareIframeUrl(video.video_path) : null;
+  const videoUrl = !isCloudflare ? getVideoPublicUrl(video.video_path) : null;
 
   const handleError = () => {
     setHasError(true);
@@ -55,7 +57,14 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
         
         <div className="p-6 pt-4">
           <AspectRatio ratio={16 / 9} className="bg-muted rounded-xl overflow-hidden">
-            {!videoUrl || hasError ? (
+            {isCloudflare && cloudflareUrl ? (
+              <iframe
+                src={cloudflareUrl}
+                className="w-full h-full"
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+              />
+            ) : !videoUrl || hasError ? (
               <div className="w-full h-full flex flex-col items-center justify-center bg-muted text-muted-foreground gap-3 p-4">
                 <AlertCircle className="w-10 h-10" />
                 <p className="text-sm font-medium text-center">
