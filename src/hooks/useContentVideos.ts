@@ -51,9 +51,7 @@ export const useContentVideos = () => {
 export const getVideoPublicUrl = (videoPath: string): string | null => {
   if (!videoPath) return null;
   
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-  if (!supabaseUrl) return null;
-  
+  const supabaseUrl = 'https://pybzakbvislqmveosmcz.supabase.co';
   return `${supabaseUrl}/storage/v1/object/public/videos/${videoPath}`;
 };
 
