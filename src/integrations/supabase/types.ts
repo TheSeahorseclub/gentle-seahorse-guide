@@ -14,6 +14,65 @@ export type Database = {
   }
   public: {
     Tables: {
+      child_caregivers: {
+        Row: {
+          child_id: string
+          created_at: string
+          id: string
+          invited_by: string | null
+          role: Database["public"]["Enums"]["caregiver_role"]
+          user_id: string
+        }
+        Insert: {
+          child_id: string
+          created_at?: string
+          id?: string
+          invited_by?: string | null
+          role?: Database["public"]["Enums"]["caregiver_role"]
+          user_id: string
+        }
+        Update: {
+          child_id?: string
+          created_at?: string
+          id?: string
+          invited_by?: string | null
+          role?: Database["public"]["Enums"]["caregiver_role"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "child_caregivers_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      children: {
+        Row: {
+          age_months: number
+          created_at: string
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          age_months?: number
+          created_at?: string
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Update: {
+          age_months?: number
+          created_at?: string
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       content_videos: {
         Row: {
           created_at: string
@@ -77,6 +136,33 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       signal_entries: {
         Row: {
           created_at: string
@@ -106,10 +192,21 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_child_role: {
+        Args: {
+          _child_id: string
+          _role: Database["public"]["Enums"]["caregiver_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_child_caregiver: {
+        Args: { _child_id: string; _user_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      caregiver_role: "admin" | "caregiver"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -236,6 +333,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      caregiver_role: ["admin", "caregiver"],
+    },
   },
 } as const
