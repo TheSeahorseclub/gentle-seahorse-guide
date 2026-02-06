@@ -258,6 +258,60 @@ export type Database = {
           },
         ]
       }
+      sleep_logs: {
+        Row: {
+          child_id: string
+          created_at: string
+          duration_minutes: number | null
+          family_id: string | null
+          id: string
+          log_date: string
+          sleep_quality: string | null
+          time_ended: string | null
+          time_started: string | null
+          user_id: string
+        }
+        Insert: {
+          child_id: string
+          created_at?: string
+          duration_minutes?: number | null
+          family_id?: string | null
+          id?: string
+          log_date?: string
+          sleep_quality?: string | null
+          time_ended?: string | null
+          time_started?: string | null
+          user_id: string
+        }
+        Update: {
+          child_id?: string
+          created_at?: string
+          duration_minutes?: number | null
+          family_id?: string | null
+          id?: string
+          log_date?: string
+          sleep_quality?: string | null
+          time_ended?: string | null
+          time_started?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sleep_logs_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sleep_logs_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "families"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_subscriptions: {
         Row: {
           created_at: string
@@ -296,6 +350,60 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      wake_windows: {
+        Row: {
+          activity: string | null
+          child_id: string
+          created_at: string
+          duration_minutes: number | null
+          family_id: string | null
+          id: string
+          log_date: string
+          time_ended: string | null
+          time_started: string | null
+          user_id: string
+        }
+        Insert: {
+          activity?: string | null
+          child_id: string
+          created_at?: string
+          duration_minutes?: number | null
+          family_id?: string | null
+          id?: string
+          log_date?: string
+          time_ended?: string | null
+          time_started?: string | null
+          user_id: string
+        }
+        Update: {
+          activity?: string | null
+          child_id?: string
+          created_at?: string
+          duration_minutes?: number | null
+          family_id?: string | null
+          id?: string
+          log_date?: string
+          time_ended?: string | null
+          time_started?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wake_windows_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "wake_windows_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "families"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
