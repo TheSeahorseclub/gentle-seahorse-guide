@@ -36,43 +36,15 @@ export const Confidence: React.FC = () => {
     try {
       const ageMonths = userProfile?.childAgeMonths || 0;
 
-      // 1. Create family
-      const { data: family, error: familyError } = await supabase
-        .from('families')
-        .insert({ name: 'My Family' })
-        .select()
-        .single();
+      // Use RPC function for atomic onboarding
+      const { data, error: rpcError } = await supabase.rpc('complete_onboarding', {
+        _user_id: user.id,
+        _child_age_months: ageMonths,
+      });
 
-      if (familyError) throw familyError;
+      if (rpcError) throw rpcError;
 
-      // 2. Create child
-      const { data: child, error: childError } = await supabase
-        .from('children')
-        .insert({
-          name: '',
-          age_months: ageMonths,
-          family_id: family.id,
-        })
-        .select()
-        .single();
-
-      if (childError) throw childError;
-
-      // 3. Link caregiver as admin
-      const { error: linkError } = await supabase
-        .from('child_caregivers')
-        .insert({
-          user_id: user.id,
-          child_id: child.id,
-          role: 'admin',
-        });
-
-      if (linkError) throw linkError;
-
-      // 4. Create free subscription
-      await supabase
-        .from('user_subscriptions')
-        .insert({ user_id: user.id });
+      const result = data as { family_id: string; child_id: string };
 
       // Update local store
       updateOnboarding({ confidenceLevel: selected });
@@ -80,10 +52,10 @@ export const Confidence: React.FC = () => {
 
       // Set query cache so routing immediately recognises onboarding as complete
       queryClient.setQueryData(['current-child', user.id], {
-        id: child.id,
+        id: result.child_id,
         name: '',
         ageMonths: ageMonths,
-        familyId: family.id,
+        familyId: result.family_id,
         role: 'admin' as const,
       });
 
