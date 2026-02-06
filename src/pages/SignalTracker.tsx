@@ -11,6 +11,7 @@ import { Moon, MessageCircle, Utensils, Heart, RefreshCw, Check, Loader2 } from 
 import { cn } from '@/lib/utils';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { SleepTrackerForm } from '@/components/tracker/SleepTrackerForm';
 import type { SleepSignal, CryingSignal, FeedingSignal, InteractionSignal, TransitionsSignal } from '@/types';
 
 type SignalCategory = 'sleep' | 'crying' | 'feeding' | 'interaction' | 'transitions';
@@ -210,60 +211,80 @@ export const SignalTracker: React.FC = () => {
           </div>
         </div>
 
-        {/* Options */}
-        <div className="space-y-3 mb-8 animate-slide-up">
-          {currentOptions.map((option) => (
-            <Card
-              key={option.value}
-              variant={currentValue === option.value ? 'calm' : 'interactive'}
-              className={cn(
-                "p-4 cursor-pointer border-2 transition-all duration-200",
-                currentValue === option.value 
-                  ? "border-primary bg-primary/10" 
-                  : "border-transparent"
-              )}
-              onClick={() => handleSelect(option.value)}
-            >
-              <p className={cn(
-                "font-medium mb-1",
-                currentValue === option.value ? "text-primary" : "text-foreground"
-              )}>
-                {option.label}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {option.description}
-              </p>
-            </Card>
-          ))}
-        </div>
-      </div>
+        {/* Options or Sleep Form */}
+        {currentCategory === 'sleep' ? (
+          <div className="mb-8 animate-slide-up">
+            <SleepTrackerForm
+              userId={user?.id || ''}
+              childId={currentChild?.id || ''}
+              familyId={currentChild?.familyId || null}
+              onComplete={() => {
+                setSavedSignals(prev => new Set([...prev, 'sleep']));
+                setSignals(prev => ({ ...prev, sleep: 'restful' as SleepSignal['quality'] }));
+                // Auto-advance to next category
+                if (!isLastCategory) {
+                  setCurrentCategory(categories[currentCategoryIndex + 1].key);
+                }
+              }}
+            />
+          </div>
+        ) : (
+          <>
+            <div className="space-y-3 mb-8 animate-slide-up">
+              {currentOptions.map((option) => (
+                <Card
+                  key={option.value}
+                  variant={currentValue === option.value ? 'calm' : 'interactive'}
+                  className={cn(
+                    "p-4 cursor-pointer border-2 transition-all duration-200",
+                    currentValue === option.value 
+                      ? "border-primary bg-primary/10" 
+                      : "border-transparent"
+                  )}
+                  onClick={() => handleSelect(option.value)}
+                >
+                  <p className={cn(
+                    "font-medium mb-1",
+                    currentValue === option.value ? "text-primary" : "text-foreground"
+                  )}>
+                    {option.label}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {option.description}
+                  </p>
+                </Card>
+              ))}
+            </div>
 
-      {/* Navigation buttons */}
-      <div className="fixed bottom-24 left-0 right-0 px-6 pb-4 bg-gradient-to-t from-background via-background to-transparent pt-8">
-        <div className="flex gap-3 max-w-sm mx-auto">
-          {currentCategoryIndex > 0 && (
-            <Button
-              variant="outline"
-              size="lg"
-              className="flex-1"
-              onClick={handlePrevious}
-            >
-              Back
-            </Button>
-          )}
-          <Button
-            variant="ocean"
-            size="lg"
-            className="flex-1"
-            disabled={currentValue === null || isSaving || !hasAnySavedSignal}
-            onClick={handleNext}
-          >
-            {isSaving ? (
-              <Loader2 className="w-4 h-4 animate-spin mr-2" />
-            ) : null}
-            {isLastCategory ? (allComplete ? 'See insight' : 'Finish') : 'Next'}
-          </Button>
-        </div>
+            {/* Navigation buttons */}
+            <div className="pb-28">
+              <div className="flex gap-3 max-w-sm mx-auto">
+                {currentCategoryIndex > 0 && (
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="flex-1"
+                    onClick={handlePrevious}
+                  >
+                    Back
+                  </Button>
+                )}
+                <Button
+                  variant="ocean"
+                  size="lg"
+                  className="flex-1"
+                  disabled={currentValue === null || isSaving || !hasAnySavedSignal}
+                  onClick={handleNext}
+                >
+                  {isSaving ? (
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                  ) : null}
+                  {isLastCategory ? (allComplete ? 'See insight' : 'Finish') : 'Next'}
+                </Button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </MobileLayout>
   );
