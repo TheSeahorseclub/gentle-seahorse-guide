@@ -53,6 +53,7 @@ export type Database = {
         Row: {
           age_months: number
           created_at: string
+          family_id: string | null
           id: string
           name: string
           updated_at: string
@@ -60,6 +61,7 @@ export type Database = {
         Insert: {
           age_months?: number
           created_at?: string
+          family_id?: string | null
           id?: string
           name?: string
           updated_at?: string
@@ -67,11 +69,20 @@ export type Database = {
         Update: {
           age_months?: number
           created_at?: string
+          family_id?: string | null
           id?: string
           name?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "children_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "families"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       content_videos: {
         Row: {
@@ -108,7 +119,9 @@ export type Database = {
       }
       daily_insights: {
         Row: {
+          child_id: string
           created_at: string
+          family_id: string | null
           id: string
           insight_date: string
           insight_text: string
@@ -117,7 +130,9 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          child_id: string
           created_at?: string
+          family_id?: string | null
           id?: string
           insight_date?: string
           insight_text: string
@@ -126,13 +141,48 @@ export type Database = {
           user_id: string
         }
         Update: {
+          child_id?: string
           created_at?: string
+          family_id?: string | null
           id?: string
           insight_date?: string
           insight_text?: string
           support_sugg?: string | null
           title?: string
           user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "daily_insights_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "daily_insights_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "families"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      families: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
         }
         Relationships: []
       }
@@ -165,24 +215,84 @@ export type Database = {
       }
       signal_entries: {
         Row: {
+          child_id: string
           created_at: string
           description: string
+          family_id: string | null
           id: string
           signal_type: string
           user_id: string
         }
         Insert: {
+          child_id: string
           created_at?: string
           description: string
+          family_id?: string | null
           id?: string
           signal_type: string
           user_id: string
         }
         Update: {
+          child_id?: string
           created_at?: string
           description?: string
+          family_id?: string | null
           id?: string
           signal_type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "signal_entries_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "signal_entries_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "families"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_subscriptions: {
+        Row: {
+          created_at: string
+          current_period_end: string | null
+          current_period_start: string | null
+          export_days_limit: number
+          id: string
+          plan: string
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          export_days_limit?: number
+          id?: string
+          plan?: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          export_days_limit?: number
+          id?: string
+          plan?: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          updated_at?: string
           user_id?: string
         }
         Relationships: []
@@ -202,6 +312,14 @@ export type Database = {
       }
       is_child_caregiver: {
         Args: { _child_id: string; _user_id: string }
+        Returns: boolean
+      }
+      is_family_admin: {
+        Args: { _family_id: string; _user_id: string }
+        Returns: boolean
+      }
+      is_family_member: {
+        Args: { _family_id: string; _user_id: string }
         Returns: boolean
       }
     }
