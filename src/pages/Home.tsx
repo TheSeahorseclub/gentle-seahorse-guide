@@ -4,7 +4,8 @@ import { MobileLayout } from '@/components/layout/MobileLayout';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/store/appStore';
-import { Activity, Sparkles, BookOpen, Calendar, ChevronRight } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { Activity, Sparkles, BookOpen, Calendar, ChevronRight, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const developmentWindows = [
@@ -21,8 +22,8 @@ const developmentWindows = [
 export const Home: React.FC = () => {
   const navigate = useNavigate();
   const { userProfile, getTodaySignal } = useAppStore();
+  const { user, signOut } = useAuth();
   const todaySignal = getTodaySignal();
-
   const childAge = userProfile?.childAgeMonths || 0;
   const currentWindow = developmentWindows.find(
     w => childAge >= w.ageRange[0] && childAge <= w.ageRange[1]
@@ -39,11 +40,20 @@ export const Home: React.FC = () => {
     <MobileLayout>
       <div className="px-6 pt-8 pb-4">
         {/* Header */}
-        <div className="mb-6 animate-fade-in">
-          <p className="text-muted-foreground text-base">{greeting()}</p>
-          <h1 className="font-display text-2xl font-bold text-foreground">
-            The Seahorse Club
-          </h1>
+        <div className="mb-6 animate-fade-in flex items-start justify-between">
+          <div>
+            <p className="text-muted-foreground text-base">{greeting()}</p>
+            <h1 className="font-display text-2xl font-bold text-foreground">
+              The Seahorse Club
+            </h1>
+          </div>
+          <button
+            onClick={signOut}
+            className="p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+            aria-label="Sign out"
+          >
+            <LogOut className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Quick Actions */}
