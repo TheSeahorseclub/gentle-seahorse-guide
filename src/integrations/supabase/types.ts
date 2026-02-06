@@ -302,6 +302,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      complete_onboarding: {
+        Args: { _child_age_months: number; _user_id: string }
+        Returns: Json
+      }
       has_child_role: {
         Args: {
           _child_id: string
