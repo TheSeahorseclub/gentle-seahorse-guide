@@ -5,7 +5,8 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Sparkles, Brain, Heart, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import { getLocalUserId } from '@/hooks/useLocalUserId';
+import { useAuth } from '@/contexts/AuthContext';
+import { useCurrentChild } from '@/hooks/useCurrentChild';
 
 interface SignalEntry {
   id: string;
@@ -16,10 +17,8 @@ interface SignalEntry {
 
 // Generate insight based on signal patterns
 const generateInsight = (signals: SignalEntry[]) => {
-  const signalTypes = signals.map(s => s.signal_type);
   const descriptions = signals.map(s => s.description.toLowerCase());
   
-  // Analyze patterns for title
   const hasUnsettled = descriptions.some(d => 
     d.includes('unsettled') || d.includes('fussiness') || d.includes('challenging') || d.includes('hard')
   );
@@ -58,23 +57,24 @@ const generateInsight = (signals: SignalEntry[]) => {
 };
 
 export const DailyInsight: React.FC = () => {
+  const { user } = useAuth();
+  const { data: currentChild, isLoading: childLoading } = useCurrentChild();
   const [isLoading, setIsLoading] = useState(true);
   const [todaySignals, setTodaySignals] = useState<SignalEntry[]>([]);
   const [insight, setInsight] = useState<{ title: string; meaning: string; suggestions: string[] } | null>(null);
 
   useEffect(() => {
+    if (!user || !currentChild) return;
+
     const fetchTodaySignalsAndSaveInsight = async () => {
-      const userId = getLocalUserId();
-      
-      // Get start of today in local time
       const now = new Date();
       const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
-      const todayDate = now.toISOString().split('T')[0]; // YYYY-MM-DD format
+      const todayDate = now.toISOString().split('T')[0];
       
       const { data, error } = await supabase
         .from('signal_entries')
         .select('*')
-        .eq('user_id', userId)
+        .eq('child_id', currentChild.id)
         .gte('created_at', startOfToday.toISOString())
         .lte('created_at', now.toISOString())
         .order('created_at', { ascending: true });
@@ -91,18 +91,19 @@ export const DailyInsight: React.FC = () => {
         const generatedInsight = generateInsight(data);
         setInsight(generatedInsight);
         
-        // Save insight to database (upsert to avoid duplicates)
         const { error: insertError } = await supabase
           .from('daily_insights')
           .upsert(
             {
-              user_id: userId,
+              user_id: user.id,
+              child_id: currentChild.id,
+              family_id: currentChild.familyId,
               title: generatedInsight.title,
               insight_text: generatedInsight.meaning,
               support_sugg: generatedInsight.suggestions.join(' | '),
               insight_date: todayDate,
             },
-            { onConflict: 'user_id,insight_date' }
+            { onConflict: 'user_id,child_id,insight_date' }
           );
         
         if (insertError) {
@@ -114,9 +115,9 @@ export const DailyInsight: React.FC = () => {
     };
     
     fetchTodaySignalsAndSaveInsight();
-  }, []);
+  }, [user, currentChild]);
 
-  if (isLoading) {
+  if (childLoading || isLoading) {
     return (
       <MobileLayout>
         <PageHeader 
@@ -162,14 +163,12 @@ export const DailyInsight: React.FC = () => {
       <div className="px-6 space-y-6">
         {insight && (
           <>
-            {/* Insight Title */}
             <div className="text-center animate-fade-in">
               <h2 className="font-display text-xl font-semibold text-foreground">
                 {insight.title}
               </h2>
             </div>
 
-            {/* What this might mean */}
             <Card variant="soft" className="p-5 animate-fade-in">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-calm/30 flex items-center justify-center flex-shrink-0">
@@ -186,7 +185,6 @@ export const DailyInsight: React.FC = () => {
               </div>
             </Card>
 
-            {/* How to support */}
             <Card variant="sunrise" className="p-5 animate-fade-in">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-coral/30 flex items-center justify-center flex-shrink-0">
@@ -207,7 +205,6 @@ export const DailyInsight: React.FC = () => {
               </div>
             </Card>
 
-            {/* Disclaimer */}
             <Card variant="soft" className="p-4 animate-fade-in-slow">
               <p className="text-center text-sm text-muted-foreground italic">
                 Educational only — not medical advice. Every child is unique, and you know yours best.

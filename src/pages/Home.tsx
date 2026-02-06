@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MobileLayout } from '@/components/layout/MobileLayout';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/store/appStore';
 import { useAuth } from '@/contexts/AuthContext';
+import { useCurrentChild } from '@/hooks/useCurrentChild';
 import { Activity, Sparkles, BookOpen, Calendar, ChevronRight, LogOut } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const developmentWindows = [
   { ageRange: [0, 3], focus: 'Regulation and co-regulation', description: 'Your child is learning to feel safe in the world through your presence.' },
@@ -21,10 +21,11 @@ const developmentWindows = [
 
 export const Home: React.FC = () => {
   const navigate = useNavigate();
-  const { userProfile, getTodaySignal } = useAppStore();
-  const { user, signOut } = useAuth();
+  const { getTodaySignal } = useAppStore();
+  const { signOut } = useAuth();
+  const { data: currentChild } = useCurrentChild();
   const todaySignal = getTodaySignal();
-  const childAge = userProfile?.childAgeMonths || 0;
+  const childAge = currentChild?.ageMonths || 0;
   const currentWindow = developmentWindows.find(
     w => childAge >= w.ageRange[0] && childAge <= w.ageRange[1]
   ) || developmentWindows[0];

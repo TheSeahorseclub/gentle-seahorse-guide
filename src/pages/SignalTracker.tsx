@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MobileLayout } from '@/components/layout/MobileLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/store/appStore';
+import { useAuth } from '@/contexts/AuthContext';
+import { useCurrentChild } from '@/hooks/useCurrentChild';
 import { Moon, MessageCircle, Utensils, Heart, RefreshCw, Check, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { supabase } from '@/integrations/supabase/client';
-import { useLocalUserId } from '@/hooks/useLocalUserId';
 import { useToast } from '@/hooks/use-toast';
 import type { SleepSignal, CryingSignal, FeedingSignal, InteractionSignal, TransitionsSignal } from '@/types';
 
@@ -61,8 +62,9 @@ const categories: { key: SignalCategory; label: string; icon: React.ElementType 
 export const SignalTracker: React.FC = () => {
   const navigate = useNavigate();
   const { addDailySignal, getTodaySignal } = useAppStore();
+  const { user } = useAuth();
+  const { data: currentChild } = useCurrentChild();
   const existingSignal = getTodaySignal();
-  const localUserId = useLocalUserId();
   const { toast } = useToast();
 
   const [currentCategory, setCurrentCategory] = useState<SignalCategory>('sleep');
@@ -97,12 +99,16 @@ export const SignalTracker: React.FC = () => {
   };
 
   const handleSelect = async (value: string) => {
+    if (!user || !currentChild) return;
+
     setSignals(prev => ({ ...prev, [currentCategory]: value }));
     setIsSaving(true);
 
     try {
       const { error } = await supabase.from('signal_entries').insert({
-        user_id: localUserId,
+        user_id: user.id,
+        child_id: currentChild.id,
+        family_id: currentChild.familyId,
         signal_type: currentCategory,
         description: getLabelForValue(currentCategory, value),
       });
@@ -124,7 +130,6 @@ export const SignalTracker: React.FC = () => {
 
   const handleNext = () => {
     if (isLastCategory) {
-      // Save and navigate
       const today = new Date().toISOString().split('T')[0];
       addDailySignal({
         id: `signal-${today}`,
@@ -161,7 +166,7 @@ export const SignalTracker: React.FC = () => {
       <div className="px-6">
         {/* Category tabs */}
         <div className="flex gap-2 mb-6 overflow-x-auto pb-2 -mx-6 px-6">
-          {categories.map((cat, index) => {
+          {categories.map((cat) => {
             const Icon = cat.icon;
             const isActive = currentCategory === cat.key;
             const isComplete = signals[cat.key] !== null;

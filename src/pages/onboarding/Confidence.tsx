@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { OnboardingProgress } from '@/components/onboarding/OnboardingProgress';
 import { useAppStore } from '@/store/appStore';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
 import { cn } from '@/lib/utils';
+import { Loader2 } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 import type { ConfidenceLevel } from '@/types';
 
 const confidenceLevels: { value: ConfidenceLevel; label: string; emoji: string }[] = [
@@ -16,14 +21,82 @@ const confidenceLevels: { value: ConfidenceLevel; label: string; emoji: string }
 
 export const Confidence: React.FC = () => {
   const navigate = useNavigate();
-  const { updateOnboarding, completeOnboarding } = useAppStore();
+  const queryClient = useQueryClient();
+  const { userProfile, updateOnboarding, completeOnboarding } = useAppStore();
+  const { user } = useAuth();
+  const { toast } = useToast();
   const [selected, setSelected] = useState<ConfidenceLevel | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
-  const handleContinue = () => {
-    if (selected) {
+  const handleContinue = async () => {
+    if (!selected || !user) return;
+    
+    setIsSaving(true);
+    
+    try {
+      const ageMonths = userProfile?.childAgeMonths || 0;
+
+      // 1. Create family
+      const { data: family, error: familyError } = await supabase
+        .from('families')
+        .insert({ name: 'My Family' })
+        .select()
+        .single();
+
+      if (familyError) throw familyError;
+
+      // 2. Create child
+      const { data: child, error: childError } = await supabase
+        .from('children')
+        .insert({
+          name: '',
+          age_months: ageMonths,
+          family_id: family.id,
+        })
+        .select()
+        .single();
+
+      if (childError) throw childError;
+
+      // 3. Link caregiver as admin
+      const { error: linkError } = await supabase
+        .from('child_caregivers')
+        .insert({
+          user_id: user.id,
+          child_id: child.id,
+          role: 'admin',
+        });
+
+      if (linkError) throw linkError;
+
+      // 4. Create free subscription
+      await supabase
+        .from('user_subscriptions')
+        .insert({ user_id: user.id });
+
+      // Update local store
       updateOnboarding({ confidenceLevel: selected });
       completeOnboarding();
+
+      // Set query cache so routing immediately recognises onboarding as complete
+      queryClient.setQueryData(['current-child', user.id], {
+        id: child.id,
+        name: '',
+        ageMonths: ageMonths,
+        familyId: family.id,
+        role: 'admin' as const,
+      });
+
       navigate('/home');
+    } catch (error) {
+      console.error('Onboarding error:', error);
+      toast({
+        title: 'Something went wrong',
+        description: 'Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -51,6 +124,7 @@ export const Confidence: React.FC = () => {
                     : "bg-card border-transparent hover:bg-muted/50 shadow-card"
                 )}
                 onClick={() => setSelected(level.value)}
+                disabled={isSaving}
               >
                 <div className="flex items-center gap-4">
                   <span className="text-2xl">{level.emoji}</span>
@@ -72,10 +146,17 @@ export const Confidence: React.FC = () => {
           variant="ocean"
           size="lg"
           className="w-full max-w-sm mx-auto block"
-          disabled={selected === null}
+          disabled={selected === null || isSaving}
           onClick={handleContinue}
         >
-          Start exploring
+          {isSaving ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin mr-2" />
+              Setting up...
+            </>
+          ) : (
+            'Start exploring'
+          )}
         </Button>
       </div>
     </div>
