@@ -3,8 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useAppStore } from "@/store/appStore";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import { useCurrentChild } from "@/hooks/useCurrentChild";
 
 // Auth
 import { Auth } from "./pages/Auth";
@@ -50,20 +50,22 @@ const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <>{children}</>;
 };
 
-const AppRoutes = () => {
-  const { userProfile } = useAppStore();
-  const { user, loading } = useAuth();
-  const onboardingComplete = userProfile?.onboardingComplete;
+const LoadingScreen = () => (
+  <div className="min-h-screen gradient-calm flex items-center justify-center">
+    <div className="text-center animate-fade-in">
+      <h2 className="font-display text-xl text-foreground mb-2">The Seahorse Club</h2>
+      <p className="text-muted-foreground text-sm">Loading...</p>
+    </div>
+  </div>
+);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen gradient-calm flex items-center justify-center">
-        <div className="text-center animate-fade-in">
-          <h2 className="font-display text-xl text-foreground mb-2">The Seahorse Club</h2>
-          <p className="text-muted-foreground text-sm">Loading...</p>
-        </div>
-      </div>
-    );
+const AppRoutes = () => {
+  const { user, loading: authLoading } = useAuth();
+  const { data: currentChild, isLoading: childLoading } = useCurrentChild();
+  const onboardingComplete = !!currentChild;
+
+  if (authLoading || (user && childLoading)) {
+    return <LoadingScreen />;
   }
 
   return (

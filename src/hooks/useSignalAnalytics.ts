@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useLocalUserId } from './useLocalUserId';
 import { subDays, format, startOfDay, endOfDay, parseISO } from 'date-fns';
 
 export interface SignalEntry {
@@ -83,7 +82,6 @@ function analyzeTrend(dailySignals: DaySignals[]): TrendAnalysis {
     };
   }
 
-  // Analyze stability by looking at "positive" vs "challenging" signals over time
   const positiveDescriptions = ['restful', 'calm-day', 'settled', 'connected', 'smooth'];
   
   const dailyScores = dailySignals.map(day => {
@@ -93,7 +91,6 @@ function analyzeTrend(dailySignals: DaySignals[]): TrendAnalysis {
     return totalCount > 0 ? positiveCount / totalCount : 0.5;
   });
 
-  // Check if scores are trending up, down, or variable
   const firstHalf = dailyScores.slice(0, Math.ceil(dailyScores.length / 2));
   const secondHalf = dailyScores.slice(Math.ceil(dailyScores.length / 2));
   
@@ -132,8 +129,7 @@ function analyzeTrend(dailySignals: DaySignals[]): TrendAnalysis {
   };
 }
 
-export function useSignalAnalytics(days: number = 7): AnalyticsData {
-  const localUserId = useLocalUserId();
+export function useSignalAnalytics(childId: string | undefined, days: number = 7): AnalyticsData {
   const [data, setData] = useState<Omit<AnalyticsData, 'isLoading' | 'error'>>({
     periodStart: subDays(new Date(), days - 1),
     periodEnd: new Date(),
@@ -148,7 +144,7 @@ export function useSignalAnalytics(days: number = 7): AnalyticsData {
 
   useEffect(() => {
     async function fetchAndAnalyze() {
-      if (!localUserId) {
+      if (!childId) {
         setIsLoading(false);
         return;
       }
@@ -160,7 +156,7 @@ export function useSignalAnalytics(days: number = 7): AnalyticsData {
         const { data: signals, error: fetchError } = await supabase
           .from('signal_entries')
           .select('*')
-          .eq('user_id', localUserId)
+          .eq('child_id', childId)
           .gte('created_at', periodStart.toISOString())
           .lte('created_at', periodEnd.toISOString())
           .order('created_at', { ascending: true });
@@ -227,7 +223,7 @@ export function useSignalAnalytics(days: number = 7): AnalyticsData {
     }
 
     fetchAndAnalyze();
-  }, [localUserId, days]);
+  }, [childId, days]);
 
   return { ...data, isLoading, error };
 }

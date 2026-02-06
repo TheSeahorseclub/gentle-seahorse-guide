@@ -3,7 +3,8 @@ import { MobileLayout } from '@/components/layout/MobileLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { useAppStore } from '@/store/appStore';
+import { useCurrentChild } from '@/hooks/useCurrentChild';
+import { useSubscription } from '@/hooks/useSubscription';
 import { useSignalAnalytics } from '@/hooks/useSignalAnalytics';
 import { getDevelopmentalContext } from '@/utils/developmentalContext';
 import { generateClinicalPdf } from '@/utils/generateClinicalPdf';
@@ -20,7 +21,6 @@ function generateClinicalReflection(
 
   const { aggregations, overallTrend, daysWithData } = analytics;
   
-  // Count overall signal categories
   const positiveSignals = ['Restful', 'Calm day', 'Settled', 'Connected', 'Smooth'];
   const challengingSignals = ['Unsettled', 'More than usual', 'Challenging', 'Seeking comfort', 'Finding it hard'];
   
@@ -49,14 +49,12 @@ function generateClinicalReflection(
     reflection += 'observations have shown a mix of settled periods and times requiring additional support. ';
   }
 
-  // Add trend context
   if (overallTrend.trend === 'increasing-stability') {
     reflection += 'There appears to be a gentle movement toward more consistent patterns. ';
   } else if (overallTrend.trend === 'variable') {
     reflection += 'Some day-to-day variability has been observed, which is common in early development. ';
   }
 
-  // Age-appropriate closing
   if (childAgeMonths <= 6) {
     reflection += 'At this early age, establishing rhythms is an ongoing developmental process.';
   } else if (childAgeMonths <= 12) {
@@ -69,12 +67,14 @@ function generateClinicalReflection(
 }
 
 export const Export: React.FC = () => {
-  const { userProfile } = useAppStore();
-  const analytics = useSignalAnalytics(7);
+  const { data: currentChild } = useCurrentChild();
+  const { data: subscription } = useSubscription();
+  const exportDays = subscription?.exportDaysLimit || 30;
+  const childAgeMonths = currentChild?.ageMonths || 0;
+  const analytics = useSignalAnalytics(currentChild?.id, exportDays);
   const [showPreview, setShowPreview] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  const childAgeMonths = userProfile?.childAgeMonths || 0;
   const developmentalContext = useMemo(
     () => getDevelopmentalContext(childAgeMonths),
     [childAgeMonths]
@@ -88,7 +88,6 @@ export const Export: React.FC = () => {
     setIsGenerating(true);
     
     try {
-      // Small delay for UX feedback
       await new Promise(resolve => setTimeout(resolve, 300));
       
       const pdf = generateClinicalPdf({
@@ -126,7 +125,6 @@ export const Export: React.FC = () => {
       />
 
       <div className="px-6 space-y-4 pb-8">
-        {/* Summary info card */}
         {!showPreview && (
           <>
             <Card variant="soft" className="p-5 animate-fade-in">
@@ -145,7 +143,6 @@ export const Export: React.FC = () => {
               </div>
             </Card>
 
-            {/* Stats */}
             <div className="grid grid-cols-2 gap-3 animate-slide-up">
               <Card variant="default" className="p-4 text-center">
                 <p className="text-3xl font-display font-bold text-primary mb-1">
@@ -165,7 +162,6 @@ export const Export: React.FC = () => {
               </Card>
             </div>
 
-            {/* What's included */}
             <Card variant="sunrise" className="p-5 animate-fade-in">
               <h3 className="font-display font-semibold text-coral-foreground mb-3">
                 What's included
@@ -173,7 +169,7 @@ export const Export: React.FC = () => {
               <ul className="space-y-2 text-sm text-coral-foreground/80">
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
-                  <span>7-day observation period analysis</span>
+                  <span>{exportDays}-day observation period analysis</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
@@ -190,7 +186,6 @@ export const Export: React.FC = () => {
               </ul>
             </Card>
 
-            {/* Disclaimer */}
             <Card variant="soft" className="p-5 animate-fade-in">
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
@@ -205,7 +200,6 @@ export const Export: React.FC = () => {
               </div>
             </Card>
 
-            {/* Action buttons */}
             <div className="pt-4 space-y-3 animate-slide-up">
               <Button
                 variant="outline"
@@ -243,7 +237,6 @@ export const Export: React.FC = () => {
           </>
         )}
 
-        {/* Preview mode */}
         {showPreview && (
           <div className="space-y-4 animate-fade-in">
             <Button

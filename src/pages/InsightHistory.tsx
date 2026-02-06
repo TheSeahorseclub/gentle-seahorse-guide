@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown, Calendar, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import { getLocalUserId } from '@/hooks/useLocalUserId';
+import { useCurrentChild } from '@/hooks/useCurrentChild';
 import { format, parseISO } from 'date-fns';
 
 interface InsightEntry {
@@ -18,18 +18,19 @@ interface InsightEntry {
 }
 
 export const InsightHistory: React.FC = () => {
+  const { data: currentChild, isLoading: childLoading } = useCurrentChild();
   const [isLoading, setIsLoading] = useState(true);
   const [insights, setInsights] = useState<InsightEntry[]>([]);
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
+    if (!currentChild) return;
+
     const fetchInsights = async () => {
-      const userId = getLocalUserId();
-      
       const { data, error } = await supabase
         .from('daily_insights')
         .select('*')
-        .eq('user_id', userId)
+        .eq('child_id', currentChild.id)
         .order('insight_date', { ascending: false });
       
       if (error) {
@@ -43,7 +44,7 @@ export const InsightHistory: React.FC = () => {
     };
     
     fetchInsights();
-  }, []);
+  }, [currentChild]);
 
   const toggleExpanded = (id: string) => {
     setExpandedIds(prev => {
@@ -65,7 +66,7 @@ export const InsightHistory: React.FC = () => {
     }
   };
 
-  if (isLoading) {
+  if (childLoading || isLoading) {
     return (
       <MobileLayout>
         <PageHeader 
