@@ -24,6 +24,7 @@ import { Milestones } from "./pages/Milestones";
 import { MicroLessons } from "./pages/MicroLessons";
 import { WeeklyReflection } from "./pages/WeeklyReflection";
 import { Export } from "./pages/Export";
+import { SleepHistory } from "./pages/SleepHistory";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -140,6 +141,11 @@ const AppRoutes = () => {
       <Route path="/export" element={
         <RequireAuth>
           {onboardingComplete ? <Export /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/sleep-history" element={
+        <RequireAuth>
+          {onboardingComplete ? <SleepHistory /> : <Navigate to="/welcome" replace />}
         </RequireAuth>
       } />
       

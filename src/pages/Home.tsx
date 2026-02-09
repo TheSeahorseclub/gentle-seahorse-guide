@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/store/appStore';
 import { useAuth } from '@/contexts/AuthContext';
 import { useCurrentChild } from '@/hooks/useCurrentChild';
-import { Activity, Sparkles, BookOpen, Calendar, ChevronRight, LogOut } from 'lucide-react';
+import { Activity, Sparkles, BookOpen, Calendar, ChevronRight, LogOut, Moon } from 'lucide-react';
 
 const developmentWindows = [
   { ageRange: [0, 3], focus: 'Regulation and co-regulation', description: 'Your child is learning to feel safe in the world through your presence.' },
@@ -101,6 +101,26 @@ export const Home: React.FC = () => {
                 {currentWindow.description}
               </p>
             </div>
+          </div>
+        </Card>
+
+        {/* Sleep History shortcut */}
+        <Card 
+          variant="interactive" 
+          className="p-4 mb-6 animate-slide-up"
+          onClick={() => navigate('/sleep-history')}
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <Moon className="w-7 h-7 text-primary" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-medium text-foreground">Sleep patterns</p>
+              <p className="text-sm text-muted-foreground mt-0.5">
+                View sleep logs &amp; wake windows
+              </p>
+            </div>
+            <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />
           </div>
         </Card>
 
