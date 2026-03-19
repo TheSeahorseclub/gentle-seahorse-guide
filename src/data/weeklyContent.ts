@@ -496,4 +496,108 @@ export const allMonths: MonthContent[] = [
       },
     ],
   },
+
+  // ─── MONTH 6 ───
+  {
+    month: 6,
+    title: 'Month 6',
+    subtitle: 'Mobility, solids, and expanding awareness',
+    weeks: [
+      {
+        week: 1,
+        title: 'Preparing for Crawling',
+        gentleFocus: 'Shoulder stability, spatial awareness, and safe exploration',
+        iconName: 'move',
+        introduction:
+          'Your baby may rock on hands and knees or pivot in circles.',
+        sections: [
+          {
+            label: 'Motor Development',
+            points: [
+              'Encourage reaching slightly beyond comfortable distance.',
+              'Continue daily tummy time.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Crawling preparation strengthens shoulder stability and spatial awareness.',
+        weeklyCta:
+          'Create a safe exploration zone on the floor free from hazards.',
+      },
+      {
+        week: 2,
+        title: 'Introduction to Solid Foods',
+        gentleFocus: 'Developmental readiness, organic ingredients, and patient observation',
+        iconName: 'sun',
+        introduction:
+          'Signs of readiness may include sitting with support and showing interest in food.',
+        sections: [
+          {
+            label: 'Feeding Guidance',
+            points: [
+              'Introduce single-organic ingredient foods gradually.',
+              'Observe for tolerance and comfort.',
+              'The WHO recommends exclusive breastfeeding for around six months, but do it as long as possible followed by gradual complementary feeding while continuing milk feeds.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Gradual, responsive introduction to solids supports both nutritional needs and the developing sensory system.',
+        weeklyCta:
+          "Introduce one new whole food and observe your baby's response calmly and patiently.",
+        extraGuidance: {
+          title: 'Food Quality',
+          points: [
+            'Prefer organic produce when possible to reduce pesticide exposure.',
+            'Avoid highly processed foods.',
+            'Introduce natural flavours without added sugar or salt.',
+          ],
+        },
+      },
+      {
+        week: 3,
+        title: 'Fine Motor Precision',
+        gentleFocus: 'Grasp refinement and hand-to-hand transfer',
+        iconName: 'hand',
+        introduction:
+          'Your baby begins refining grasp patterns.',
+        sections: [
+          {
+            label: 'Motor Development',
+            points: [
+              'Offer safe finger foods (if ready) or graspable objects.',
+              'Encourage transferring objects between hands.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'This supports the development of the pincer grasp (thumb-to-finger coordination), essential for later writing skills.',
+        weeklyCta:
+          'Allow supervised self-feeding exploration at least once per day if appropriate.',
+      },
+      {
+        week: 4,
+        title: 'Social Expansion and Emotional Labelling',
+        gentleFocus: 'Naming emotions and calm reassurance during new interactions',
+        iconName: 'heart',
+        introduction:
+          'Your baby is increasingly aware of social differences between familiar and unfamiliar people.',
+        sections: [
+          {
+            label: 'Cognitive & Emotional Development',
+            points: [
+              'Name emotions gently ("You look surprised", "That was loud", "It\'s normal to feel like this").',
+              'Maintain consistent, calm reassurance during new interactions.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Affective neuroscience research suggests that early emotional labelling supports long-term emotional regulation.',
+        weeklyCta:
+          'This week, consciously name at least one emotional state during daily interactions.',
+      },
+    ],
+    closingNote:
+      "As your baby grows, this content will continue to expand month by month, always respecting each child's individual rhythm and neurodevelopmental uniqueness.",
+  },
 ];
