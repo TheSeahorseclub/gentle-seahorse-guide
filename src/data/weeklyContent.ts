@@ -465,7 +465,7 @@ export const allMonths: MonthContent[] = [
           {
             label: 'Cognitive Development',
             points: [
-              'Partially hide a toy under a cloth and allow your baby to search for it.',
+              'Partially hide a favourite toy under a cloth and allow your baby to search for it.',
             ],
           },
         ],
