@@ -548,7 +548,7 @@ export const allMonths: MonthContent[] = [
         extraGuidance: {
           title: 'Food Quality',
           points: [
-            'Prefer organic produce when possible to reduce pesticide exposure.',
+            'Prefer organic farmers when possible to reduce pesticide exposure.',
             'Avoid highly processed foods.',
             'Introduce natural flavours without added sugar or salt.',
           ],
