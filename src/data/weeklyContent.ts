@@ -537,7 +537,7 @@ export const allMonths: MonthContent[] = [
             points: [
               'Introduce single-organic ingredient foods gradually.',
               'Observe for tolerance and comfort.',
-              'The WHO recommends exclusive breastfeeding for around six months, but do it as long as possible followed by gradual complementary feeding while continuing milk feeds.',
+              "We recommend exclusive breastfeeding for around six months or longer, while also encouraging you to listen to your body and your baby's needs. After this period, you can begin introducing complementary foods gradually, while continuing milk feeds for as long as it feels right for both of you.",
             ],
           },
         ],
