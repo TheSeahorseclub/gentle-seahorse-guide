@@ -131,7 +131,7 @@ export const WeeklyLearning: React.FC = () => {
         </div>
         <div>
           <h2 className="font-display font-semibold text-foreground">Month 1</h2>
-          <p className="text-sm text-muted-foreground">The first steps of connection</p>
+          <p className="text-sm text-muted-foreground">Adapting to the world</p>
         </div>
       </div>
 
