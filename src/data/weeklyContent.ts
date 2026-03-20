@@ -629,7 +629,7 @@ export const allMonths: MonthContent[] = [
             label: 'Cognitive Development',
             points: [
               'In this cycle, the baby is already able to spell two-syllable words, repeating the initial syllable: mama, da-da, etc.',
-              'Then, they will start using expressions like "ai" or "ui" and soon will be able to shout to get attention.',
+              'Then, they will start using expressions like "ai" or "ui" and soon will be able to intentionally shout to get attention.',
             ],
           },
         ],
