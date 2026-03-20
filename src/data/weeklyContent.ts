@@ -2732,4 +2732,534 @@ export const allMonths: MonthContent[] = [
     closingNote:
       'Month 20 brings together sensory richness, emotional connection, physical challenge and gentle boundaries. Your toddler is squeezing dough, seeking cuddles, climbing cushions and testing limits — all at once. Every experience is building neural resilience, emotional awareness and physical confidence. Strong body. Clear limits. Calm guidance.',
   },
+  // ─── MONTH 21 ───
+  {
+    month: 21,
+    title: 'Month 21',
+    subtitle: 'Independence, Art, Climbing & Social Guidance',
+    weeks: [
+      {
+        week: 1,
+        title: 'Growing Independence Through Language',
+        gentleFocus: 'Gentle separation, self-reference, and language-driven confidence',
+        iconName: 'message-circle',
+        introduction:
+          'At twenty-one months, you may notice that your toddler is becoming more comfortable spending short periods away from you. They may sit and chat with a grandparent, play alone in their room for a few minutes, or explore independently nearby.\n\nThis increased confidence is closely linked to speech development. As expressive language improves, children feel more in control of their environment. Being able to communicate needs and feelings strengthens their sense of competence and autonomy.',
+        sections: [
+          {
+            label: 'Supporting Gentle Separation',
+            points: [
+              'If your toddler tends to be very attached, practise short, predictable separations.',
+              'Tell your child clearly: "I\'m going to step out for one minute." Show them the clock or timer.',
+              'Leave briefly and return exactly when you said you would — celebrate your return warmly.',
+              'Gradually increase the time in small increments.',
+              'This strengthens object permanence, trust, emotional regulation, and separation confidence.',
+              'Research in attachment theory shows that predictable returns build secure attachment and reduce separation anxiety.',
+            ],
+          },
+          {
+            label: 'The Emergence of "I"',
+            points: [
+              'Around this age, many children begin referring to themselves using their own name or the pronoun "I".',
+              'This reflects developing self-awareness and identity formation — understanding oneself as a separate individual.',
+              'This marks early growth in self-concept, social awareness, and personal agency.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Maintain predictable daily routines.',
+            'Use clear verbal transitions when leaving or returning.',
+            'Avoid slipping away unnoticed — trust grows through honesty.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'At twenty-one months, independence and attachment coexist. Your toddler may move away confidently, then quickly return for reassurance. This push-and-pull dynamic is healthy and developmentally appropriate. Security allows exploration. Exploration strengthens confidence.',
+        weeklyCta:
+          'Practise one short, timed separation exercise each day this week, keeping it brief and consistent. Always return calmly and positively.',
+      },
+      {
+        week: 2,
+        title: 'Art, Observation and Expression',
+        gentleFocus: 'Creative exploration, visual search games, and music with movement',
+        iconName: 'sparkles',
+        introduction:
+          'At twenty-one months, your toddler\'s world expands through creativity and exploration. Art is often one of the first forms of expression available to young children. Painting allows them to communicate with the world around them, expressing feelings, curiosity and imagination even before language is fully developed.\n\nCreative play supports symbolic expression, fine motor development, visual perception, and emotional expression.',
+        sections: [
+          {
+            label: 'Developing Observation Through Books',
+            points: [
+              'Your child\'s patience for looking at books is increasing.',
+              'Gently increase the level of challenge by asking your child to find small objects in illustrations: "Can you see the butterfly?" "Where is the little shoe?"',
+              'These visual-search games strengthen attention span, visual discrimination, and vocabulary development.',
+            ],
+          },
+          {
+            label: 'Music and Movement',
+            points: [
+              'Songs with associated hand movements remain very engaging at this age.',
+              'Rhymes such as "Incy Wincy Spider" invite children to coordinate sound with movement.',
+              'Your toddler may begin imitating your gestures — an important step in learning through modelling.',
+              'These activities support language rhythm, motor coordination, memory, and social imitation.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Create a calm and inviting creative space at home.',
+            'Simple elements such as natural light, organised materials and gentle music help children focus.',
+            'Art is not only play — it is a child\'s first language of imagination, curiosity and self-expression.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Research in early childhood education shows that artistic activities stimulate neural networks involved in creativity, problem-solving and emotional processing. Focus on the experience, not the outcome.',
+        weeklyCta:
+          'Offer at least two short art sessions this week where your child can explore colours freely without worrying about the final result.',
+      },
+      {
+        week: 3,
+        title: 'Climbing, Balance and Exploration',
+        gentleFocus: 'Safe climbing, vestibular development, and physical confidence',
+        iconName: 'move',
+        introduction:
+          'Now that your toddler is walking confidently, they will naturally want to test new physical abilities. Climbing suddenly becomes one of the most exciting activities. Being able to climb onto objects makes children feel taller, more capable and more independent.',
+        sections: [
+          {
+            label: 'Safe Spaces for Exploration',
+            points: [
+              'Look for well-designed playgrounds where your child can practise climbing and stepping up and down in a secure environment.',
+              'Structures with small steps, ramps or low platforms allow toddlers to explore vertical movement safely.',
+              'Supervised playground time supports confidence in movement, risk awareness, and spatial understanding.',
+            ],
+          },
+          {
+            label: 'Balance Practice',
+            points: [
+              'If you come across a low wall or safe narrow surface, hold your child\'s hand and allow them to practise balancing while walking along it.',
+              'This type of play strengthens the vestibular system (the inner-ear system responsible for balance and spatial orientation).',
+              'Your toddler may happily repeat this activity many times — walking back and forth while improving balance and coordination.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose playgrounds with soft ground surfaces when possible.',
+            'Avoid high climbing structures designed for older children.',
+            'Encourage exploration while remaining calmly nearby for safety.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Physical challenges at this stage provide an important emotional reward. Each small success — climbing up, balancing, stepping down — builds a sense of competence. Competence builds confidence. Confidence encourages further exploration. Movement becomes adventure.',
+        weeklyCta:
+          'Plan at least one outdoor movement session this week where your child can safely climb, step and explore different levels.',
+      },
+      {
+        week: 4,
+        title: 'Social and Emotional Guidance',
+        gentleFocus: 'Positive discipline, modelling behaviour, and building moral understanding',
+        iconName: 'heart',
+        introduction:
+          'Your goal isn\'t simply to raise an obedient child. What matters most is helping them learn to tell right from wrong in different situations — even when no one is there to guide or correct them.\n\nWhen your child misbehaves, try to see it as a teaching moment rather than a reason to react with frustration. Yelling or scolding often doesn\'t help them understand what to do differently; instead, it can overwhelm them and shut down learning.',
+        sections: [
+          {
+            label: 'Positive Guidance Strategies',
+            points: [
+              'Focus on guiding their behaviour in a clear and positive way. Explain what you want them to do rather than what you don\'t want.',
+              'Instead of "Don\'t stand on the chair," try "Chairs are for sitting — please sit down."',
+              'Be as polite as you want your child to be — children learn by imitation.',
+              'Look your child in the eye when speaking to them, and aim to be respectful even when frustrated. Keep your voice calm, low, and firm.',
+              'Always acknowledge and praise good behaviour.',
+              'Keep rules simple and limited. Clear guidelines like "No running in the street" and "No hitting" are appropriate at this age.',
+              'To reduce constant "Don\'t touch that" moments, keep fragile or unsafe items out of reach.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'These small, consistent actions help your child feel secure, understood, and supported as they learn how to navigate the world. Positive guidance builds moral understanding gradually — through connection, not fear.',
+        weeklyCta:
+          'This week, replace one correction per day with a positive redirection. Observe how your child responds to calm, clear guidance.',
+      },
+    ],
+    closingNote:
+      'Month 21 is about the expanding self. Your toddler is finding their voice, expressing through art, testing their physical limits, and learning the foundations of social behaviour. Independence grows alongside connection. Guidance grows alongside trust. Every climb, every word, every gentle redirection is shaping who they are becoming.',
+  },
+  // ─── MONTH 22 ───
+  {
+    month: 22,
+    title: 'Month 22',
+    subtitle: 'Joint Attention, Early Literacy, Precision & Repetition',
+    weeks: [
+      {
+        week: 1,
+        title: 'Shared Attention and Meaningful Interaction',
+        gentleFocus: 'Joint attention, growth mindset, and shared everyday moments',
+        iconName: 'eye',
+        introduction:
+          'By this stage, your toddler is strengthening a key social milestone known as "joint attention" (the shared focus of two people on the same object or event). This ability now becomes more intentional and sophisticated.\n\nYour child may bring objects to show you, point at things of interest, or look at you to share an experience. This is the foundation of communication, language and social connection.',
+        sections: [
+          {
+            label: 'How to Support This Skill',
+            points: [
+              'Continue to highlight everyday moments: "Look at the dog — it\'s brown and fluffy," "Can you see the aeroplane in the sky?"',
+              'Gradually evolve communication to include simple questions and shared observations.',
+              'Research shows that joint attention is strongly linked to later language development and social competence.',
+            ],
+          },
+          {
+            label: 'Praise the Process, Not Just the Outcome',
+            points: [
+              'Instead of "You\'re so clever!" try "Well done for trying so hard to stack those blocks."',
+              'This supports a "growth mindset" (valuing effort over results), which is associated with resilience and motivation.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Joint attention is the foundation of communication, language and social connection. When you share moments of observation and wonder with your child, you are building the architecture of meaningful human interaction.',
+        weeklyCta:
+          'This week, intentionally share and describe three everyday moments with your child each day.',
+      },
+      {
+        week: 2,
+        title: 'Early Literacy and Shape Recognition',
+        gentleFocus: 'Alphabet exposure, geometric stacking, and symbolic thinking',
+        iconName: 'brain',
+        introduction:
+          'At twenty-two months, introducing simple alphabet puzzles supports vocabulary development, letter recognition, early phonological awareness, and symbolic thinking. The goal is not reading, but exposure to symbols and sounds.',
+        sections: [
+          {
+            label: 'Alphabet Exploration',
+            points: [
+              'Choose materials with clear, simple illustrations — for example, animals linked to letters.',
+              'Allow playful, pressure-free exploration rather than formal instruction.',
+            ],
+          },
+          {
+            label: '3-Peg Geometric Tower',
+            points: [
+              'A wooden geometric stacking toy with three pegs supports fine motor coordination, shape and size differentiation, colour recognition, logical reasoning, and early planning skills.',
+              'Hands-on manipulation strengthens neural pathways linked to mathematical and spatial thinking.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'At this stage, learning is visual and associative rather than formal. Exposure to symbols, shapes and colours builds the neural foundations for later literacy and mathematical reasoning.',
+        weeklyCta:
+          'Introduce one new cognitive toy this week and allow daily short exploration sessions without pressure.',
+      },
+      {
+        week: 3,
+        title: 'Precision and Planning',
+        gentleFocus: 'Fine motor skills, hand–eye coordination, and focused activity spaces',
+        iconName: 'hand',
+        introduction:
+          'At twenty-two months, observe how your toddler uses their hands and fingers during play — building block towers, fitting puzzle pieces, threading a ribbon through a hole. These activities strengthen fine motor skills, hand–eye coordination, motor planning, and attention.',
+        sections: [
+          {
+            label: 'Building and Threading',
+            points: [
+              'To build a tower, your child must mentally plan the structure — an early form of executive function.',
+              'Threading activities develop bilateral coordination and finger isolation.',
+            ],
+          },
+          {
+            label: 'Create a "Project Space"',
+            points: [
+              'Set up a small area at home or in the garden with a child-sized table, a few selected materials, and minimal distractions.',
+              'A defined space supports focus and autonomy.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Fine motor precision at this age reflects growing neural connections between the brain\'s planning centres and the hands. Every block placed, every piece threaded, is strengthening the architecture of executive function.',
+        weeklyCta:
+          'Create a small "activity corner" this week and observe how your child engages with it.',
+      },
+      {
+        week: 4,
+        title: 'Repetition Mastery',
+        gentleFocus: 'Neural efficiency through repeated practice, and emotional literacy',
+        iconName: 'sparkles',
+        introduction:
+          'Continue offering activities that involve stacking, fitting, threading, and constructing. Repetition at this stage is essential. Through repeated actions, your toddler strengthens neural efficiency, precision, confidence, and persistence.',
+        sections: [
+          {
+            label: 'The Value of Repetition',
+            points: [
+              'Mastery is built through doing the same activity many times.',
+              'Allow repetition without interruption — avoid stepping in too quickly.',
+              'Independence grows through practice.',
+            ],
+          },
+          {
+            label: 'Emotional and Social Development',
+            points: [
+              'Value your interaction — connection remains the foundation of development.',
+              'Maintain eye contact when speaking.',
+              'Acknowledge emotions: "It\'s okay to cry — help me understand what you need."',
+              'Do not force social interaction with other children.',
+              'Gently praise moments of sharing or engagement.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Keep environments calm, organised and intentional.',
+            'Limit overstimulation.',
+            'Prioritise connection over correction.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Connection builds communication. Repetition builds mastery. Presence builds confidence. At twenty-two months, your child is learning not only how to think — but how to relate, create and express.',
+        weeklyCta:
+          'Allow repetition without interruption. Avoid stepping in too quickly — independence grows through practice.',
+      },
+    ],
+    closingNote:
+      'Month 22 strengthens the bridge between thinking and doing. Your toddler is sharing attention, recognising symbols, refining hand control, and building mastery through repetition. Every shared moment, every stacked block, every repeated game is wiring the brain for communication, creativity and confidence.',
+  },
+  // ─── MONTH 23 ───
+  {
+    month: 23,
+    title: 'Month 23',
+    subtitle: 'Language Clarity, Art Imitation, Active Play & Independence',
+    weeks: [
+      {
+        week: 1,
+        title: 'Expanding Language and Expression',
+        gentleFocus: 'Correct vocabulary, simple phrases, and phonological accuracy',
+        iconName: 'message-circle',
+        introduction:
+          'You are now approaching the stage where your little one is transitioning from baby to child. At twenty-three months, many toddlers begin combining words into simple phrases. Language is becoming more intentional, and communication more structured.\n\nIt is important to use correct language rather than simplified or invented words. Say "dummy" instead of informal variations, and "water" instead of simplified sounds. This supports phonological accuracy and strengthens future speech clarity.',
+        sections: [
+          {
+            label: 'Supporting Language Growth',
+            points: [
+              'Point to objects and name them clearly.',
+              'Ask simple requests: "Can you bring your shoe?" or "Where is the ball?"',
+              'Encourage responses, even if they are not yet fully clear.',
+              'Research shows that exposure to accurate vocabulary enhances both expressive and receptive language outcomes.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'At twenty-three months, language is shifting from single words to phrases. This reflects strengthening connections between comprehension and production areas of the brain. Correct, clear vocabulary exposure now builds the foundation for fluent speech.',
+        weeklyCta:
+          'Use clear, correct vocabulary during daily routines and introduce two new words this week through repetition and context.',
+      },
+      {
+        week: 2,
+        title: 'Early Literacy and Creative Imitation',
+        gentleFocus: 'Alphabet puzzles, shared art, and mirror neuron activation',
+        iconName: 'sparkles',
+        introduction:
+          'Introduce alphabet-based puzzles, such as animal-themed letter sets. These toys help your child recognise letters, associate sounds with symbols, expand vocabulary, and strengthen memory. At this stage, learning is visual and associative rather than formal.',
+        sections: [
+          {
+            label: 'Creative Expression Through Art',
+            points: [
+              'Offer crayons, washable paints, and paper for drawing.',
+              'Join your child in the activity — draw alongside them, write simple shapes or marks, and let them observe and imitate.',
+              'Imitation activates the mirror neuron system, which plays a key role in both motor and language development.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'When you draw alongside your child, you activate their mirror neuron system — the brain circuits involved in learning through observation. Shared creative activity builds both motor coordination and social connection.',
+        weeklyCta:
+          'Create two shared art moments this week where you actively participate and model drawing or writing behaviours.',
+      },
+      {
+        week: 3,
+        title: 'Coordination, Rhythm and Active Play',
+        gentleFocus: 'Gross motor play, repetition, and storytelling enrichment',
+        iconName: 'music',
+        introduction:
+          'At this stage, movement becomes more coordinated and purposeful. Encourage kicking a ball, playing at the playground, hide-and-seek games, and action songs such as "Head, Shoulders, Knees and Toes."',
+        sections: [
+          {
+            label: 'Active Movement',
+            points: [
+              'These activities strengthen gross motor coordination, balance, rhythm and timing, and social interaction.',
+              'Repetition remains essential — repeating favourite games strengthens neural pathways and builds confidence.',
+            ],
+          },
+          {
+            label: 'Additional Enrichment',
+            points: [
+              'Repeat favourite songs.',
+              'Create simple puppet shows.',
+              'Invent short stories together — storytelling supports imagination, language and emotional understanding.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Rhythmic, repetitive movement strengthens neural timing circuits across brain regions involved in attention, language and coordination. Play that combines movement with music is particularly powerful at this stage.',
+        weeklyCta:
+          'Repeat one favourite activity daily this week and observe how your child improves with familiarity.',
+      },
+      {
+        week: 4,
+        title: 'Independence and Body Control',
+        gentleFocus: 'Self-dressing, real-life tasks, and approaching the second birthday',
+        iconName: 'sun',
+        introduction:
+          'As your child approaches two years of age, independence becomes more visible. You may notice interest in putting on and removing clothing, pulling zips, and attempting simple dressing tasks.',
+        sections: [
+          {
+            label: 'Physical Milestones',
+            points: [
+              'Your child may bend down to pick up objects without sitting, stand on tiptoes, and attempt small jumps with both feet leaving the ground.',
+              'These movements reflect strengthening of balance, coordination and muscle control.',
+            ],
+          },
+          {
+            label: 'Functional Play – Real-Life Activities',
+            points: [
+              'Offer simple real-life tasks such as filling and emptying containers with water, pouring (with supervision), and helping to feed a pet.',
+              'These activities support hand–brain coordination, motor planning, cause-and-effect understanding, and autonomy.',
+              'Mess is part of learning.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Provide safe, open space for movement.',
+            'Use natural, non-toxic materials.',
+            'Allow freedom within clear boundaries.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'This month is a transition — from baby to child, from sound to language, from dependence to intention. Growth is becoming visible in movement, in words, and in identity.',
+        weeklyCta:
+          'Encourage one independent dressing attempt and one real-life activity (pouring, filling, helping) each day this week.',
+      },
+    ],
+    closingNote:
+      'Month 23 marks the final steps before the second birthday. Language is becoming structured, creativity is expanding, movement is more purposeful, and independence is emerging in daily routines. From sound to language. From dependence to intention. Growth is becoming visible — in movement, in words, and in identity.',
+  },
+  // ─── MONTH 24 ───
+  {
+    month: 24,
+    title: 'Month 24',
+    subtitle: 'Independence, Lateralisation, Movement Mastery & Self-Care',
+    weeks: [
+      {
+        week: 1,
+        title: 'Independence and Regression',
+        gentleFocus: 'Understanding regression, emotional expression, and secure responses',
+        iconName: 'heart',
+        introduction:
+          'At twenty-four months, your child may proudly say, "I\'m big now" — and moments later ask to be held. This apparent contradiction is completely normal and is often referred to as "regression" (a temporary return to earlier behaviours).\n\nRather than being a setback, regression usually reflects cognitive growth. As memory improves, your child begins to recall the comfort and security of earlier stages and may seek them again, especially when tired or overwhelmed.',
+        sections: [
+          {
+            label: 'Emotional Expression Becomes Clearer',
+            points: [
+              'You may notice tone of voice changing (angry, excited, frustrated), strong body language (stamping, soft walking, running), and frequent laughter or tears.',
+              'This reflects growth in emotional expression — the ability to communicate internal states outwardly.',
+              'Expressing emotions, even difficult ones, is healthy.',
+              'There is no need to immediately intervene or "fix" every emotional reaction. Allow space for expression while remaining present and calm.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Regression at this age usually reflects cognitive growth, not a step backwards. Your child\'s improving memory allows them to recall earlier comfort — and seek it again. This is a sign of emotional intelligence developing.',
+        weeklyCta:
+          'This week, observe your child\'s emotional signals before responding. Name the feeling calmly: "You seem upset" or "That made you happy."',
+      },
+      {
+        week: 2,
+        title: 'Hand Preference and Brain Organisation',
+        gentleFocus: 'Lateralisation, hand dominance, and natural brain organisation',
+        iconName: 'brain',
+        introduction:
+          'Over the past year, you may have noticed your child showing a slight preference for one hand. From this stage onwards, hand dominance becomes more consistent. This is related to "lateralisation" (the development of specialised functions in each hemisphere of the brain).',
+        sections: [
+          {
+            label: 'Observing Hand Preference',
+            points: [
+              'You may observe which hand your child prefers by offering a toy slightly out of reach, watching which hand they use to eat, or observing drawing and stacking activities.',
+              'The dominant hand is usually stronger and more coordinated.',
+            ],
+          },
+          {
+            label: 'Important Guidance',
+            points: [
+              'Do not attempt to change your child\'s natural hand preference.',
+              'Forcing a switch can lead to frustration, reduced coordination, and difficulties later in writing and learning.',
+              'Allow the brain to organise itself naturally.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Hand dominance reflects the brain\'s natural lateralisation process — each hemisphere developing specialised functions. Respecting this natural organisation supports smoother motor development and later learning.',
+        weeklyCta:
+          'Observe your child\'s preferred hand during daily activities without correcting or interfering.',
+      },
+      {
+        week: 3,
+        title: 'Movement Refinement and Repetition',
+        gentleFocus: 'Mature walking patterns, repetition as a developmental drive',
+        iconName: 'move',
+        introduction:
+          'At twenty-four months, walking becomes more mature and efficient. Your child may now walk with a pattern similar to adults — heel touches the ground first, then the foot rolls forward to the toes. This improvement allows for more advanced movement, including running, jumping, and kicking a ball.',
+        sections: [
+          {
+            label: 'The Power of Repetition',
+            points: [
+              'You may notice your child repeating the same activity many times. This reflects an internal developmental drive.',
+              'Repetition supports motor refinement, neural efficiency, coordination, and confidence.',
+              'In many ways, your child behaves like a small scientist — testing, adjusting and refining their movements.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Repetition is not random — it reflects the brain\'s drive to refine and strengthen neural pathways. Each repeated action increases efficiency and builds the foundation for more complex skills.',
+        weeklyCta:
+          'Allow repetition without interruption. Choose one activity (e.g. kicking a ball) and let your child practise it multiple times.',
+      },
+      {
+        week: 4,
+        title: 'Independence and Self-Care Skills',
+        gentleFocus: 'Daily hygiene routines, outdoor play, and when to seek support',
+        iconName: 'sun',
+        introduction:
+          'At this stage, movement and coordination begin to support independence in daily routines. Your child may show interest in brushing their teeth, washing their hands, and participating in simple hygiene routines. Although these moments may be messy, they are essential developmental milestones.',
+        sections: [
+          {
+            label: 'Daily Movement',
+            points: [
+              'Set aside time each day for outdoor play or active movement.',
+              'Activities that involve physical effort support muscle strength, coordination, emotional regulation, and sleep quality.',
+            ],
+          },
+          {
+            label: 'When to Seek Support',
+            points: [
+              'Consider seeking professional guidance if your child uses very few or no words, does not attempt to imitate speech, does not ask simple questions (e.g. "What\'s this?"), or does not show frustration when not understood.',
+              'Early support can make a meaningful difference.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Encourage independence in a safe, calm environment.',
+            'Maintain consistent routines.',
+            'Allow time for exploration without rushing.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'This month marks a transition — from dependence to autonomy, from movement to mastery, from expression to identity. At twenty-four months, your child is not just growing. They are becoming.',
+        weeklyCta:
+          'Encourage one daily self-care activity this week, allowing your child to participate as independently as possible.',
+      },
+    ],
+    closingNote:
+      'Month 24 completes the second year. Your child has journeyed from first steps to confident movement, from single sounds to emerging sentences, from total dependence to purposeful independence. From dependence to autonomy. From movement to mastery. From expression to identity. At twenty-four months, your child is not just growing — they are becoming. 🌊',
+  },
 ];
