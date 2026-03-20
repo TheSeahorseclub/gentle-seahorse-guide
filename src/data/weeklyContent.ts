@@ -1647,4 +1647,380 @@ export const allMonths: MonthContent[] = [
     closingNote:
       'At fourteen months, your toddler is learning how to belong — to the family, to the world of peers, and to the natural environment around them. Every gentle exposure, every shared moment of play, builds the social and sensory foundations for confident exploration ahead.',
   },
+  // ─── MONTH 15 ───
+  {
+    month: 15,
+    title: 'Month 15',
+    subtitle: 'Walking confidence and fine motor precision',
+    weeks: [
+      {
+        week: 1,
+        title: 'Walking Confidence and Expanding Independence',
+        gentleFocus: 'Balance, confidence, and spatial awareness',
+        iconName: 'move',
+        introduction:
+          "At fifteen months, many toddlers are either newly walking or rapidly refining their walking skills. Walking is not just a motor milestone — it represents a major neurological reorganisation.\n\nThe more a toddler moves independently, the more they learn about cause, effect, space, and risk assessment.",
+        sections: [
+          {
+            label: 'Motor Development – Refining Independent Walking',
+            points: [
+              'At this stage, your toddler may walk with arms slightly raised, fall frequently and recover quickly, attempt turning while walking, and carry objects while moving.',
+              'Walking strengthens "vestibular integration" (the balance system in the inner ear), "proprioception" (the body\'s awareness of its position in space), and "postural control" (automatic muscle coordination for upright balance).',
+              'Research published in Developmental Science (Adolph & Robinson, 2015) shows that early walking experience increases environmental exploration and supports cognitive development through active learning.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Walking represents a major neurological reorganisation. The brain must coordinate vestibular input, proprioception, and postural control simultaneously — this is why walking unlocks so much cognitive growth through active exploration.',
+        weeklyCta:
+          'Create safe spaces for your toddler to practise walking freely. Provide at least 20 minutes of uninterrupted walking exploration daily.',
+      },
+      {
+        week: 2,
+        title: 'Obstacle Play, Emotional Autonomy, and Movement Language',
+        gentleFocus: 'Safe exploration, co-regulation, and narrating movement',
+        iconName: 'hand',
+        introduction:
+          "This week combines physical challenge with emotional development and language expansion. Your toddler is learning to navigate obstacles, manage frustration, and connect words to movement.",
+        sections: [
+          {
+            label: 'Weekly Activity – Safe Obstacle Path',
+            points: [
+              'Create a simple, safe walking path using cushions, low foam blocks, and soft mats.',
+              'Encourage stepping over or walking around objects. Do not over-direct. Allow experimentation.',
+              'This supports "motor planning" (organising movement sequences) and early "executive function" (decision-making during movement).',
+            ],
+          },
+          {
+            label: 'Carry and Transport Play',
+            points: [
+              'Toddlers at this age love carrying objects while walking.',
+              'This strengthens core stability, hand–body coordination, and dual-task processing (managing movement and object handling simultaneously).',
+              'Offer lightweight, safe objects such as a soft toy, a small basket, or a wooden spoon.',
+              'Encourage your toddler to transport objects from one place to another once per day.',
+            ],
+          },
+          {
+            label: 'Emotional Development – Emerging Autonomy',
+            points: [
+              'You may notice increased determination: saying "no", pulling away, wanting to do things independently.',
+              'This reflects development of early autonomy. However, the "prefrontal cortex" (responsible for impulse control and regulation) is still immature.',
+              'Emotional responses can be intense and sudden. Remain calm and consistent.',
+              'Research in early self-regulation (Calkins, 2007, Child Development) highlights that caregiver co-regulation remains the primary regulatory mechanism at this age.',
+              'When frustration appears, kneel to eye level and use short, calm phrases instead of long explanations. Your nervous system remains their anchor.',
+            ],
+          },
+          {
+            label: 'Language Expansion – Naming Movement',
+            points: [
+              'At fifteen months, receptive language (words understood) is expanding rapidly.',
+              'Narrate movement: "You\'re walking fast." "You stepped over." "That was high."',
+              'This strengthens "semantic mapping" (building networks of meaning in the brain).',
+              'Movement-linked language is particularly powerful because it pairs motor cortex activation with language networks.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Allow barefoot walking indoors when safe. Direct foot contact enhances sensory feedback and strengthens intrinsic foot muscles.',
+            'Choose breathable, natural-fibre clothing to support comfort during movement.',
+            'Avoid restrictive walkers or devices that limit natural balance development.',
+            'Natural movement builds natural confidence.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Falling, trying again, adjusting — this is brain development in motion. Walking is not just a milestone. It is independence beginning to unfold.',
+        weeklyCta:
+          'Provide at least 20 minutes of uninterrupted walking exploration daily. Choose three movement words and repeat them consistently this week.',
+      },
+      {
+        week: 3,
+        title: 'Following Instructions and Fine Motor Precision',
+        gentleFocus: 'Language comprehension and hand coordination development',
+        iconName: 'brain',
+        introduction:
+          "At fifteen months, your toddler is strengthening both language comprehension and fine motor coordination. This week focuses on simple instruction-following and hand precision development.",
+        sections: [
+          {
+            label: 'Cognitive & Language Development – Understanding Simple Instructions',
+            points: [
+              'Many toddlers are able to follow simple one-step instructions, such as: "Please bring your shoe." "Give me the ball." "Put it in the box."',
+              'This reflects growth in "receptive language" (words understood before they are spoken), "auditory processing" (the brain\'s ability to interpret spoken language), and early "working memory" (holding information briefly in mind to complete a task).',
+              'Research in early language development (Fernald et al., 2012, Psychological Science) demonstrates that stronger early receptive vocabulary predicts later language fluency and cognitive outcomes.',
+              'Encourage instruction-following in a calm and playful way — never as a test.',
+            ],
+          },
+          {
+            label: 'Motor Development – Coordination and Spatial Awareness',
+            points: [
+              'Offer toys that support stacking, balancing pieces, and simple shape puzzles.',
+              'These activities strengthen "visuospatial processing" (understanding how objects relate in space), "hand–eye coordination", and early problem-solving circuits.',
+              'Stacking and fitting objects require trial-and-error learning, which strengthens neural planning pathways in the developing frontal lobes.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Stronger early receptive vocabulary predicts later language fluency and cognitive outcomes. When your toddler follows a simple instruction, multiple brain systems — auditory processing, working memory, and motor planning — are working together.',
+        weeklyCta:
+          'Use one simple daily instruction during routine activities and celebrate completion with positive reinforcement.',
+      },
+      {
+        week: 4,
+        title: 'Lacing, Fine Motor Skills, and Hemispheric Balance',
+        gentleFocus: 'Building pincer refinement and bilateral coordination through lacing',
+        iconName: 'hand',
+        introduction:
+          "Lacing activities are highly beneficial in early childhood education because they develop \"fine motor skills\" (small, precise movements of the hands and fingers). These skills are foundational for writing, drawing, tracing, buttoning, and tying shoelaces.",
+        sections: [
+          {
+            label: 'Focus Activity – Lacing Practice',
+            points: [
+              'Lacing supports "pincer refinement" (precise thumb-to-finger control), bilateral coordination (both hands working together), finger strength, and motor sequencing.',
+              'Demonstrate slowly how to thread the lace. Allow your toddler to attempt independently.',
+              'Expect irregular movements — precision develops gradually.',
+            ],
+          },
+          {
+            label: 'Hand Alternation for Brain Balance',
+            points: [
+              'On one day, gently guide more active use of the right hand. On the following day, encourage use of the left hand.',
+              'Alternating hands strengthens hemispheric activation and supports balanced "neural lateralisation" (development of functional differences between the two brain hemispheres).',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Lacing strengthens pincer refinement, bilateral coordination, and motor sequencing — all foundational skills for later writing and drawing. Alternating hand emphasis supports balanced neural lateralisation across both brain hemispheres.',
+        weeklyCta:
+          'Practise lacing for 3–5 minutes, three times this week, alternating hand emphasis on different days. Keep the activity light and positive.',
+      },
+    ],
+    closingNote:
+      'At fifteen months, your toddler is refining the art of independent movement and precise hand control. Every step, every grasp, every small instruction followed is strengthening the neural architecture for learning, language, and confidence.',
+  },
+  // ─── MONTH 16 ───
+  {
+    month: 16,
+    title: 'Month 16',
+    subtitle: 'Singing, empathy, and self-awareness',
+    weeks: [
+      {
+        week: 1,
+        title: 'Singing, Rhythm, and Auditory Brain Development',
+        gentleFocus: 'Using singing as a cognitive and language-building tool',
+        iconName: 'music',
+        introduction:
+          "At sixteen months, your toddler's brain is highly responsive to rhythm, repetition, and sound patterns. This week focuses on singing as a powerful cognitive and language-building tool.\n\nAny moment can become a singing moment.",
+        sections: [
+          {
+            label: 'Cognitive & Sound Development – Singing Everywhere',
+            points: [
+              'Sing to your child whenever possible — at home, at the supermarket, during bath time, before sleep.',
+              'Repeat the songs — at this age, repetition strengthens "auditory discrimination" (the brain\'s ability to distinguish between sounds) and supports "phonological awareness" (recognising sound patterns in language), which later becomes foundational for reading.',
+              'Research published in Developmental Science suggests that early rhythmic exposure enhances speech processing and language development.',
+            ],
+          },
+          {
+            label: 'Repetition Builds Memory',
+            points: [
+              'Repeat songs frequently so your toddler begins to anticipate and memorise parts of them.',
+              'Repetition strengthens "neural encoding" (the process of storing information in long-term memory).',
+              'You may create a small family playlist — inspired by your own culture and story — choosing familiar songs and playing them consistently.',
+              'Predictability builds confidence.',
+            ],
+          },
+          {
+            label: 'Add Movement – Actions and Gestures',
+            points: [
+              'Music becomes even more powerful when paired with movement.',
+              'Add simple actions: clapping, tapping knees, waving, stomping, making animal sounds, using hands to imitate rain, wind, or animals.',
+              'This strengthens "sensorimotor integration" (coordination between movement and sensory input), "bilateral coordination", and mirror neuron activation.',
+              'Songs with gestures support cerebellar development, which plays a key role in timing, coordination, and even aspects of language fluency.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Early rhythmic exposure enhances speech processing and language development. Repetition strengthens auditory discrimination and neural encoding — the foundation for phonological awareness that later supports reading.',
+        weeklyCta:
+          'Choose two songs this week and repeat them daily in different settings. Add one consistent gesture to a favourite song. Consistency is more powerful than variety.',
+      },
+      {
+        week: 2,
+        title: 'Emotional Expression and Learning to Care',
+        gentleFocus: 'Modelling affection and nurturing behaviour through play',
+        iconName: 'heart',
+        introduction:
+          "At sixteen months, your toddler is developing early forms of empathy and emotional understanding. This week focuses on modelling affection and nurturing behaviour through play.\n\nThey do not learn kindness from instruction. They learn it from watching.",
+        sections: [
+          {
+            label: 'Affective & Social Development – "Lots of Love" Game',
+            points: [
+              'This game helps your child develop "emotional modelling" (learning emotions through observation), early empathy, and "prosocial behaviour" (caring actions towards others).',
+              'The "mirror neuron system" (brain networks involved in copying and understanding others\' actions) is highly active at this stage.',
+            ],
+          },
+          {
+            label: 'How to Play – Step by Step',
+            points: [
+              'Sit comfortably on the floor with your child. Place two or three soft toys in front of you.',
+              'Choose one toy and gently hug it. Use warm, affectionate language: "It\'s so lovely to play with you." "I love you." "You make me happy."',
+              'Speak slowly and warmly. Exaggerate tone slightly.',
+              'Hand a toy to your child. Invite them to hug or kiss it. Celebrate any attempt — even a brief squeeze counts.',
+              'Over time, you may notice them repeating the behaviour independently. This signals internalisation of the emotional script.',
+            ],
+          },
+          {
+            label: 'Expanding the Game – Emotional Labelling',
+            points: [
+              'Gently add simple emotion words: "Teddy feels happy." "Baby is tired." "That was gentle."',
+              'This supports "emotion recognition" (identifying feelings in self and others), a core predictor of later self-regulation.',
+            ],
+          },
+          {
+            label: 'Autonomy Layer – Independent Caring',
+            points: [
+              'If your toddler begins pretending to feed, rock, or comfort a toy, allow it.',
+              'This is early "symbolic play" (using objects to represent real-life experiences), a major cognitive milestone linked to later creativity and cognitive flexibility.',
+              'Observe for one moment this week when your toddler spontaneously comforts a toy — and simply reflect it back calmly: "You\'re taking care of the bunny."',
+            ],
+          },
+          {
+            label: 'Emotional Regulation Through Affection',
+            points: [
+              'Affectionate play increases oxytocin levels (a hormone linked to bonding and emotional safety).',
+              'Shared warmth during play strengthens attachment security.',
+              'At this age, secure attachment is the foundation for future independence.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose soft toys made from natural fabrics where possible.',
+            'Avoid toys with loud electronic sounds during this activity — emotional play benefits from calm environments.',
+            'Keep lighting soft and the setting predictable.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'By modelling affectionate behaviour, you help strengthen affective association networks, early compassion pathways, and emotional vocabulary foundations. Research shows that toddlers exposed to consistent emotional labelling demonstrate stronger empathy and social competence later in childhood.',
+        weeklyCta:
+          'Play "Lots of Love" at least three times this week, keeping sessions short and joyful. Model first. Invite second. Never force.',
+      },
+      {
+        week: 3,
+        title: 'Self-Awareness, Facial Control, and Early Problem Solving',
+        gentleFocus: 'Mirror play and cognitive challenge for growing self-awareness',
+        iconName: 'eye',
+        introduction:
+          "At sixteen months, toddlers are becoming more aware of themselves as separate individuals. This week focuses on mirror play and early cognitive challenge.",
+        sections: [
+          {
+            label: 'Cognitive & Motor Development – Mirror Awareness Play',
+            points: [
+              'Sit in front of a mirror with your child and allow them to observe their own reflection.',
+              'Encourage gentle exploration of facial movement: smile together, open and close the mouth, stick out the tongue, look at their teeth, make a funny face, blink slowly.',
+              'You may also offer a small snack and allow them to observe themselves chewing with their mouth closed.',
+              'This strengthens "self-recognition" (awareness of oneself as an individual), "body schema" (the brain\'s internal map of the body), oral-motor control, and facial muscle coordination.',
+              'Around this age, toddlers are refining their understanding that "the person in the mirror is me".',
+            ],
+          },
+          {
+            label: 'Structured Play – Wooden Puzzle Exploration',
+            points: [
+              'Introduce a simple wooden puzzle suitable for toddlers.',
+              'This supports problem-solving skills, visuospatial reasoning (understanding shapes and spatial relationships), hand–eye coordination, and attention and concentration.',
+              'Demonstrate one piece slowly. Allow your toddler to attempt independently.',
+              'Resist correcting immediately — trial and error builds neural resilience.',
+              'Unlike electronic toys, simple puzzles require active thinking and persistence.',
+            ],
+          },
+          {
+            label: 'Emotional Layer – Confidence Through Mastery',
+            points: [
+              'When toddlers recognise themselves in the mirror and complete a puzzle piece independently, they strengthen "self-efficacy" (belief in their own ability), frustration tolerance, and early executive function.',
+              'Small successes build long-term confidence.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose puzzles made from natural, non-toxic wood with safe finishes.',
+            'Avoid mirrors that distort reflection — clarity supports accurate self-recognition.',
+            'Keep the environment calm and free from background screens to protect attention.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Mirror play stimulates areas of the brain involved in identity formation and motor planning. Self-observation builds deeper motor precision and confidence. Self-awareness is quietly growing.',
+        weeklyCta:
+          'Spend five minutes this week in intentional mirror play. Offer puzzle play three times for short, focused sessions (3–5 minutes). Stop while interest is still present.',
+      },
+      {
+        week: 4,
+        title: 'Balance, Concentration, and Early Number Awareness',
+        gentleFocus: 'Dynamic balance play and introducing first numerical concepts',
+        iconName: 'brain',
+        introduction:
+          "At sixteen months, toddlers are strengthening both physical balance and early cognitive categorisation skills. This week focuses on dynamic balance play and introducing first numerical concepts in a natural, playful way.",
+        sections: [
+          {
+            label: 'Motor Development – Rocking Horse Balance Play',
+            points: [
+              'A rocking horse with removable wooden balancing bars or pieces is an excellent tool at this stage.',
+              'As your toddler places the wooden pieces onto the rocking base, they must adjust their movements while the structure gently wobbles.',
+              'This strengthens "vestibular processing" (the balance system in the inner ear), "postural control", hand–eye coordination, and sustained attention.',
+              'Because the base moves slightly, your toddler must continuously correct their posture — activating core muscles and improving motor planning.',
+            ],
+          },
+          {
+            label: 'Cognitive Development – Introducing Numbers up to Five',
+            points: [
+              'At sixteen months, toddlers are not yet counting independently, but they can begin developing "number sense" (an intuitive understanding of quantity).',
+              'Start by counting small, visible groups of objects: "One, two" (while holding two soft balls). "One spoon for you, one spoon for Mummy." "Two shoes."',
+              'Keep it natural and embedded in daily life.',
+              'Research in early numeracy development suggests that repeated exposure to small-number grouping supports later mathematical reasoning.',
+            ],
+          },
+          {
+            label: 'Use Songs and Rhymes',
+            points: [
+              'Introduce simple counting songs and rhythmic rhymes.',
+              'Music strengthens "auditory sequencing" (understanding order and pattern), which supports both numeracy and language development.',
+              'Rhythm helps anchor memory.',
+            ],
+          },
+          {
+            label: 'Everyday Enumeration',
+            points: [
+              'Narrate small quantities during ordinary moments: "One cup." "Two socks." "One for you, one for me."',
+              'This strengthens conceptual categorisation, early logical thinking, and language–number integration.',
+              'At this stage, understanding quantity is more important than correct verbal counting.',
+            ],
+          },
+          {
+            label: 'Emotional Layer – Mastery Through Challenge',
+            points: [
+              'Balance toys that wobble slightly introduce manageable instability — teaching adjustment, focus, and persistence.',
+              'Small physical challenges strengthen emotional resilience.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose wooden rocking toys with safe, non-toxic finishes.',
+            'Ensure the rocking motion is gentle and stable.',
+            'Avoid overstimulating electronic counting toys; simple repetition is more effective for neural development.',
+            'Extra suggestion: Make a panel or create a space where the child can paint, get messy, and be absorbed for as long as they want, discovering colours and experimenting freely. Use non-toxic paint and appropriate brushes.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'The child counts at this stage without fully understanding the concept of counting yet, and that is perfectly fine. It is only around age 3 that the child will understand that adding an item increases the quantity. Balance in the body, balance in the mind — small numbers, small adjustments, big development.',
+        weeklyCta:
+          'Offer short balance-play sessions three times this week. Count small groups (1–2 items) daily during natural routines. Keep it light and joyful — this is exposure, not instruction.',
+      },
+    ],
+    closingNote:
+      'Month 16 has been a journey through singing, empathy, self-awareness, and early numeracy. Your toddler is building the emotional and cognitive architecture that will support deeper learning in the months ahead. Love is learned through repetition. Small hugs today become emotional intelligence tomorrow.',
+  },
 ];
