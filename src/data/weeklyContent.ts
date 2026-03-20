@@ -1390,4 +1390,261 @@ export const allMonths: MonthContent[] = [
     closingNote:
       'Happy first birthday! What an incredible journey this has been. Your baby has grown from a tiny, dependent newborn into a curious, mobile, communicating little person. Every gentle interaction, every patient moment, and every loving response has helped build the neural architecture that will support their lifelong learning. Be proud of the journey you have shared together.',
   },
+  // ─── MONTH 13 ───
+  {
+    month: 13,
+    title: 'Month 13',
+    subtitle: 'Walking, words, and growing independence',
+    weeks: [
+      {
+        week: 1,
+        title: 'First Steps and Growing Autonomy',
+        gentleFocus: 'Supporting walking development and early independence',
+        iconName: 'move',
+        introduction:
+          "It is on average at thirteen months that a child learns to walk. This stage is important because it gives them a lot of autonomy, and with that, their personality tends to become more clear.\n\nWhile learning to walk concentrates all the baby's efforts, language learning stagnates a bit. But the baby already understands many things and masters some words like daddy, bread, and of course, no.",
+        sections: [
+          {
+            label: 'Motor Development',
+            points: [
+              'Now that they know how to walk, the baby goes wherever they want. Parental vigilance should be redoubled. Be careful with stairs.',
+              'If the baby doesn\'t know how to walk yet, place toys on the sofa so that the baby can stand and support themselves, always under your supervision. This strengthens their muscles.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Walking is a major motor milestone that requires enormous neural coordination. While the brain focuses resources on locomotion, other areas like language may temporarily slow — this is normal and reflects how the brain prioritises learning.',
+        weeklyCta:
+          'Create safe spaces for your toddler to practise walking freely. If not yet walking, encourage standing with furniture support daily.',
+      },
+      {
+        week: 2,
+        title: 'Imitation, Independence, and Early Problem Solving',
+        gentleFocus: 'Strengthening intentional action through imitation',
+        iconName: 'eye',
+        introduction:
+          "At thirteen months, your toddler is strengthening intentional action. This week focuses on imitation and simple independent tasks.\n\nImitation at this age is not just cute — it reflects activation of the \"mirror neuron system\" (brain networks that fire both when performing and observing an action). These systems support empathy, language development, and social learning.",
+        sections: [
+          {
+            label: 'Imitation of Daily Actions',
+            points: [
+              'Your toddler may begin copying: wiping a surface, brushing hair, stirring with a spoon, pretending to talk on the phone.',
+              'This supports "motor planning" (organising movement sequences), "symbolic representation" (using one action to represent another), and early executive function development.',
+              'Research in developmental psychology shows that imitation of real-life tasks strengthens neural circuits involved in learning by observation — a core human learning mechanism.',
+            ],
+          },
+          {
+            label: 'Weekly Activity – Mini Helper Tasks',
+            points: [
+              'Invite your toddler to participate in simple daily routines.',
+              'Hand them a small cloth to wipe a safe surface.',
+              'Let them place socks into a basket.',
+              'Allow supervised spoon stirring.',
+              'The goal is not perfection. It is participation.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'The mirror neuron system fires both when performing and observing an action. When your toddler imitates you, they are building neural circuits for empathy, language, and social learning — all through the simple act of copying daily life.',
+        weeklyCta:
+          'Choose one small daily task and consistently invite your toddler to participate every day this week. Consistency builds neural efficiency.',
+      },
+      {
+        week: 3,
+        title: 'Language and Labelling Expansion',
+        gentleFocus: 'Building receptive language through narration and repetition',
+        iconName: 'message-circle',
+        introduction:
+          "Many toddlers at this stage understand far more words than they can say.\n\nThis stage reflects growth in \"receptive language\" (words understood) and strengthening of pathways between Wernicke's area (language comprehension) and Broca's area (speech production).",
+        sections: [
+          {
+            label: 'Language Strategies',
+            points: [
+              'Narrate simple actions: "You\'re stirring." "You found the ball." "That\'s heavy."',
+              'Repetition builds "semantic networks" (brain maps of meaning).',
+              'Choose five core words this week and repeat them daily in natural context.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'At this age, the gap between receptive and expressive language is wide and normal. Your toddler understands far more than they can say. Narrating daily life builds the semantic networks that will soon power a vocabulary explosion.',
+        weeklyCta:
+          'Choose five core words this week and repeat them daily in natural context.',
+      },
+      {
+        week: 4,
+        title: 'Emotional Development – Safe Autonomy',
+        gentleFocus: 'Supporting healthy independence and co-regulation',
+        iconName: 'heart',
+        introduction:
+          "This is the beginning of visible independence.\n\nYou may notice resistance to help, frustration when interrupted, and determination. This is healthy.",
+        sections: [
+          {
+            label: 'Understanding Emotional Outbursts',
+            points: [
+              'Emotional outbursts at this age reflect an immature "prefrontal cortex" combined with strong limbic activation (emotional brain).',
+              'Co-regulation remains essential.',
+              'Stay calm. Model slow breathing. Keep boundaries gentle and consistent. Show them how to breathe deeply.',
+            ],
+          },
+          {
+            label: 'Regulation Strategies',
+            points: [
+              'When frustration appears, lower your voice rather than raising it.',
+              'Your nervous system teaches theirs.',
+              'Gentle, consistent boundaries create emotional safety — not rigidity.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'The prefrontal cortex — responsible for impulse control and emotional regulation — is one of the last brain regions to mature. Your calm presence literally helps regulate your toddler\'s nervous system through co-regulation.',
+        weeklyCta:
+          'When frustration appears, lower your voice rather than raising it. Your nervous system teaches theirs.',
+      },
+    ],
+    closingNote:
+      'Month 13 marks the beginning of a new chapter. Your toddler is no longer a baby — they are becoming a person with opinions, preferences, and a growing sense of self. Every moment of patient guidance helps build the emotional and cognitive foundations for the years ahead.',
+  },
+  // ─── MONTH 14 ───
+  {
+    month: 14,
+    title: 'Month 14',
+    subtitle: 'Belonging, nature, and sensory exploration',
+    weeks: [
+      {
+        week: 1,
+        title: 'Music, Rhythm, and Sensory Integration',
+        gentleFocus: 'Using music and touch to support regulation and capability',
+        iconName: 'music',
+        introduction:
+          "This week is about allowing your toddler to feel capable. Not controlled. Not corrected constantly. Capable. Because autonomy, when safely supported, becomes confidence.",
+        sections: [
+          {
+            label: 'Music Integration – Clean-Up Songs',
+            points: [
+              'Sing simple clean-up songs during mini-helper tasks.',
+              'Rhythm supports task sequencing, emotional regulation, and predictability.',
+              'Music activates both hemispheres and strengthens timing networks in the cerebellum.',
+            ],
+          },
+          {
+            label: 'Sensory Integration – Gentle Ball Massage',
+            points: [
+              'Use soft textured balls to provide a calming sensory massage.',
+              'Gently roll the balls over the back, the soles of the feet, and the palms of the hands.',
+              'This stimulates the "somatosensory system" (the body\'s touch-processing network) and can support body awareness and regulation.',
+              'Research in infant massage and tactile stimulation (Field, 2010, Developmental Review) suggests that structured tactile input can support emotional regulation and nervous system stability.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose wooden or natural-material household tools for play imitation when possible.',
+            'Avoid strongly fragranced cleaning products during toddler participation.',
+            'Prefer organic cotton clothing to support skin health and reduce synthetic exposure.',
+            'The developing nervous system is sensitive to environmental load. Reducing chemical exposure supports long-term resilience.',
+            'Choose balls made from non-toxic, natural materials when possible.',
+            'Avoid strongly scented plastic toys.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Structured tactile input through gentle massage stimulates the somatosensory system and supports emotional regulation and nervous system stability. Combined with music, these activities build multi-sensory neural integration.',
+        weeklyCta:
+          'Introduce a daily music-and-movement routine during clean-up time. Follow with a 2-minute gentle ball massage for calming.',
+      },
+      {
+        week: 2,
+        title: 'Understanding Egocentrism and Early Social Behaviour',
+        gentleFocus: 'Navigating the egocentric stage with patience and gentle guidance',
+        iconName: 'smile',
+        introduction:
+          "Does it seem like the whole world revolves around your child? Well, that's exactly what they think. For several months from now, the child will think almost only about themselves. That's why lending a toy or sharing fruit is so difficult.",
+        sections: [
+          {
+            label: 'Emotional Development',
+            points: [
+              'At 1 year and 2 months, children still don\'t understand what other people feel — they are not yet capable of empathy.',
+              'For them, other friends are nothing more than objects. It\'s not selfishness: everyone is like that at this age.',
+              'When they are playing with other children, stay close to intervene when necessary.',
+              'The best way is to say "You can\'t hit, because it hurts!" and remove the child from the situation.',
+              'Try not to pay too much attention to bad behaviour, because otherwise your child may start repeating it on purpose.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Egocentrism at this age is not a character flaw — it is a normal developmental stage. The brain regions responsible for perspective-taking and empathy are still years away from full maturation. Patience now builds the foundation for social understanding later.',
+        weeklyCta:
+          'When conflicts arise during play, calmly name the feeling ("That hurt") and redirect. Avoid lengthy explanations — keep it simple and consistent.',
+      },
+      {
+        week: 3,
+        title: 'Social Exposure, Sensory Play, and Bilateral Coordination',
+        gentleFocus: 'Gentle peer exposure and parallel play foundations',
+        iconName: 'sun',
+        introduction:
+          "At fourteen months, your toddler is expanding their awareness of the social world. Even if they are not yet ready for fully cooperative play, simple exposure to other children is developmentally beneficial.",
+        sections: [
+          {
+            label: 'Social Development – Gentle Peer Exposure',
+            points: [
+              'If your child does not have siblings and does not attend nursery or childcare, consider gradually introducing environments where they can observe and be around children of a similar age.',
+              'For example: a local park, a playground, a relative\'s garden, or small informal play meet-ups.',
+              'At this stage, toddlers typically engage in "parallel play" (playing alongside, rather than directly with, other children). This is a normal and healthy stage of social development.',
+              'Research by Mildred Parten (1932) on stages of play shows that parallel play is a foundational step toward cooperative interaction. More recent findings indicate that early peer exposure supports social competence and emotional regulation development.',
+              'Gradually, your toddler will begin to perceive that being around other children is enjoyable and safe.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Parallel play — playing alongside rather than with other children — is not a sign of social difficulty. It is a healthy, necessary stage of development that builds the foundation for cooperative play and social competence.',
+        weeklyCta:
+          'This week, plan at least one outdoor visit where your toddler can observe or be near other children without pressure to interact.',
+      },
+      {
+        week: 4,
+        title: 'Nature, Animal Interest, and Motor Coordination',
+        gentleFocus: 'Stimulating curiosity through nature, water play, and bilateral movement',
+        iconName: 'sun',
+        introduction:
+          "At fourteen months, many toddlers show strong curiosity about animals. This reflects growth in \"categorisation skills\" (the ability to group living things conceptually) and \"symbolic representation\" (understanding that an animal picture represents a real animal).",
+        sections: [
+          {
+            label: 'Nature and Animal Exploration',
+            points: [
+              'A visit to a zoo, farm, or even observing birds in a park can stimulate language and cognitive development.',
+              'Water play is also highly beneficial at this age — it supports sensory integration, fine motor control, and cause-and-effect understanding.',
+              'Always supervise closely.',
+              'Introduce one structured water play session this week — pouring, splashing gently, or transferring water between containers.',
+            ],
+          },
+          {
+            label: 'Motor Development – Soft Ball Coordination Practice',
+            points: [
+              'Use a soft, lightweight ball to support bilateral motor development.',
+              'Ask your toddler to hold the ball with both hands.',
+              'Encourage them to open and close their hands around the ball (grip and release).',
+              'Then gently roll or throw the ball toward you. Repeat in a slow, rhythmic pattern for approximately one minute.',
+              'This strengthens "bilateral coordination" (using both sides of the body together), "grip strength" (important for later writing skills), and "motor planning" (organising movement sequences).',
+              'Rhythmic repetition supports cerebellar timing circuits and neural synchronisation.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Prefer outdoor social exposure in natural environments over indoor overstimulating settings.',
+            'Choose balls made from non-toxic, natural materials when possible.',
+            'Avoid strongly scented plastic toys.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'At fourteen months, your toddler is not just learning to play — they are learning how to belong. Curiosity about animals reflects growing categorisation skills, while bilateral ball play strengthens the neural circuits that connect both brain hemispheres.',
+        weeklyCta:
+          'Practise the rhythmic ball exchange daily for one minute. Introduce one structured water play session. Focus on rhythm, not performance.',
+      },
+    ],
+    closingNote:
+      'At fourteen months, your toddler is learning how to belong — to the family, to the world of peers, and to the natural environment around them. Every gentle exposure, every shared moment of play, builds the social and sensory foundations for confident exploration ahead.',
+  },
 ];
