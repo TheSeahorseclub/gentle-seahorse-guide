@@ -2390,4 +2390,346 @@ export const allMonths: MonthContent[] = [
     closingNote:
       'Month 18 marks the halfway point of the second year. Your toddler is building memory, constructing with intention, exploring with their hands, and refining precision. Every block stacked, every shape sorted, every button pressed is wiring the neural architecture for learning, creativity, and confidence.',
   },
+  // ─── MONTH 19 ───
+  {
+    month: 19,
+    title: 'Month 19',
+    subtitle: 'Sharing, Reading, Environment & Self-Soothing',
+    weeks: [
+      {
+        week: 1,
+        title: 'Learning to Share',
+        gentleFocus: 'Modelling sharing and understanding emerging ownership',
+        iconName: 'heart',
+        introduction:
+          'At nineteen months, your toddler may genuinely feel that all the wonderful things in the world belong to them — your car keys, their sibling\'s soft toy, Daddy\'s shoes, the slide at the playground. This is not selfishness. It is a developmental stage linked to emerging self-awareness and ownership.\n\nAt this age, children are strengthening their sense of "self" and beginning to understand the concept of possession. However, "sharing" is still an abstract idea that requires emotional maturity and impulse control — both of which are still developing.',
+        sections: [
+          {
+            label: 'Teaching Sharing Gradually',
+            points: [
+              'Rather than forcing sharing, begin to model and gently teach it over time.',
+              'When your child lends a toy, waits for their turn, or allows another child to go first, offer specific praise such as: "That was kind of you" or "You shared your toy — that made your friend happy."',
+              'Positive reinforcement strengthens prosocial behaviour more effectively than criticism.',
+              'Research in early social development shows that modelling behaviour and consistent emotional coaching support empathy development more than punishment-based approaches.',
+            ],
+          },
+          {
+            label: 'Using Stories and Media as Teaching Tools',
+            points: [
+              'When reading a story or watching a short programme, point out moments when characters share.',
+              'You might say: "Look, she shared her toy" or "They are taking turns."',
+              'This helps your toddler begin to associate healthy sharing with positive outcomes.',
+              'Narrative modelling supports "social cognition" (understanding how people think and feel).',
+            ],
+          },
+          {
+            label: 'Avoiding Power Struggles',
+            points: [
+              'Try not to scold harshly when your child refuses to share.',
+              'The prefrontal cortex — responsible for self-control — continues developing well into childhood.',
+              'Stay calm, offer turn-taking language, remove the toy temporarily if necessary, and avoid shaming.',
+              'Learning to share is a gradual social process.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Arrange playdates in small, calm settings rather than overstimulating environments.',
+            'Bring duplicate toys to reduce unnecessary conflict when possible.',
+            'Maintain predictable but diverse routines to reduce possessive anxiety.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'At this stage, your child is strengthening autonomy, testing boundaries, exploring possession and building early empathy. Sharing will not happen consistently yet — and that is developmentally appropriate. Connection before correction. Modelling before expectation. "Mine" is simply the first step toward "ours."',
+        weeklyCta:
+          'This week, look for one natural opportunity per day to model sharing yourself — even something small like saying, "I\'ll share my snack with you." Let your child observe the behaviour.',
+      },
+      {
+        week: 2,
+        title: 'Language Development Through Reading',
+        gentleFocus: 'Interactive reading and vocabulary expansion',
+        iconName: 'message-circle',
+        introduction:
+          'One of the most powerful tools for language development at this age is reading. Books stimulate communication, imagination, symbolic thinking, social referencing, and family bonding. At nineteen months, repetition is key. Hearing the same story many times strengthens neural pathways linked to vocabulary acquisition and memory consolidation.',
+        sections: [
+          {
+            label: 'The "Pause and Complete" Technique',
+            points: [
+              'When reading a story your child knows very well, pause at a predictable moment and allow them to complete the sentence.',
+              'For example, in The Three Little Pigs: "I\'ll huff and I\'ll puff and I\'ll blow the house…" — your toddler may shout: "Down!"',
+              'This strengthens expressive language, working memory, auditory processing, and confidence in communication.',
+              'Research shows that interactive reading significantly enhances vocabulary growth and narrative skills.',
+            ],
+          },
+          {
+            label: 'Expanding Vocabulary Through Description',
+            points: [
+              'Go beyond naming objects. Instead of "Look, a horse," try: "Look at the white horse. Horses are big, they run very fast, and sometimes people ride on them."',
+              'This approach is called "language expansion" — adding detail to a child\'s understanding of a word or concept.',
+              'It supports semantic development, concept formation, descriptive language, and cognitive categorisation.',
+              'The more descriptive language your toddler hears, the richer their internal vocabulary becomes.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose physical books over screen-based stories whenever possible.',
+            'Prefer books with clear, simple but nice illustrations at this stage.',
+            'Keep reading time distraction-free and calm.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Reading together strengthens attachment, emotional regulation, attention span and listening skills. A calm reading routine signals safety to the nervous system. Language grows best in connection. Every shared story is wiring your child\'s brain for communication and imagination.',
+        weeklyCta:
+          'Choose one familiar book this week and practise the "pause and complete" method at least once per day. During reading time, add one descriptive sentence for every new image you discuss.',
+      },
+      {
+        week: 3,
+        title: 'Cognitive Development and Environment',
+        gentleFocus: 'Calm spaces, focused attention, and geometric puzzle play',
+        iconName: 'brain',
+        introduction:
+          'At nineteen months, your toddler\'s concentration is still fragile and highly influenced by their surroundings. Before introducing new cognitive challenges, pay attention to the environment. A calm, organised and aesthetically pleasing home supports focus, emotional regulation, cognitive clarity, and overall wellbeing.\n\nWhenever possible, keep the bedroom and shared spaces tidy and visually simple. Too many scattered toys and excessive visual stimulation can fragment attention. Peace in the home nurtures peace in the mind.',
+        sections: [
+          {
+            label: 'Increasing Puzzle Complexity – Tangram',
+            points: [
+              'Introduce a wooden Tangram set — a traditional Chinese geometric puzzle composed of distinct shapes.',
+              'With these pieces, it is possible to create over 1,500 figures including animals, people, symbols and objects.',
+              'Your toddler can explore shape combinations, experiment with placement, and attempt simple guided configurations.',
+              'This supports visuospatial processing, shape classification, logical reasoning, creativity, and fine motor precision.',
+              'Research suggests that spatial play strengthens neural pathways associated with later mathematical reasoning.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Prefer wooden, non-toxic puzzle sets.',
+            'Limit the number of toys visible at one time.',
+            'Prioritise natural textures and harmonious colour palettes.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Complex puzzles require patience. Patience grows more easily in a calm environment. An orderly space reduces cognitive overload and helps your toddler persist longer, feel secure, and experience mastery. Cognitive growth flourishes in an environment of order, beauty and peace.',
+        weeklyCta:
+          'This week, declutter one play area and rotate toys instead of leaving everything accessible at once. Offer short, guided Tangram sessions two to three times this week.',
+      },
+      {
+        week: 4,
+        title: 'Motor Development and Self-Soothing',
+        gentleFocus: 'Shape-fitting, spatial play, and transitional comfort objects',
+        iconName: 'hand',
+        introduction:
+          'At nineteen months, toddlers learn by doing. They explore objects by touching, holding, dragging, throwing, and moving items from one place to another. This constant rearranging is not chaos — it is development. Children understand the world through physical interaction, testing size, weight, shape, resistance and balance.',
+        sections: [
+          {
+            label: 'Shape-Fitting and Spatial Play',
+            points: [
+              'Many children are particularly drawn to fitting shapes into matching spaces.',
+              'Shape sorters support fine motor precision, hand–eye coordination, spatial reasoning, problem-solving, and visual discrimination.',
+              'When a shape does not fit, your toddler must adjust, rotate or try again — building early cognitive flexibility and persistence.',
+            ],
+          },
+          {
+            label: 'Self-Soothing Strategies',
+            points: [
+              'Around this age, children often develop personal strategies to calm themselves — a soft toy, a comfort blanket, twirling their hair, rocking gently, or thumb sucking.',
+              'A "transitional object" provides emotional security, helping the child feel safe when separating from a parent or settling independently.',
+              'These behaviours are usually part of healthy emotional development.',
+              'Children naturally reduce and abandon these habits on their own by around four years of age.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Keep the environment safe but not overly restrictive.',
+            'Offer natural materials with varied textures.',
+            'Maintain calm bedtime routines to support self-regulation.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Motor exploration builds competence. Self-soothing builds emotional regulation. At nineteen months, your toddler is still learning to regulate their nervous system. Repetitive movements and comfort objects help them manage internal states. Security first. Independence later.',
+        weeklyCta:
+          'Offer one shape-sorting or fitting activity several times this week. Allow repetition — mastery grows through practice.',
+      },
+    ],
+    closingNote:
+      'Month 19 is about the emerging social self. Your toddler is learning to share, communicate through stories, focus in calm environments, and find comfort in both objects and people. Every interaction — whether a shared book, a modelled act of generosity, or a quiet cuddle — is building the architecture of empathy, language and emotional resilience.',
+  },
+  // ─── MONTH 20 ───
+  {
+    month: 20,
+    title: 'Month 20',
+    subtitle: 'Sensory Play, Connection, Construction & Boundaries',
+    weeks: [
+      {
+        week: 1,
+        title: 'Sensory Development Through Dough Play',
+        gentleFocus: 'Tactile exploration, fine motor strength, and sensory regulation',
+        iconName: 'hand',
+        introduction:
+          'At twenty months, tactile exploration plays a central role in brain development. One particularly enjoyable and beneficial activity is modelling dough play. You can either purchase ready-made dough or prepare a simple homemade version using flour, water and natural food colouring.\n\nThe sensory experience of squeezing, pressing and shaping dough stimulates tactile processing, fine motor strength, finger isolation, bilateral coordination, and creativity.',
+        sections: [
+          {
+            label: 'Expanding the Play',
+            points: [
+              'Introduce safe tools such as straws, blunt plastic utensils, large stamps, and animal miniatures to create footprint impressions.',
+              'Pressing objects into the dough strengthens hand muscles and enhances cause-and-effect understanding.',
+              'Stamping animal feet supports imaginative thinking, pattern recognition, and early narrative play.',
+            ],
+          },
+          {
+            label: 'Sensory Regulation',
+            points: [
+              'Dough play can have a calming effect.',
+              'Repetitive squeezing and pressing provide proprioceptive input (deep pressure feedback to muscles and joints), which supports nervous system regulation.',
+              'This makes it an excellent activity during moments of restlessness.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Use non-toxic ingredients and avoid artificial fragrances.',
+            'Supervise closely to prevent ingestion.',
+            'Store dough in airtight containers to maintain hygiene.',
+            'Choose natural, soft colour tones to avoid overstimulation.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Sensory-rich experiences support neural integration across sensory and motor pathways. Texture builds connection. Pressure builds regulation. Play builds the brain. At twenty months, sensory experiences are shaping how your child understands the world — one squeeze at a time.',
+        weeklyCta:
+          'Offer dough play two to three times this week. Encourage free exploration rather than structured outcomes. Observe how your child manipulates texture — squeezing, rolling, tearing or flattening.',
+      },
+      {
+        week: 2,
+        title: 'Connection as Regulation',
+        gentleFocus: 'Intentional closeness, oxytocin, and co-regulation',
+        iconName: 'heart',
+        introduction:
+          'Many children in this phase become especially affectionate. Your toddler may actively seek your lap, knowing that sitting close to you means having your full attention. Physical closeness is no longer accidental — it is often intentional.\n\nTouch and presence remain the most powerful regulators of a young child\'s nervous system. Your child may consciously seek a cuddle or ask to be carried when feeling tired, overstimulated, frustrated, or uncertain. This reflects growing "emotional awareness" — the ability to recognise internal states and seek comfort.',
+        sections: [
+          {
+            label: 'The Power of Physical Connection',
+            points: [
+              'Physical contact supports the release of oxytocin, which promotes calm, trust and emotional security.',
+              'Co-regulation — when an adult\'s calm nervous system helps stabilise a child\'s — is fundamental in early emotional development.',
+              'At this stage, self-regulation is still emerging. Your regulation becomes their model.',
+            ],
+          },
+          {
+            label: 'Connection Through Shared Activities',
+            points: [
+              'Use moments of closeness for gentle bonding activities: singing familiar songs, dancing together, looking at a small book, or playing simple lap games and rhymes.',
+              'Repetitive rhymes and rhythm games support language development, memory, emotional synchrony, and secure attachment.',
+              'These simple interactions create predictability and safety — two essential ingredients for healthy development.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Protect quiet bonding moments from distractions such as screens.',
+            'Maintain calm lighting and gentle tones during connection time.',
+            'Honour your child\'s need for closeness without rushing it.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Affection at this age is not just emotional — it is cognitive. Your toddler is learning that comfort can be requested, relationships provide safety, and connection reduces stress. This is the foundation of secure attachment. At twenty months, love is not only felt — it is consciously sought.',
+        weeklyCta:
+          'This week, respond intentionally when your child seeks closeness. Pause, make eye contact and offer a few undistracted minutes of connection. Notice how quickly emotional balance returns.',
+      },
+      {
+        week: 3,
+        title: 'Construction and Obstacle Play',
+        gentleFocus: 'Building, climbing, and problem-solving through physical challenge',
+        iconName: 'move',
+        introduction:
+          'At twenty months, toddlers are ready for more dynamic construction play and small physical challenges. This week combines structured building with gross motor exploration.',
+        sections: [
+          {
+            label: '"Little Builders" Construction Game',
+            points: [
+              'Through stacking, connecting and assembling pieces, your child develops logical reasoning, visuospatial skills, colour recognition, imagination, and early planning abilities.',
+              'Open-ended construction toys are especially valuable because they allow multiple outcomes rather than one fixed solution.',
+              'Construction play strengthens neural circuits associated with executive function — planning, organising and flexible thinking.',
+            ],
+          },
+          {
+            label: 'Gross Motor Challenge – Overcoming Obstacles',
+            points: [
+              'Encourage your child to climb a few low steps, step over cushions, and walk around simple obstacles.',
+              'These activities strengthen balance, coordination, core stability, and motor planning.',
+              'Obstacle navigation also supports risk assessment — an important developmental skill.',
+              'Keep challenges safe and age-appropriate, always supervising closely.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Ensure climbing surfaces are stable and non-slip.',
+            'Keep the space clear of sharp edges.',
+            'Rotate building materials to avoid overstimulation.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'When your toddler successfully climbs, steps over, or builds something stable, they experience competence. Competence builds confidence. Confidence supports resilience. Movement and construction are shaping both body and brain.',
+        weeklyCta:
+          'Offer at least three short building sessions this week. Create one simple obstacle course at home using cushions or soft objects. Guide once, then allow independent attempts.',
+      },
+      {
+        week: 4,
+        title: 'Motor Development and Early Boundaries',
+        gentleFocus: 'Running, ball play, and consistent gentle limits',
+        iconName: 'move',
+        introduction:
+          'At twenty months, your toddler\'s body is stronger, faster and more coordinated. Movement now becomes more intentional and controlled.',
+        sections: [
+          {
+            label: 'Gross Motor Play',
+            points: [
+              'Play running games together — short bursts of running strengthen leg muscles, cardiovascular endurance, coordination, and spatial awareness.',
+              'Encourage walking backwards, which challenges balance, core stability, proprioception, and motor planning.',
+              'Kick a ball together, run after it, and roll it back and forth to support bilateral coordination and visual tracking.',
+            ],
+          },
+          {
+            label: 'Fine Motor Strength and Control',
+            points: [
+              'Continue encouraging passing objects from one hand to the other, fitting and stacking toys, building blocks, and simple puzzles.',
+              'Transferring objects between hands strengthens communication between the brain\'s hemispheres and improves hand coordination.',
+            ],
+          },
+          {
+            label: 'Simple and Consistent Rules',
+            points: [
+              'Create simple, clear rules — and keep them consistent.',
+              'If shoes are not allowed on the sofa, then they are never allowed on the sofa. Consistency helps your toddler feel secure.',
+              'Maintain a sense of humour, stay calm, and remember that repetition builds learning.',
+              'Correct the action, protect the self-esteem — there is a significant difference between "That behaviour is not okay" and "You are bad."',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Ensure safe open space for running.',
+            'Use soft, plastic-free balls suitable for toddlers where possible.',
+            'Keep the home environment structured but not restrictive.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'At twenty months, your toddler is testing independence, strengthening their body, learning limits, and building self-concept. Firmness with warmth builds respect without fear. Movement teaches strength — and boundaries teach security.',
+        weeklyCta:
+          'Introduce one active running or ball session daily this week, ideally outdoors. Practise one calm redirection per day instead of immediate correction.',
+      },
+    ],
+    closingNote:
+      'Month 20 brings together sensory richness, emotional connection, physical challenge and gentle boundaries. Your toddler is squeezing dough, seeking cuddles, climbing cushions and testing limits — all at once. Every experience is building neural resilience, emotional awareness and physical confidence. Strong body. Clear limits. Calm guidance.',
+  },
 ];
