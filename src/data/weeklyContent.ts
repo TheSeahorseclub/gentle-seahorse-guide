@@ -600,4 +600,268 @@ export const allMonths: MonthContent[] = [
     closingNote:
       "As your baby grows, this content will continue to expand month by month, always respecting each child's individual rhythm and neurodevelopmental uniqueness.",
   },
+
+  // ─── MONTH 7 ───
+  {
+    month: 7,
+    title: 'Month 7',
+    subtitle: 'Movement with intention',
+    weeks: [
+      {
+        week: 1,
+        title: 'Independent Sitting Stability',
+        gentleFocus: 'Building postural control through seated exploration',
+        iconName: 'move',
+        introduction:
+          "Fine motor coordination is improving in the 7-month-old baby: some can already hold an object with their little hands, they probably pass things from one hand to the other easily and may even be able to hold a special children's cup with both hands together (and with your help).\n\nIt is at this stage that many children begin to test the authority of their parents.",
+        sections: [
+          {
+            label: 'Motor Development',
+            points: [
+              'At this stage, the baby can support weight on their legs for short periods and loves to jump.',
+              'Follow the instructions in the e-book developed by the physiotherapist and sent by email.',
+              'Many babies can now sit independently for short periods.',
+              'Encourage reaching while seated.',
+              'Place toys slightly outside immediate reach to stimulate balance adjustments.',
+            ],
+          },
+          {
+            label: 'Cognitive Development',
+            points: [
+              'In this cycle, the baby is already able to spell two-syllable words, repeating the initial syllable: mama, da-da, etc.',
+              'Then, they will start using expressions like "ai" or "ui" and soon will be able to shout to get attention.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'This strengthens "postural control" — the nervous system\'s ability to maintain body alignment against gravity. Research in paediatric motor control shows that dynamic sitting improves trunk activation patterns necessary for crawling.',
+        weeklyCta:
+          'Create one safe sitting exploration session daily where your baby can freely reach and rebalance.',
+      },
+      {
+        week: 2,
+        title: 'Early Crawling Attempts',
+        gentleFocus: 'Supporting cross-lateral integration through floor-based play',
+        iconName: 'move',
+        introduction:
+          'Your baby may begin rocking on hands and knees or moving backwards. This is an exciting stage of motor and brain integration.',
+        sections: [
+          {
+            label: 'Motor & Brain Integration',
+            points: [
+              'Your baby may begin rocking on hands and knees or moving backwards.',
+              'Crawling stimulates "cross-lateral integration" — communication between left and right brain hemispheres via the corpus callosum.',
+            ],
+          },
+          {
+            label: 'Cognitive and Motor Development',
+            points: [
+              'Activity: Grouping blocks — The baby is beginning to understand the relationship of one object to another in a three-dimensional space.',
+              'With this skill, they begin to observe the toys and are able to group blocks by size.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Studies in developmental neuroscience associate crawling with later spatial awareness and reading readiness.',
+        weeklyCta:
+          'Increase floor-based play throughout the day.',
+      },
+      {
+        week: 3,
+        title: 'Advanced Babbling',
+        gentleFocus: 'Encouraging rhythmic vocal play and persistence',
+        iconName: 'message-circle',
+        introduction:
+          'Babbling becomes more complex and rhythmic. This stage reflects "canonical babbling" — repeated consonant-vowel combinations (e.g., "bababa"). Research shows this predicts later expressive language development.',
+        sections: [
+          {
+            label: 'Language Development',
+            points: [
+              'Repeat and expand sounds your baby makes.',
+              'Maintain eye contact during vocal play.',
+            ],
+          },
+          {
+            label: 'Motor Development',
+            points: [
+              'To help with the development of fine motor coordination, place a toy that the baby likes the most or something interesting out of reach and observe how they try to grab it.',
+              'If they can\'t reach it, they may cry, but perseverance and frustration go hand in hand — calmly encourage them without handing over the object.',
+              'After a few attempts, the baby will lean over and then return to the initial position, building physical confidence.',
+            ],
+          },
+          {
+            label: 'Cognitive Development',
+            points: [
+              'Continue using the list of primary words and the conscious repetition of some expressions to increase the quality of linguistic perception.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Canonical babbling is a key milestone in speech development. Responsive vocal interaction strengthens the neural pathways that support future language.',
+        weeklyCta:
+          'Have one uninterrupted "conversation" daily where you respond to every vocal attempt.',
+      },
+      {
+        week: 4,
+        title: 'Stranger Awareness',
+        gentleFocus: 'Calm reassurance during new social experiences',
+        iconName: 'heart',
+        introduction:
+          'Your baby may show hesitation around unfamiliar people. This reflects maturation of the "amygdala" — the brain region involved in threat detection — and attachment circuitry.',
+        sections: [
+          {
+            label: 'Emotional Development',
+            points: [
+              'Offer reassurance without forcing interaction.',
+              'Stay physically present during new experiences.',
+              'Model calm reassurance when introducing new people.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Stranger awareness is a healthy sign of attachment and cognitive development. The amygdala is maturing, helping your baby distinguish between familiar and unfamiliar faces.',
+        weeklyCta:
+          'Model calm reassurance when introducing new people this week.',
+        extraGuidance: {
+          title: 'Extra tips for Month 7',
+          points: [
+            'At 7 months, the baby is already eating solids; however, be patient if they don\'t eat as much as you expect or everything you offer.',
+            'The baby should sleep, on average, 14 hours a day. Normally, they also divide this sleep between nighttime sleep and two daytime naps.',
+            'It\'s important to remember that the learning rhythm is not continuous, proceeding through leaps and setbacks — this is due to synaptic pruning or lack of consolidation of learning. Forgetting previous acquisitions is considered normal.',
+          ],
+        },
+      },
+    ],
+    closingNote:
+      'Month 7 brings wonderful movement milestones. Every baby finds their own rhythm — trust the process and enjoy the adventure together.',
+  },
+
+  // ─── MONTH 8 ───
+  {
+    month: 8,
+    title: 'Month 8',
+    subtitle: 'Exploration and cause–effect learning',
+    weeks: [
+      {
+        week: 1,
+        title: 'Intentional Movement',
+        gentleFocus: 'Safe exploration and early memory development',
+        iconName: 'move',
+        introduction:
+          "A new world of adventures is about to open up for your baby, so now, more than ever, it's time to make sure your home is a safe environment. Babies as young as 8 months old can already crawl.\n\nIt's important that you make sure that fragile objects and furniture that could put the child at risk are positioned out of their reach and radar.",
+        sections: [
+          {
+            label: 'Cognitive Development',
+            points: [
+              'They already know that an object exists even when they don\'t see it, and when they see an object disappear, they look for it.',
+              'Memory begins to show its signs of development, and memory is the most interesting ability developing right now.',
+            ],
+          },
+          {
+            label: 'Suggested Activity',
+            points: [
+              'Play games focused on hiding and finding — for example, put their favourite toy behind your back and ask "where is it?"',
+              'Make variations of this memory-focused game throughout the week.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Object permanence is becoming well established. The ability to hold an image in mind when the object is out of sight reflects important memory and prefrontal cortex development.',
+        weeklyCta:
+          'Play one hiding-and-finding game each day to support memory development.',
+      },
+      {
+        week: 2,
+        title: 'Object Permanence Expands',
+        gentleFocus: 'Supporting independence and managing separation feelings',
+        iconName: 'brain',
+        introduction:
+          'Your baby is becoming more physically capable and emotionally expressive. This is a wonderful — and sometimes challenging — time for both of you.',
+        sections: [
+          {
+            label: 'Motor Development',
+            points: [
+              '8-month-old babies can already: stand up by supporting themselves on objects, pick up toys when they fall on the floor, and open cupboards and drawers to get what\'s inside.',
+              'Proposal: Leave an object at a distance of 1 metre and ask the baby to fetch it.',
+              'Suggestion: Assemble a sensory bottle to diversify the stimuli — take an empty water bottle, put grains in it, cap it, and give it to the baby; they will love it.',
+            ],
+          },
+          {
+            label: 'Emotional & Affective Development',
+            points: [
+              'An 8-month-old baby is quite emotional, misses their parents, doesn\'t like being alone and always seeks to be held by someone.',
+              'At this stage, separation anxiety can be very strong, so they want to stay closer.',
+              'When you need to go out and leave your baby with someone they know — whether it\'s their father, caregiver or grandparents — talk to the baby and say you\'ll be back soon. If they start to cry, gently reassure them and go.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Separation anxiety is a normal and healthy part of attachment development. It shows your baby has formed a strong bond and is beginning to understand that you are a separate person.',
+        weeklyCta:
+          'Create one sensory exploration activity this week using safe household items.',
+      },
+      {
+        week: 3,
+        title: 'Fine Motor Precision',
+        gentleFocus: 'Exploring textures, shapes, and early vocabulary',
+        iconName: 'hand',
+        introduction:
+          'Your baby\'s fine motor skills are developing rapidly, and their understanding of language is growing alongside.',
+        sections: [
+          {
+            label: 'Cognitive Development',
+            points: [
+              'Perceives the meaning of some words, and repeats vowels and sounds forming "pa pa" and "ma ma".',
+              'Continue using the list of primary words from the primer to expand this vocabulary.',
+              'Imitate animal sounds, car engines, etc. — they will love it.',
+            ],
+          },
+          {
+            label: 'Sensory & Motor Development',
+            points: [
+              'Treasure Box: Take a box, put all the small toys that your baby is fond of and a couple of new textures like a small food package, and place them inside.',
+              'The treasure box allows them to get to know new objects that are part of the familiar environment. Through touch, they recognise new shapes and textures.',
+              'Put a label on these toys with their respective names, and when the baby takes out the toy, read its name to them.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Pairing tactile exploration with naming supports multi-sensory learning — connecting touch, vision, and language pathways in the developing brain.',
+        weeklyCta:
+          'Create a treasure box this week and explore it together, naming each item.',
+      },
+      {
+        week: 4,
+        title: 'Balance and Sensory Play',
+        gentleFocus: 'Stimulating balance and multi-sensory curiosity',
+        iconName: 'sparkles',
+        introduction:
+          'This week focuses on balance development and rich sensory experiences that spark curiosity and joy.',
+        sections: [
+          {
+            label: 'Motor Development',
+            points: [
+              'Look for games that stimulate the sense of balance.',
+              'Continue encouraging the baby to reach for objects — on a safe surface, place toys away from them so that they try to reach them.',
+            ],
+          },
+          {
+            label: 'Sensory & Motor Development',
+            points: [
+              'Place raw foods such as beans, rice, and pasta inside a box for sensory exploration.',
+              'Variation: Inside a tray or small container, place liquid foods, gelatin, ice in a bag or protected by cling film, flour — use your creativity and let your baby\'s curiosity run the game. Give them time alone to experiment the first time.',
+              'The second time you make this activity, name the processes and tell them the name of each thing, such as "look at this baby, a soft, purple gelatin."',
+              'Brush flour or gelatin on their face — have fun together!',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Multi-sensory play strengthens neural connections across the brain. When babies explore different textures, temperatures, and consistencies, they build a richer understanding of the physical world.',
+        weeklyCta:
+          'Set up one sensory tray experience this week and let your baby explore freely.',
+      },
+    ],
+    closingNote:
+      'Month 8 is a time of wonderful exploration. Your baby is becoming more intentional in their movements and increasingly curious about the world. Continue to provide a safe, stimulating environment and enjoy this beautiful stage together.',
+  },
 ];
