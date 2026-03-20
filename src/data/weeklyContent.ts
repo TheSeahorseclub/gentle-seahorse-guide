@@ -2023,4 +2023,371 @@ export const allMonths: MonthContent[] = [
     closingNote:
       'Month 16 has been a journey through singing, empathy, self-awareness, and early numeracy. Your toddler is building the emotional and cognitive architecture that will support deeper learning in the months ahead. Love is learned through repetition. Small hugs today become emotional intelligence tomorrow.',
   },
+  // ─── MONTH 17 ───
+  {
+    month: 17,
+    title: 'Month 17',
+    subtitle: 'Sound, creativity, and emotional boundaries',
+    weeks: [
+      {
+        week: 1,
+        title: 'Describing the World and Exploring Sound',
+        gentleFocus: 'Rich verbal description and sound exploration for speech development',
+        iconName: 'message-circle',
+        introduction:
+          "At seventeen months, your toddler's brain is rapidly strengthening language pathways. This week focuses on rich verbal description and sound exploration to support speech development.\n\nThe more meaningful words they hear, the more connections their brain builds.",
+        sections: [
+          {
+            label: 'Cognitive & Sound Development – Describe Everything',
+            points: [
+              'Describe not only objects and people, but also sensations and experiences.',
+              '"Can you feel how warm the floor is?" "The dog\'s fur is so soft." "The wind is cold today." "That water feels wet."',
+              'This strengthens "receptive language" (words understood before spoken), "sensory-language mapping" (connecting physical sensations to vocabulary), and semantic networks.',
+              'Research shows that toddlers exposed to rich, descriptive language develop stronger vocabulary foundations and improved expressive language later on (Hart & Risley, 1995; Weisleder & Fernald, 2013).',
+            ],
+          },
+          {
+            label: 'Sound Exploration – Listening and Imitation',
+            points: [
+              'Expose your toddler to a variety of everyday sounds: rain, wind, birds, the washing machine, the kettle boiling, the vacuum cleaner.',
+              'Model the sound yourself and invite them to imitate it. For example: "Can you hear the rain? Pitter-patter." "The washing machine goes whoosh."',
+              'This supports "auditory discrimination" (distinguishing between different sounds), "phonemic awareness" (recognising sound patterns), and early vocal imitation.',
+              'Imitation activates the mirror neuron system, strengthening speech production pathways.',
+            ],
+          },
+          {
+            label: 'Sensory Sound Play – Homemade Shaker',
+            points: [
+              'Create a simple sound shaker using a small plastic bottle filled with dry grains such as rice, lentils, dried beans, or sweetcorn kernels.',
+              'Ensure the lid is securely sealed and supervised at all times.',
+              'Different grains produce different sound textures, which enhances sensory discrimination.',
+              'Explore two different shaker sounds and compare them: "This one is louder. This one is softer."',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Avoid overstimulating background television noise, which interferes with sound clarity.',
+            'Prioritise real-world sounds over electronic toy sounds.',
+            'Ensure any homemade shaker is securely sealed and used under supervision.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Words begin in sound. Sound becomes meaning. Meaning becomes speech. Language grows best in environments where children feel heard.',
+        weeklyCta:
+          'Choose one daily routine and intentionally describe at least five sensations. Explore two new environmental sounds through listening and imitation. Celebrate attempts, not accuracy.',
+      },
+      {
+        week: 2,
+        title: 'Creativity, Early Drawing, and Imaginative Expression',
+        gentleFocus: 'Creative exploration through drawing and natural art play',
+        iconName: 'sparkles',
+        introduction:
+          "At seventeen months, your toddler is developing greater control over hand movements and beginning to express ideas visually. This week focuses on creative exploration through drawing and natural art play.\n\nA scribble today is the beginning of design thinking tomorrow.",
+        sections: [
+          {
+            label: 'Cognitive Development – Drawing and Mark-Making',
+            points: [
+              'Encourage your child to draw freely. At this age, toddlers love painting, colouring, scribbling, and exploring crayons and chunky pencils.',
+              'You may now notice slightly more control — using different areas of the paper, adjusting pressure, attempting circular movements, pausing to look at their marks.',
+              'This reflects growth in "fine motor control", "visual-motor integration" (coordinating hand movement with what the eyes see), and early symbolic thinking.',
+              'Research suggests that mark-making supports neural pathways later used for writing and spatial organisation.',
+              'Allow imagination to lead. Avoid correcting or directing what the drawing should be.',
+            ],
+          },
+          {
+            label: 'Outdoor Collection and Natural Collage',
+            points: [
+              'During walks or outdoor play, collect natural items together: leaves, small stones, twigs, flower petals.',
+              'Back at home, use these materials to create a simple collage.',
+              'This strengthens sensory exploration, categorisation skills, early design thinking, and attention and concentration.',
+              'Handling natural materials also supports tactile discrimination and environmental awareness.',
+            ],
+          },
+          {
+            label: 'Safety and Supervision',
+            points: [
+              'Always remain nearby during art activities. Objects may still go into the mouth, glue and small items require supervision, and frustration may arise quickly.',
+              'Gentle presence supports safe exploration and emotional regulation.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose non-toxic, washable crayons and paints.',
+            'Prefer natural, sustainable art materials where possible.',
+            'Avoid overstimulating electronic drawing toys; open-ended materials are more beneficial for brain development.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Creative expression at this stage builds autonomy, self-expression, and frustration tolerance. Art is not about producing something beautiful — it is about building neural coordination between imagination and movement.',
+        weeklyCta:
+          'Offer drawing time three times this week for short sessions (10 minutes or more). Plan one nature-collection walk and create a small art piece together afterwards.',
+      },
+      {
+        week: 3,
+        title: 'Strength, Precision, and Early Logical Thinking',
+        gentleFocus: 'Purposeful striking movements and structured stacking play',
+        iconName: 'hand',
+        introduction:
+          "At seventeen months, toddlers are strengthening both gross and fine motor control while also developing early planning skills. This week focuses on purposeful striking movements and structured stacking play.",
+        sections: [
+          {
+            label: 'Motor Development – Hammer Bench (Peg Pounder Toy)',
+            points: [
+              'Introduce your child to a wooden peg bench with four wooden pegs and a small child-safe hammer.',
+              'The child uses the hammer to tap the pegs down. Once all pegs are pushed through, the bench can be turned over and the activity begins again.',
+              'This strengthens hand–eye coordination, bilateral coordination, grip strength, upper limb muscle development, and "motor planning".',
+              'The striking action also supports proprioceptive feedback (body awareness through pressure and force).',
+              'Repetition builds neural efficiency.',
+            ],
+          },
+          {
+            label: 'Cognitive & Motor Integration – Stacking Tower',
+            points: [
+              'Whether stacking rings, blocks, or balancing shapes, this activity supports fine motor coordination, attention span, colour recognition, quantity awareness, "visuospatial reasoning", logical sequencing, and planning skills.',
+              'Stacking requires prediction and adjustment. If the tower falls, your toddler learns through trial and error — a key component of early problem-solving.',
+              'Research in early executive function development shows that hands-on construction play strengthens frontal lobe circuits responsible for planning and cognitive flexibility.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose wooden toys with non-toxic finishes where possible.',
+            'Avoid electronic versions that remove the need for active thinking.',
+            'Ensure the hammer is appropriately sized and safe for small hands.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'At seventeen months, success in physical tasks builds emotional resilience. Learning happens best when challenge meets encouragement. Play becomes structured learning — without losing the fun.',
+        weeklyCta:
+          'Offer 10-minute peg-hammer sessions three times this week. Introduce one daily stacking challenge and celebrate effort more than outcome.',
+      },
+      {
+        week: 4,
+        title: 'Emotional Development and Early Self-Control',
+        gentleFocus: 'Understanding boundaries, autonomy, and co-regulation',
+        iconName: 'heart',
+        introduction:
+          "At seventeen months, your toddler is not being \"naughty\" — they are learning about boundaries, autonomy, and emotional regulation.\n\nYou may say, \"That's not for touching,\" and your child looks straight at you… and touches it anyway. It can feel provocative. But developmentally, this is exploration — not defiance.",
+        sections: [
+          {
+            label: 'Understanding the Behaviour',
+            points: [
+              'The brain systems responsible for "inhibitory control" (the ability to stop an impulse) are still immature. The prefrontal cortex develops gradually throughout early childhood.',
+              'Your toddler wants things immediately, struggles to delay gratification, tests cause and effect, and seeks predictability.',
+              'They may insist on drinking from one specific cup, wearing sandals on a cold day, or following a rigid routine. This need for sameness reflects a search for security.',
+              'Research shows that young children rely on external regulation (the adult\'s calm nervous system) before they can develop internal regulation of their own.',
+            ],
+          },
+          {
+            label: 'How to Respond',
+            points: [
+              'Avoid unnecessary confrontation at this stage. If the behaviour is minor and safe, calmly redirect or briefly ignore it rather than turning it into a power struggle.',
+              'Keep your tone steady. Offer limited choices ("This cup or that one?").',
+              'Gently remove unsafe objects without emotional escalation. Maintain physical closeness.',
+            ],
+          },
+          {
+            label: 'The Power of Affection',
+            points: [
+              'During moments of resistance, what helps most is warm physical contact, eye-level communication, gentle touch, and a calm voice.',
+              'Physical affection supports oxytocin release (the "bonding hormone"), which reduces stress and increases emotional security.',
+              'Your calm becomes their template.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Keep routines predictable.',
+            'Reduce overstimulation (too many toys, screens, loud noise increase impulsivity).',
+            'Create clear physical boundaries in the home environment rather than relying only on verbal limits.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Self-control is not yet internal at this age — it is co-regulated. Emotional maturity grows slowly but steadily. Choosing connection over confrontation builds the architecture of self-regulation.',
+        weeklyCta:
+          'Practise one calm redirection per day instead of immediate correction. Observe how your child responds when your nervous system stays regulated.',
+      },
+    ],
+    closingNote:
+      'Month 17 has been about finding voice, expressing creativity, building strength, and navigating the first real emotional boundaries. Your toddler is not defiant — they are developing. Every calm response you offer is building the neural architecture of self-regulation.',
+  },
+  // ─── MONTH 18 ───
+  {
+    month: 18,
+    title: 'Month 18',
+    subtitle: 'Memory, building, and hands-on discovery',
+    weeks: [
+      {
+        week: 1,
+        title: 'Cognitive Development and Active Play',
+        gentleFocus: 'Object permanence, memory, and movement as regulation',
+        iconName: 'brain',
+        introduction:
+          "At eighteen months, your toddler has developed stronger object permanence — the understanding that something continues to exist even when it is no longer visible. This is an important cognitive milestone linked to memory development and mental representation.",
+        sections: [
+          {
+            label: 'Hide-and-Seek with Objects',
+            points: [
+              'Take advantage of this new ability by playing hide-and-seek with a favourite toy.',
+              'Hide it partially at first, then fully out of sight, and encourage your child to find it.',
+              'This strengthens working memory, problem-solving skills, attention, and early logical reasoning.',
+              'You can increase the challenge gradually by hiding the toy in more complex locations.',
+              'Pause and allow your child time to think before helping.',
+            ],
+          },
+          {
+            label: 'High Energy? Use Music and Movement',
+            points: [
+              'If your child\'s energy levels are high, put on lively songs and invent simple dance moves to copy and repeat.',
+              'Encourage jumping, clapping, spinning, stomping, and marching.',
+              'This strengthens motor coordination, rhythm processing, bilateral integration, and auditory–motor connection.',
+              'Research suggests that rhythmic movement supports neural timing and coordination across brain regions involved in attention and language.',
+              'Movement is regulation. Physical activity helps discharge excess energy and reduces restlessness.',
+              'Avoid high-energy play shortly before bedtime, as it may increase arousal rather than promote calm.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose music without overstimulating electronic effects.',
+            'Keep volume moderate to protect auditory development.',
+            'Prefer open spaces free of obstacles to reduce accident risk.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'At eighteen months, your toddler is learning that the world continues — even when it disappears from view. And that their body is a powerful tool for exploring it. An active body often leads to a calmer nervous system — when well timed.',
+        weeklyCta:
+          'Play object hide-and-seek at least three times this week, slowly increasing difficulty. Introduce one structured "dance break" per day, ideally earlier in the afternoon.',
+      },
+      {
+        week: 2,
+        title: 'Constructive Play and Early Quantity Awareness',
+        gentleFocus: 'Building with blocks and introducing early mathematical concepts',
+        iconName: 'sparkles',
+        introduction:
+          "At eighteen months, toddlers are ready for more complex building experiences. Their growing fine motor control and spatial understanding allow them to experiment with stacking, connecting and organising objects with greater intention.",
+        sections: [
+          {
+            label: 'Cognitive Development – Building with Blocks',
+            points: [
+              'With large building blocks, creativity truly has no limits. Build, stack and explore endless construction possibilities.',
+              'Designed for small hands, these blocks connect and separate easily, allowing your child to develop "fine motor skills", strengthen hand muscles, improve hand–eye coordination, explore early engineering thinking, and practise problem-solving through trial and error.',
+              'Open-ended construction play supports "divergent thinking" (the ability to generate multiple ideas or solutions), a foundational skill for creativity later in life.',
+              'Allow plenty of free play without giving too many instructions. The goal is exploration, not perfection.',
+            ],
+          },
+          {
+            label: 'Expanding Quantity and Size Concepts',
+            points: [
+              'Offer a geometric stacking pyramid with animal shapes or rainbow-coloured rings.',
+              'This supports visual discrimination, understanding of "bigger" and "smaller", early quantity awareness, colour recognition, and spatial reasoning.',
+              'Gently narrate concepts: "This one is bigger." "Let\'s find the smallest piece." "How many blocks do we have?"',
+              'Research suggests that hands-on manipulation of size and quantity strengthens the parietal brain regions associated with later mathematical processing.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose large, safe blocks made from non-toxic materials.',
+            'Prefer durable, sustainable options where possible.',
+            'Avoid electronic building toys that replace active thinking with passive stimulation.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'When the tower falls, learning happens. When they rebuild it, growth happens. At eighteen months, your toddler is not just stacking blocks — they are stacking neural connections.',
+        weeklyCta:
+          'Offer daily block-building time this week. During play, introduce simple comparative language once per session — bigger, smaller, tall, short, more, less.',
+      },
+      {
+        week: 3,
+        title: 'Motor Exploration and Hands-On Discovery',
+        gentleFocus: 'Fine motor coordination, cause-and-effect, and containment play',
+        iconName: 'hand',
+        introduction:
+          "This week focuses on activities that stimulate fine motor coordination, problem-solving and sensory curiosity. At eighteen months, exploration is driven by curiosity, not defiance. Pressing every button is not mischief — it is experimentation.",
+        sections: [
+          {
+            label: 'Motor Development – Exploration Through the Hands',
+            points: [
+              'Highly attractive activities at this stage include finger painting, colouring with chunky crayons, building towers, open-and-close toys, and pressing buttons.',
+              'Your child is refining "fine motor control" and strengthening "cause-and-effect reasoning".',
+              'Even pressing a button supports finger isolation, hand strength, anticipation, and cognitive sequencing.',
+              'If you have an old telephone or remote control that no longer works, it can be offered as a toy — always check for loose or small parts that could pose a choking risk.',
+            ],
+          },
+          {
+            label: 'The Fascination with Containment',
+            points: [
+              'Putting one object inside another is particularly captivating at this stage.',
+              'This strengthens spatial reasoning, size discrimination, logical categorisation, and bilateral coordination.',
+              'Wooden puzzles are especially beneficial now — they encourage problem-solving, shape recognition, concentration, and hand–eye coordination.',
+              'Look for simple wooden puzzles with large knobs or chunky pieces suited to small hands.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose non-toxic, washable paints and crayons.',
+            'Prefer wooden, bioplastic or durable materials over overstimulating electronic toys.',
+            'Keep the environment organised but accessible to encourage safe independence.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Hands lead. Curiosity guides. The brain follows. At eighteen months, every small movement is wiring the future.',
+        weeklyCta:
+          'Offer one sensory-based hand activity daily this week. Introduce one "in-and-out" or fitting activity. Allow time for repetition — repetition builds mastery.',
+      },
+      {
+        week: 4,
+        title: 'Precision, Coordination and Early Logical Sorting',
+        gentleFocus: 'Cutting play and geometric sorting for coordination and reasoning',
+        iconName: 'brain',
+        introduction:
+          "At eighteen months, toddlers are refining hand control and beginning to imitate real-life actions with intention. This week focuses on cutting play and geometric sorting to strengthen coordination and early reasoning skills.",
+        sections: [
+          {
+            label: 'Motor Development – Wooden Cutting Toy',
+            points: [
+              'A wooden cutting food set is an excellent activity at this stage. Your child can fit the vegetable pieces together and "cut" them using a child-safe wooden knife.',
+              'The Velcro fastening provides just enough resistance for your toddler to feel as though they are genuinely cutting — highly satisfying and developmentally beneficial.',
+              'This supports fine motor coordination, grip strength, bilateral coordination (one hand stabilises while the other cuts), concentration, and "motor planning".',
+              'Imitating everyday tasks also strengthens symbolic thinking and independence.',
+            ],
+          },
+          {
+            label: 'Cognitive & Motor Integration – Geometric Sorting Tower',
+            points: [
+              'A geometric stacking board with four vertical pegs and colourful shapes (circles, rectangles, triangles, squares) is ideal at this age.',
+              'This helps your child recognise geometric shapes, differentiate sizes, match colours, develop logical sequencing, and strengthen fine motor precision.',
+              'Placing shapes correctly requires visual discrimination and problem-solving. If the shape does not fit, your toddler must rotate or adjust it — an early form of spatial reasoning.',
+              'Research suggests that hands-on shape sorting supports neural pathways linked to later mathematical and analytical thinking.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose wooden toys with non-toxic finishes.',
+            'Avoid overly electronic versions that reduce active problem-solving.',
+            'Ensure pieces are large enough to prevent choking hazards.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'At eighteen months, mastering tasks builds confidence. When your toddler successfully "cuts" a vegetable or fits a shape correctly, they experience competence — a powerful driver of self-esteem. Your toddler is not just playing — they are rehearsing life.',
+        weeklyCta:
+          'Offer supervised cutting play two to three times this week. Introduce simple prompts during geometric play: "Where does the triangle go?" "Can you find the biggest piece?" Keep language gentle and playful.',
+      },
+    ],
+    closingNote:
+      'Month 18 marks the halfway point of the second year. Your toddler is building memory, constructing with intention, exploring with their hands, and refining precision. Every block stacked, every shape sorted, every button pressed is wiring the neural architecture for learning, creativity, and confidence.',
+  },
 ];
