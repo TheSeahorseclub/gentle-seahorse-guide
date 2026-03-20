@@ -1330,6 +1330,62 @@ export const allMonths: MonthContent[] = [
         weeklyCta:
           'Create a daily 10-minute rhythm session where your baby freely explores tapping with both hands. Sit in front of them and model alternating movements slowly.',
       },
+      {
+        week: 4,
+        title: 'Music, Rhythm, and Bilateral Brain Integration',
+        gentleFocus: 'Deepening neural rhythm, emotional synchrony, and bilateral integration through music',
+        iconName: 'music',
+        introduction:
+          "This week is not about producing music. It is about building neural rhythm, emotional synchrony, and bilateral integration. Music at this age is brain architecture in motion. 🌊",
+        sections: [
+          {
+            label: 'Action Songs With Movement',
+            points: [
+              'Choose songs that involve gestures, such as waving, tapping knees, and raising arms.',
+              'Movement paired with music strengthens "sensorimotor integration" (coordination between sensory input and motor output).',
+              'It also activates the cerebellum — a brain region deeply involved in rhythm and coordination.',
+              'Select one song this week and repeat it daily with the same gestures. Repetition builds neural efficiency.',
+            ],
+          },
+          {
+            label: 'Freeze-and-Go Game',
+            points: [
+              'Play music and gently move together. When the music stops, freeze.',
+              'This supports early "inhibitory control" (the ability to pause an action), attention shifting, and emotional regulation.',
+              'Executive function begins developing long before formal schooling.',
+              'Try this game twice this week and observe your baby\'s anticipation.',
+            ],
+          },
+          {
+            label: 'Soft Instrument Exploration Basket',
+            points: [
+              'Prepare a small basket with: a drum, soft maracas, wooden shakers, and fabric scarves for movement.',
+              'Allow free exploration without instruction.',
+              'Unstructured play strengthens "intrinsic motivation" (internal drive to explore and learn).',
+            ],
+          },
+          {
+            label: 'Emotional and Social Layer',
+            points: [
+              'Music is not only cognitive — shared rhythm increases oxytocin release (the bonding hormone) and synchronises heart rate patterns between caregiver and child.',
+              'When you drum together, you are literally regulating nervous systems in synchrony.',
+            ],
+          },
+        ],
+        extraGuidance: {
+          title: 'Neuroenvironmental Guidance – The Seahorse Way',
+          points: [
+            'Choose instruments made from natural materials where possible (wood, organic cotton straps).',
+            'Avoid heavily painted plastics with strong chemical odours.',
+            'Keep volume moderate — infant auditory systems are still developing.',
+            'Create music moments without background television noise to protect auditory clarity.',
+          ],
+        },
+        neurodevelopmentalNote:
+          'Shared rhythm increases oxytocin release and synchronises heart rate patterns between caregiver and child. Music at this age builds neural rhythm, emotional synchrony, and bilateral integration — it is brain architecture in motion.',
+        weeklyCta:
+          'Select one action song and repeat it daily with the same gestures. Try the Freeze-and-Go game twice this week. Create a daily 10-minute free instrument exploration session.',
+      },
     ],
     closingNote:
       'Happy first birthday! What an incredible journey this has been. Your baby has grown from a tiny, dependent newborn into a curious, mobile, communicating little person. Every gentle interaction, every patient moment, and every loving response has helped build the neural architecture that will support their lifelong learning. Be proud of the journey you have shared together.',
