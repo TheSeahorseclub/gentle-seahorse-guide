@@ -864,4 +864,474 @@ export const allMonths: MonthContent[] = [
     closingNote:
       'Month 8 is a time of wonderful exploration. Your baby is becoming more intentional in their movements and increasingly curious about the world. Continue to provide a safe, stimulating environment and enjoy this beautiful stage together.',
   },
+  // ─── MONTH 9 ───
+  {
+    month: 9,
+    title: 'Month 9',
+    subtitle: 'Mobility and memory',
+    weeks: [
+      {
+        week: 1,
+        title: 'First Steps and Nature Connection',
+        gentleFocus: 'Supporting early walking and enriching sensory experiences through nature',
+        iconName: 'move',
+        introduction:
+          "The baby is closer to walking or is actually already walking. At this stage, they can usually climb stairs by crawling and move around standing up while holding onto furniture. The baby is also learning to bend their knees and sit up after already standing — an operation that is more difficult than you might imagine! Don't let them sit in a W position.\n\nOne way to help your baby with these first walks is to position yourself in front of them, a short distance away, with your hands outstretched touching their back, calling them to walk towards you.",
+        sections: [
+          {
+            label: 'Sensory Development',
+            points: [
+              'Naturalize nature — step on the earth or grass, sunbathe, bathe in the sea, feel the wind, listen to birdsong, the barking of other animals, or hear other people\'s voices.',
+              'There is no doubt that nature is always the richest environment for sensory experiences.',
+              'Take this week to organize more outdoor play and walks.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Walking requires the coordination of multiple brain systems simultaneously — balance, proprioception, motor planning, and spatial awareness. Each wobbly step is a remarkable feat of neural integration.',
+        weeklyCta:
+          'Create safe obstacle courses for your baby to navigate.',
+      },
+      {
+        week: 2,
+        title: 'Joint Attention',
+        gentleFocus: 'Building shared focus between caregiver and child',
+        iconName: 'eye',
+        introduction:
+          "Your baby may follow your gaze or pointing. \"Joint attention\" (shared focus between caregiver and child) predicts language development outcomes.\n\nAt 9 months, children like to give a toy to someone else just to take it back later. Join in the fun and take the opportunity to introduce the word \"thank you!\".\n\nYour tone of voice still makes more sense to your child than the words themselves. But, the more you talk to them — while preparing dinner, in the car or while getting dressed — the more the baby learns about the dynamics of communication.",
+        sections: [
+          {
+            label: 'Sensory Development',
+            points: [
+              'Activity with fabrics: Take several cloth toys that you may have at home and some scraps of various fabrics, a small towel, different cloth materials and set up an experimentation circle around your baby.',
+              'Let them experiment with the different textures freely.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Joint attention is one of the strongest early predictors of language development. When you and your baby share focus on the same object, you are building the neural foundations for communication and social understanding.',
+        weeklyCta:
+          'Point and name objects during daily routines.',
+      },
+      {
+        week: 3,
+        title: 'Early Problem Solving',
+        gentleFocus: 'Supporting cause-and-effect learning through safe repetition',
+        iconName: 'brain',
+        introduction:
+          "Babies experiment with dropping objects repeatedly. This supports understanding of \"cause and effect\" through repetition-driven neural strengthening.\n\nAt this stage, the baby begins to point to what they want, clap their hands, wave goodbye, imitate facial expressions, gestures, and some sounds. Enjoy this delightful and important phase by playing with imitations, playful conversations, music, and theatrical readings.",
+        sections: [
+          {
+            label: 'Spatial Cognitive Development',
+            points: [
+              'Perception of movement through toys. Provide the baby with strollers and toys that generate this perception of movement, regardless of the baby\'s sex — remembering that toys have no gender.',
+            ],
+          },
+          {
+            label: 'Reading & Language',
+            points: [
+              'Continue reading for your baby; at this stage, it would be good to revisit reading material from your pregnancy or the baby\'s first trimester.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Repetitive dropping is not misbehaviour — it is your baby\'s way of testing how the physical world works. Each drop strengthens neural pathways related to cause and effect, gravity, and prediction.',
+        weeklyCta:
+          'Allow safe repetition rather than interrupting exploratory dropping.',
+      },
+      {
+        week: 4,
+        title: 'Sleep Separation Sensitivity',
+        gentleFocus: 'Maintaining predictable routines and exploring sensory play',
+        iconName: 'moon',
+        introduction:
+          "Sleep disruptions may reappear due to mobility and attachment shifts. Consistent routines regulate cortisol and support emotional safety.",
+        sections: [
+          {
+            label: 'Sensory/Visual Development',
+            points: [
+              'Take our non-toxic primary and secondary color kit, set up a space (it could be with a towel on the floor and some clothes that they can "dirty"), and let the baby experiment.',
+            ],
+          },
+          {
+            label: 'Emotional Development',
+            points: [
+              'At 9 months, babies are able to perceive emotions by observing the faces of animals and people.',
+            ],
+          },
+          {
+            label: 'Auditory/Cognitive Development',
+            points: [
+              'The baby begins to play more with their own voice and acquires the ability to repeat sounds.',
+              'When you hear them trying to speak, repeat their "words" as a gesture of encouragement.',
+              'Suggestion: Play a playlist of songs focused on repeating words and vowels for the baby to listen to and perhaps repeat.',
+            ],
+          },
+          {
+            label: 'Communication & Body Awareness',
+            points: [
+              'In your conversations with your baby, include varied gestures and facial expressions, and use rhythmic and sound variations (for example, speaking louder and then very softly).',
+              'Name body parts and the baby\'s name, and play games like "Simon Says," adapting the actions to your reality.',
+              'This strengthens the emotional bond between the baby and their caregiver and promotes the development of body awareness and language in a fun way.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Sleep regressions at this age often coincide with major motor and cognitive leaps. The brain is so busy integrating new skills that settling can be harder. Predictable bedtime rituals signal safety to the developing nervous system.',
+        weeklyCta:
+          'Maintain predictable bedtime rituals.',
+        extraGuidance: {
+          title: 'Extra tips for this period',
+          points: [
+            'Avoid putting shoes on babies unless absolutely necessary. Shoes aren\'t needed until your child is frequently walking outside.',
+            'Walking barefoot not only strengthens the instep and the muscles of the baby\'s feet and legs, preventing flat feet, but also helps with balance.',
+          ],
+        },
+      },
+    ],
+    closingNote:
+      'Month 9 is a time of wonderful mobility and growing memory. Your baby is becoming more intentional in their movements and communication. Continue to provide a safe, stimulating environment and enjoy this beautiful stage of discovery together.',
+  },
+  // ─── MONTH 10 ───
+  {
+    month: 10,
+    title: 'Month 10',
+    subtitle: 'Mobility and memory',
+    weeks: [
+      {
+        week: 1,
+        title: 'Crawling Confidence and Repetition',
+        gentleFocus: 'Reinforcing previous learning through repetition and free movement',
+        iconName: 'move',
+        introduction:
+          "At 10 months, many babies crawl, supporting themselves on their hands and knees with their torso parallel to the ground. Some children even crawl before this, and refine their movements at this stage. Allow your baby to crawl around the house with supervision.",
+        sections: [
+          {
+            label: 'Social Development',
+            points: [
+              'Temperament begins to blossom. Some children are very sociable and smile at everyone; others are more reserved and hide their faces when a stranger approaches.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Repetition is the brain\'s way of consolidating learning. Each time your baby repeats an activity, the neural pathways involved become stronger and more efficient.',
+        weeklyCta:
+          'Repeat the games that your baby enjoyed most from previous cycles. Repetition is very important at this stage of development.',
+      },
+      {
+        week: 2,
+        title: 'Sound Development and Reading',
+        gentleFocus: 'Expanding language through conversation and creating a reading space',
+        iconName: 'message-circle',
+        introduction:
+          "This is a phase where babies are advancing, understanding simple words and phrases, making it very important to talk to them a lot. A good way to stimulate this is to repeat your child\'s words using adult language. For example, if they ask for \"water,\" you subtly teach the correct word by asking back: \"Do you want water?\"",
+        sections: [
+          {
+            label: 'Motor Development',
+            points: [
+              'Build stacks of cubes yourself and let your baby knock them down.',
+            ],
+          },
+          {
+            label: 'Cognitive Development',
+            points: [
+              'Create a reading space — take little books, and also all the ones the baby has or has received as gifts, take some pillows and create a corner for the baby to "read," browse, and look at the illustrations.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'When you mirror your baby\'s words back in correct adult language, you are providing a powerful form of language scaffolding that supports vocabulary development without pressure.',
+        weeklyCta:
+          'Create a dedicated reading corner this week and spend time there daily with your baby.',
+        extraGuidance: {
+          title: 'Important note on electronics',
+          points: [
+            'After careful consideration, we advise against any use of cell phones or tablets at this stage, including electronic books and illustrations.',
+          ],
+        },
+      },
+      {
+        week: 3,
+        title: 'Spatial Awareness and Precision',
+        gentleFocus: 'Developing fine motor skills and spatial concepts',
+        iconName: 'brain',
+        introduction:
+          "Your baby is developing fascinating new spatial awareness skills. They play sitting down without falling, may crawl, creep, or walk (or be in the process of doing so), and move freely from side to side.",
+        sections: [
+          {
+            label: 'Motor & Cognitive Development',
+            points: [
+              'Points to objects with index finger.',
+              'Stretches out foot to put on shoes.',
+              'Enjoys playing with objects that produce noise or musical sounds.',
+              'You will notice a preference for objects with strong, contrasting colors.',
+              'Acquires the concept of space, such as here, there, above, and below.',
+            ],
+          },
+          {
+            label: 'Stacking Activity',
+            points: [
+              'At this stage it will be difficult for them to stack more than two blocks, so the goal is to stack 3 or more.',
+              'As the process unfolds, the baby will learn to manipulate the pieces well and perform more precise movements.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Pointing is a major cognitive milestone. It shows that your baby understands that objects exist independently and that they can direct your attention — a key building block for language and social interaction.',
+        weeklyCta:
+          'Practice stacking activities daily, celebrating each small achievement.',
+      },
+      {
+        week: 4,
+        title: 'Inside, Outside, and Early Communication',
+        gentleFocus: 'Teaching spatial concepts and encouraging interactive communication',
+        iconName: 'smile',
+        introduction:
+          "At this stage, the baby begins to acquire the notions of inside/outside. Start teaching movements like blowing kisses, yes, no, come here, and goodbye.\n\nAsk your baby for something — extend your hand and ask for something so that they move towards you and give it to you. Repeat activities several times. Repetition is the key to success.",
+        sections: [
+          {
+            label: 'Engagement Tips',
+            points: [
+              'Many games will not have any effect the first time they are tried; however, if you insist, they will end up attracting the baby\'s attention and they will have a lot of fun.',
+              'With each activity performed and with each achievement of your baby, celebrate with them and praise what they have just done.',
+              'Suggestion: Use our stacking toy and if possible buy others.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Understanding "inside" and "outside" represents a leap in abstract thinking. Your baby is beginning to categorise the world, which is foundational for later mathematical and logical reasoning.',
+        weeklyCta:
+          'Practice giving and receiving objects with your baby daily, celebrating each interaction.',
+        extraGuidance: {
+          title: 'Extra tips',
+          points: [
+            'Your baby is probably already consciously seeking attention and reaction from adults, making funny faces — clap and celebrate their discoveries!',
+            'Since the baby at this stage already knows how to point, ask where their favorite ball is, or a book, or the family dog/cat.',
+            'Ask questions with simple yes or no answers, because the baby already understands and may even respond with a nod of their head.',
+            'Variations in the execution time of an activity occur and change from child to child; just continue the process doing your best, and everything will be fine.',
+          ],
+        },
+      },
+    ],
+    closingNote:
+      'Month 10 is a time of consolidation and growing independence. Your baby is refining skills they have been building for months. Continue to provide loving encouragement and celebrate every small achievement together.',
+  },
+  // ─── MONTH 11 ───
+  {
+    month: 11,
+    title: 'Month 11',
+    subtitle: 'Growing independence',
+    weeks: [
+      {
+        week: 1,
+        title: 'Books and Storytelling',
+        gentleFocus: 'Nurturing a love of reading and respecting developmental pace',
+        iconName: 'brain',
+        introduction:
+          "Approaching their first birthday, the baby is no longer that fragile little thing who couldn't do anything without you. Although they still require a lot of care and attention, your baby's physical independence is becoming increasingly evident.",
+        sections: [
+          {
+            label: 'Cognitive Development',
+            points: [
+              'At this stage, looking at books and turning pages is one of the little ones\' favorite pastimes, even if they can\'t necessarily turn one page at a time.',
+              'Children usually have favorite books and always want to "read" the same ones.',
+              'Take the opportunity to familiarize them with books; this practice will guarantee a future reader.',
+              'Suggestion: Use finger puppets to tell stories and focus on reading this week.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Repetitive reading of the same book is not boring for your baby — it is building prediction skills, vocabulary, and a sense of narrative structure. Each re-reading strengthens neural pathways for language comprehension.',
+        weeklyCta:
+          'Read your baby\'s favorite book together daily this week, using finger puppets to bring the story alive.',
+        extraGuidance: {
+          title: 'Important note',
+          points: [
+            'You should not ask anything of the child, nor create expectations that do not correspond to the specific stage of development they are in.',
+          ],
+        },
+      },
+      {
+        week: 2,
+        title: 'Parallel Play and Imitation',
+        gentleFocus: 'Supporting social development through play and early commands',
+        iconName: 'smile',
+        introduction:
+          "The baby's individuality will emerge. At this stage, the baby begins to play alongside other children or siblings, but not together with them, in what is called parallel play — where they observe, are inspired, and do things alone.",
+        sections: [
+          {
+            label: 'Cognitive Development',
+            points: [
+              'Understands and imitates social rules and routines.',
+              'Shows affection with hugs and cuddles, mainly for parents.',
+              'Begins to "give" toys and take them back — or not.',
+              'Obeys simple commands.',
+            ],
+          },
+          {
+            label: 'Activities',
+            points: [
+              'Time to scribble! Get some blank sheets of paper and let the baby scribble freely.',
+              'Place 3 or 4 toys that you know your baby knows the name of, place them half a meter away and ask the baby "where is the ball?" for example. When the baby points, ask them to fetch it, pick it up, and give it to you.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Parallel play is not antisocial — it is a developmentally appropriate stage where babies learn by observing others. This watching and imitating builds the foundation for cooperative play that comes later.',
+        weeklyCta:
+          'Arrange a play session with another child this week, allowing your baby to observe and play alongside them.',
+      },
+      {
+        week: 3,
+        title: 'Large Muscle Groups and Boundaries',
+        gentleFocus: 'Encouraging physical exploration while setting gentle limits',
+        iconName: 'move',
+        introduction:
+          "Your baby is beginning to exercise larger muscle groups with increasing confidence and intention.",
+        sections: [
+          {
+            label: 'Motor Development',
+            points: [
+              'Pushes toys and other objects.',
+              'Intentionally throws objects.',
+              'Climbs and scales furniture (be careful!).',
+              'Stands up without help and on their own initiative.',
+              'Helps with dressing, stretching out their hand or foot.',
+              'Suggestion: Place your baby near supports like a sofa so they can stand and walk along the edges. Supervise.',
+            ],
+          },
+          {
+            label: 'Emotional Development',
+            points: [
+              'Don\'t trivialize "no," as the baby begins to intentionally ignore it.',
+              'Use "no" sparingly so your baby knows that when they hear "no," it\'s really to obey and that it\'s an important word.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'The urge to climb, push, and throw is driven by the developing motor cortex seeking new challenges. These large-muscle activities are essential for building the physical confidence your baby needs for walking and running.',
+        weeklyCta:
+          'Create a safe space where your baby can practice standing and walking along furniture edges daily.',
+      },
+      {
+        week: 4,
+        title: 'Memory and Character Recognition',
+        gentleFocus: 'Activating memory through familiar stories and movement',
+        iconName: 'brain',
+        introduction:
+          "At this stage, the baby scribbles with a pencil and really enjoys turning the pages of books and magazines.",
+        sections: [
+          {
+            label: 'Motor Development',
+            points: [
+              'The more the baby moves and does activities like crawling, jumping, and trying to climb stairs, the better it will be for their motor development.',
+              'This will strengthen their muscles and joints so they can walk better and better on their own.',
+            ],
+          },
+          {
+            label: 'Cognitive Development',
+            points: [
+              'The baby already identifies favorite characters from books or cartoons.',
+              'Take one of their favorite books and point to their favorite character and ask them what the character\'s name is.',
+              'If there\'s a picture of a car, ask "What is this, my love?"',
+              'The goal is to activate the baby\'s memory and response. In the first few questions, they will be lost. That\'s normal.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Character recognition shows that your baby is developing long-term memory and the ability to associate images with meaning. This is the same cognitive skill that will later support reading comprehension.',
+        weeklyCta:
+          'Spend time each day looking at a favorite book together, asking your baby to identify characters and objects.',
+      },
+    ],
+    closingNote:
+      'Month 11 is a beautiful time of growing independence and personality. Your baby is becoming their own person, with preferences, humor, and a growing ability to communicate their needs. Celebrate every small step on this journey.',
+  },
+  // ─── MONTH 12 ───
+  {
+    month: 12,
+    title: 'Month 12',
+    subtitle: 'First birthday milestones',
+    weeks: [
+      {
+        week: 1,
+        title: 'Walking Confidence',
+        gentleFocus: 'Celebrating growing independence and physical confidence',
+        iconName: 'move',
+        introduction:
+          "An important rite of passage is ready to happen — at some point this month, your baby will be able to feel more confident to walk alone without support, becoming more and more adventurous.\n\nWith faster fine motor coordination, your baby\'s movements now involve the exercise of larger muscles and the expenditure of more energy. Babies are very happy to push, throw, and play all the time.",
+        sections: [
+          {
+            label: 'Motor Development',
+            points: [
+              'Hit a ball and play for your baby, and encourage them to return/play the ball for you.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Independent walking is one of the most celebrated milestones of the first year. It represents the integration of balance, strength, spatial awareness, and confidence — a truly remarkable achievement of the developing brain and body.',
+        weeklyCta:
+          'Play ball with your baby daily, encouraging them to kick or roll it back to you.',
+      },
+      {
+        week: 2,
+        title: 'Dance, Music, and Sensory Universe',
+        gentleFocus: 'Exploring the world through music, nature, and creative materials',
+        iconName: 'music',
+        introduction:
+          "Play music that your baby likes and dance! Curiously, dancing is something that babies do instinctively without being taught.",
+        sections: [
+          {
+            label: 'Continue Encouraging Perception of Our Universe',
+            points: [
+              'Natural elements: flowers, stones, nature exploration.',
+              'Exposure to real foods: rice, chickpeas, pasta, lentils.',
+              'Artistic materials: non-toxic ink for babies, chalk.',
+              'Books and construction blocks.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Dancing to music activates multiple brain areas simultaneously — auditory processing, motor planning, rhythm perception, and emotional response. It is one of the most joyful and effective ways to support holistic brain development.',
+        weeklyCta:
+          'Have a daily dance session with your baby, playing different styles of music.',
+      },
+      {
+        week: 3,
+        title: 'Music, Rhythm, and Bilateral Brain Integration',
+        gentleFocus: 'Using music as a tool for brain integration and bilateral coordination',
+        iconName: 'music',
+        introduction:
+          "At twelve months, your baby is entering a powerful phase of motor coordination, rhythm recognition, and intentional imitation. This week, we focus on music as a tool for brain integration.",
+        sections: [
+          {
+            label: 'The Baby Drum Experience',
+            points: [
+              'Offer your baby a small drum, soft percussion toy, or even a safe household alternative (such as an overturned bowl and wooden spoon).',
+              'Encourage them to use both hands alternately to tap the surface.',
+              'This strengthens "bilateral coordination" (the ability to use both sides of the body in a coordinated way).',
+              'It also activates the "corpus callosum" (the neural bridge connecting the two brain hemispheres).',
+              'And supports "motor planning" (the brain\'s ability to organise and execute movement sequences).',
+              'Do not correct rhythm. Exploration is more important than precision.',
+            ],
+          },
+          {
+            label: 'Call-and-Response Clapping',
+            points: [
+              'Clap a simple pattern (clap–pause–clap) and wait.',
+              'Even if your baby cannot reproduce it exactly, this strengthens turn-taking skills, working memory, and social timing.',
+              'This type of interaction is sometimes referred to as early "proto-conversation" in developmental psychology.',
+              'Repeat one simple rhythm daily and keep it consistent throughout the week.',
+            ],
+          },
+        ],
+        neurodevelopmentalNote:
+          'Research in developmental neuroscience shows that rhythmic bilateral movement enhances inter-hemispheric communication and supports later skills such as writing, reading fluency, and coordinated sports movement.',
+        weeklyCta:
+          'Create a daily 10-minute rhythm session where your baby freely explores tapping with both hands. Sit in front of them and model alternating movements slowly.',
+      },
+    ],
+    closingNote:
+      'Happy first birthday! What an incredible journey this has been. Your baby has grown from a tiny, dependent newborn into a curious, mobile, communicating little person. Every gentle interaction, every patient moment, and every loving response has helped build the neural architecture that will support their lifelong learning. Be proud of the journey you have shared together.',
+  },
 ];
