@@ -27,6 +27,14 @@ import { Export } from "./pages/Export";
 import { SleepHistory } from "./pages/SleepHistory";
 import NotFound from "./pages/NotFound";
 
+// Admin
+import { AdminGuard } from "./components/admin/AdminGuard";
+import { AdminLayout } from "./components/admin/AdminLayout";
+import { AdminDashboard } from "./pages/admin/AdminDashboard";
+import { AdminUsers } from "./pages/admin/AdminUsers";
+import { AdminSubscriptions } from "./pages/admin/AdminSubscriptions";
+import { AdminContent } from "./pages/admin/AdminContent";
+
 const queryClient = new QueryClient();
 
 // Wrapper that requires authentication
@@ -148,6 +156,20 @@ const AppRoutes = () => {
           {onboardingComplete ? <SleepHistory /> : <Navigate to="/welcome" replace />}
         </RequireAuth>
       } />
+
+      {/* Admin routes (require auth + admin role) */}
+      <Route path="/admin" element={
+        <RequireAuth>
+          <AdminGuard>
+            <AdminLayout />
+          </AdminGuard>
+        </RequireAuth>
+      }>
+        <Route index element={<AdminDashboard />} />
+        <Route path="users" element={<AdminUsers />} />
+        <Route path="subscriptions" element={<AdminSubscriptions />} />
+        <Route path="content" element={<AdminContent />} />
+      </Route>
       
       {/* Catch all */}
       <Route path="*" element={<NotFound />} />

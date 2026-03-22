@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      app_content: {
+        Row: {
+          access_level: string
+          age_group: string | null
+          category: string | null
+          content_type: string
+          created_at: string
+          description: string | null
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          access_level?: string
+          age_group?: string | null
+          category?: string | null
+          content_type?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          access_level?: string
+          age_group?: string | null
+          category?: string | null
+          content_type?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       child_caregivers: {
         Row: {
           child_id: string
@@ -117,6 +153,38 @@ export type Database = {
         }
         Relationships: []
       }
+      content_views: {
+        Row: {
+          content_id: string | null
+          content_title: string | null
+          id: string
+          user_id: string
+          viewed_at: string
+        }
+        Insert: {
+          content_id?: string | null
+          content_title?: string | null
+          id?: string
+          user_id: string
+          viewed_at?: string
+        }
+        Update: {
+          content_id?: string | null
+          content_title?: string | null
+          id?: string
+          user_id?: string
+          viewed_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_views_content_id_fkey"
+            columns: ["content_id"]
+            isOneToOne: false
+            referencedRelation: "app_content"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       daily_insights: {
         Row: {
           child_id: string
@@ -189,25 +257,46 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          child_age_group: string | null
+          country: string | null
           created_at: string
+          email: string | null
           full_name: string | null
           id: string
+          last_login: string | null
+          plan: string
+          subscription_status: string
+          trial_status: string | null
           updated_at: string
           user_id: string
         }
         Insert: {
           avatar_url?: string | null
+          child_age_group?: string | null
+          country?: string | null
           created_at?: string
+          email?: string | null
           full_name?: string | null
           id?: string
+          last_login?: string | null
+          plan?: string
+          subscription_status?: string
+          trial_status?: string | null
           updated_at?: string
           user_id: string
         }
         Update: {
           avatar_url?: string | null
+          child_age_group?: string | null
+          country?: string | null
           created_at?: string
+          email?: string | null
           full_name?: string | null
           id?: string
+          last_login?: string | null
+          plan?: string
+          subscription_status?: string
+          trial_status?: string | null
           updated_at?: string
           user_id?: string
         }
@@ -312,40 +401,94 @@ export type Database = {
           },
         ]
       }
-      user_subscriptions: {
+      user_roles: {
         Row: {
           created_at: string
-          current_period_end: string | null
-          current_period_start: string | null
-          export_days_limit: number
           id: string
-          plan: string
-          stripe_customer_id: string | null
-          stripe_subscription_id: string | null
-          updated_at: string
+          role: Database["public"]["Enums"]["app_role"]
           user_id: string
         }
         Insert: {
           created_at?: string
-          current_period_end?: string | null
-          current_period_start?: string | null
-          export_days_limit?: number
           id?: string
-          plan?: string
-          stripe_customer_id?: string | null
-          stripe_subscription_id?: string | null
-          updated_at?: string
+          role?: Database["public"]["Enums"]["app_role"]
           user_id: string
         }
         Update: {
           created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_subscriptions: {
+        Row: {
+          billing_cycle: string | null
+          cancelled_at: string | null
+          created_at: string
+          currency: string | null
+          current_period_end: string | null
+          current_period_start: string | null
+          export_days_limit: number
+          id: string
+          payment_provider: string | null
+          plan: string
+          price: number | null
+          renewal_date: string | null
+          started_at: string | null
+          status: string
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          trial_active: boolean | null
+          trial_end: string | null
+          trial_start: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          billing_cycle?: string | null
+          cancelled_at?: string | null
+          created_at?: string
+          currency?: string | null
           current_period_end?: string | null
           current_period_start?: string | null
           export_days_limit?: number
           id?: string
+          payment_provider?: string | null
           plan?: string
+          price?: number | null
+          renewal_date?: string | null
+          started_at?: string | null
+          status?: string
           stripe_customer_id?: string | null
           stripe_subscription_id?: string | null
+          trial_active?: boolean | null
+          trial_end?: string | null
+          trial_start?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          billing_cycle?: string | null
+          cancelled_at?: string | null
+          created_at?: string
+          currency?: string | null
+          current_period_end?: string | null
+          current_period_start?: string | null
+          export_days_limit?: number
+          id?: string
+          payment_provider?: string | null
+          plan?: string
+          price?: number | null
+          renewal_date?: string | null
+          started_at?: string | null
+          status?: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          trial_active?: boolean | null
+          trial_end?: string | null
+          trial_start?: string | null
           updated_at?: string
           user_id?: string
         }
@@ -414,10 +557,20 @@ export type Database = {
         Args: { _child_age_months: number; _user_id: string }
         Returns: Json
       }
+      get_admin_metrics: { Args: never; Returns: Json }
+      get_admin_subscriptions: { Args: never; Returns: Json }
+      get_admin_users: { Args: never; Returns: Json }
       has_child_role: {
         Args: {
           _child_id: string
           _role: Database["public"]["Enums"]["caregiver_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
@@ -436,6 +589,7 @@ export type Database = {
       }
     }
     Enums: {
+      app_role: "admin" | "user"
       caregiver_role: "admin" | "caregiver"
     }
     CompositeTypes: {
@@ -564,6 +718,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      app_role: ["admin", "user"],
       caregiver_role: ["admin", "caregiver"],
     },
   },
