@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,8 +12,13 @@ import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 
 type AuthMode = 'login' | 'signup' | 'forgot-password';
 
-export const Auth: React.FC = () => {
+interface AuthProps {
+  defaultRedirectPath?: string;
+}
+
+export const Auth: React.FC<AuthProps> = ({ defaultRedirectPath = '/welcome' }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
   const [mode, setMode] = useState<AuthMode>('login');
   const [email, setEmail] = useState('');
@@ -22,10 +27,15 @@ export const Auth: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const redirectPath = useMemo(() => {
+    const fromState = location.state as { from?: string } | null;
+    return fromState?.from || defaultRedirectPath;
+  }, [defaultRedirectPath, location.state]);
+
   // Redirect if already logged in
   React.useEffect(() => {
-    if (user) navigate('/welcome', { replace: true });
-  }, [user, navigate]);
+    if (user) navigate(redirectPath, { replace: true });
+  }, [user, navigate, redirectPath]);
 
   const handleGoogleSignIn = async () => {
     setLoading(true);
