@@ -170,6 +170,7 @@ const AppRoutes = () => {
         <Route path="users" element={<AdminUsers />} />
         <Route path="subscriptions" element={<AdminSubscriptions />} />
         <Route path="content" element={<AdminContent />} />
+        <Route path="settings" element={<AdminSettings />} />
       </Route>
       
       {/* Catch all */}
