@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { useCurrentChild } from "@/hooks/useCurrentChild";
 
@@ -41,6 +41,7 @@ const queryClient = new QueryClient();
 // Wrapper that requires authentication
 const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();
+  const location = useLocation();
   
   if (loading) {
     return (
@@ -54,7 +55,8 @@ const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   }
   
   if (!user) {
-    return <Navigate to="/auth" replace />;
+    const from = `${location.pathname}${location.search}${location.hash}`;
+    return <Navigate to="/auth" replace state={{ from }} />;
   }
   
   return <>{children}</>;
@@ -73,6 +75,7 @@ const AppRoutes = () => {
   const { user, loading: authLoading } = useAuth();
   const { data: currentChild, isLoading: childLoading } = useCurrentChild();
   const onboardingComplete = !!currentChild;
+  const defaultAuthenticatedRoute = onboardingComplete ? "/home" : "/welcome";
 
   if (authLoading || (user && childLoading)) {
     return <LoadingScreen />;
@@ -93,9 +96,7 @@ const AppRoutes = () => {
       />
 
       {/* Auth route */}
-      <Route path="/auth" element={
-        user ? <Navigate to={onboardingComplete ? "/home" : "/welcome"} replace /> : <Auth />
-      } />
+      <Route path="/auth" element={<Auth defaultRedirectPath={defaultAuthenticatedRoute} />} />
       
       {/* Onboarding routes (require auth) */}
       <Route path="/welcome" element={
