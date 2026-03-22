@@ -30,6 +30,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setSession(session);
         setUser(session?.user ?? null);
         setLoading(false);
+
+        // Track last login on sign-in
+        if (_event === 'SIGNED_IN' && session?.user) {
+          supabase
+            .from('profiles')
+            .update({ last_login: new Date().toISOString() } as any)
+            .eq('user_id', session.user.id)
+            .then();
+        }
       }
     );
 
