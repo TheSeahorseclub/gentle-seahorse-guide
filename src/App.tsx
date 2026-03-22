@@ -34,6 +34,7 @@ import { AdminDashboard } from "./pages/admin/AdminDashboard";
 import { AdminUsers } from "./pages/admin/AdminUsers";
 import { AdminSubscriptions } from "./pages/admin/AdminSubscriptions";
 import { AdminContent } from "./pages/admin/AdminContent";
+import { AdminSettings } from "./pages/admin/AdminSettings";
 
 const queryClient = new QueryClient();
 
@@ -169,6 +170,7 @@ const AppRoutes = () => {
         <Route path="users" element={<AdminUsers />} />
         <Route path="subscriptions" element={<AdminSubscriptions />} />
         <Route path="content" element={<AdminContent />} />
+        <Route path="settings" element={<AdminSettings />} />
       </Route>
       
       {/* Catch all */}
