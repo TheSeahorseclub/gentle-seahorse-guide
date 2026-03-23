@@ -25,6 +25,7 @@ import { MicroLessons } from "./pages/MicroLessons";
 import { WeeklyReflection } from "./pages/WeeklyReflection";
 import { Export } from "./pages/Export";
 import { SleepHistory } from "./pages/SleepHistory";
+import { Upgrade } from "./pages/Upgrade";
 import NotFound from "./pages/NotFound";
 
 // Admin
@@ -156,6 +157,11 @@ const AppRoutes = () => {
       <Route path="/sleep-history" element={
         <RequireAuth>
           {onboardingComplete ? <SleepHistory /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/upgrade" element={
+        <RequireAuth>
+          {onboardingComplete ? <Upgrade /> : <Navigate to="/welcome" replace />}
         </RequireAuth>
       } />
 

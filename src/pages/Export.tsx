@@ -5,11 +5,13 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useCurrentChild } from '@/hooks/useCurrentChild';
 import { useSubscription } from '@/hooks/useSubscription';
+import { usePremiumAccess } from '@/hooks/usePremiumAccess';
 import { useSignalAnalytics } from '@/hooks/useSignalAnalytics';
 import { getDevelopmentalContext } from '@/utils/developmentalContext';
 import { generateClinicalPdf } from '@/utils/generateClinicalPdf';
 import { ClinicalSummaryPreview } from '@/components/export/ClinicalSummaryPreview';
-import { FileText, Download, Eye, Loader2, AlertCircle } from 'lucide-react';
+import { PremiumGate } from '@/components/shared/PremiumGate';
+import { FileText, Download, Eye, Loader2, AlertCircle, Lock } from 'lucide-react';
 
 function generateClinicalReflection(
   analytics: ReturnType<typeof useSignalAnalytics>,
@@ -69,7 +71,18 @@ function generateClinicalReflection(
 export const Export: React.FC = () => {
   const { data: currentChild } = useCurrentChild();
   const { data: subscription } = useSubscription();
-  const exportDays = subscription?.exportDaysLimit || 30;
+  const { isPremium } = usePremiumAccess();
+  
+  const exportPeriodOptions = isPremium
+    ? [
+        { label: 'Last 30 days', days: 30 },
+        { label: 'Last 3 months', days: 90 },
+        { label: 'Last year', days: 365 },
+      ]
+    : [{ label: 'Last 3 days', days: 3 }];
+
+  const [selectedPeriodIdx, setSelectedPeriodIdx] = useState(0);
+  const exportDays = exportPeriodOptions[selectedPeriodIdx]?.days ?? 3;
   const childAgeMonths = currentChild?.ageMonths || 0;
   const analytics = useSignalAnalytics(currentChild?.id, exportDays);
   const [showPreview, setShowPreview] = useState(false);
@@ -186,6 +199,42 @@ export const Export: React.FC = () => {
               </ul>
             </Card>
 
+            {/* Period selector */}
+            <Card variant="soft" className="p-5 animate-fade-in">
+              <h3 className="font-display font-semibold text-foreground mb-3">
+                Export period
+              </h3>
+              <div className="flex gap-2 flex-wrap">
+                {exportPeriodOptions.map((opt, idx) => (
+                  <Button
+                    key={opt.days}
+                    variant={selectedPeriodIdx === idx ? 'ocean' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedPeriodIdx(idx)}
+                  >
+                    {opt.label}
+                  </Button>
+                ))}
+                {!isPremium && (
+                  <>
+                    <Button variant="outline" size="sm" disabled className="opacity-50 gap-1">
+                      <Lock className="w-3 h-3" /> 30 days
+                    </Button>
+                    <Button variant="outline" size="sm" disabled className="opacity-50 gap-1">
+                      <Lock className="w-3 h-3" /> 3 months
+                    </Button>
+                    <Button variant="outline" size="sm" disabled className="opacity-50 gap-1">
+                      <Lock className="w-3 h-3" /> 1 year
+                    </Button>
+                  </>
+                )}
+              </div>
+              {!isPremium && (
+                <p className="text-xs text-muted-foreground mt-2">
+                  Upgrade to Premium for extended export periods.
+                </p>
+              )}
+            </Card>
             <Card variant="soft" className="p-5 animate-fade-in">
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
