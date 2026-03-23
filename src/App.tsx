@@ -159,6 +159,11 @@ const AppRoutes = () => {
           {onboardingComplete ? <SleepHistory /> : <Navigate to="/welcome" replace />}
         </RequireAuth>
       } />
+      <Route path="/upgrade" element={
+        <RequireAuth>
+          {onboardingComplete ? <Upgrade /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
 
       {/* Admin routes (require auth + admin role) */}
       <Route path="/admin" element={
