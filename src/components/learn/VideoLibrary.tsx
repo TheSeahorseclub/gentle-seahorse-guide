@@ -4,10 +4,13 @@ import { Loader2, Film } from 'lucide-react';
 import { useContentVideos, groupVideosByCycle, cycleLabels } from '@/hooks/useContentVideos';
 import { VideoCard } from './VideoCard';
 import { VideoPlayerModal } from './VideoPlayerModal';
+import { PremiumGate } from '@/components/shared/PremiumGate';
+import { usePremiumAccess } from '@/hooks/usePremiumAccess';
 import type { ContentVideo } from '@/hooks/useContentVideos';
 
 export const VideoLibrary: React.FC = () => {
   const { data: videos, isLoading, error } = useContentVideos();
+  const { isPremium, isLoading: planLoading } = usePremiumAccess();
   const [selectedVideo, setSelectedVideo] = useState<ContentVideo | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 

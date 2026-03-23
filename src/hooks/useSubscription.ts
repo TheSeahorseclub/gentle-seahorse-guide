@@ -13,7 +13,7 @@ export function useSubscription() {
   return useQuery({
     queryKey: ['subscription', user?.id],
     queryFn: async (): Promise<Subscription> => {
-      if (!user) return { plan: 'free', exportDaysLimit: 30 };
+      if (!user) return { plan: 'free', exportDaysLimit: 3 };
 
       const { data, error } = await supabase
         .from('user_subscriptions')
@@ -21,7 +21,7 @@ export function useSubscription() {
         .eq('user_id', user.id)
         .maybeSingle();
 
-      if (error || !data) return { plan: 'free', exportDaysLimit: 30 };
+      if (error || !data) return { plan: 'free', exportDaysLimit: 3 };
 
       return {
         plan: data.plan,
