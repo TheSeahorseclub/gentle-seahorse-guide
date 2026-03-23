@@ -1,0 +1,1 @@
+ALTER TABLE public.user_subscriptions ALTER COLUMN export_days_limit SET DEFAULT 3;
