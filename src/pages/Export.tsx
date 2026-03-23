@@ -71,7 +71,18 @@ function generateClinicalReflection(
 export const Export: React.FC = () => {
   const { data: currentChild } = useCurrentChild();
   const { data: subscription } = useSubscription();
-  const exportDays = subscription?.exportDaysLimit || 30;
+  const { isPremium } = usePremiumAccess();
+  
+  const exportPeriodOptions = isPremium
+    ? [
+        { label: 'Last 30 days', days: 30 },
+        { label: 'Last 3 months', days: 90 },
+        { label: 'Last year', days: 365 },
+      ]
+    : [{ label: 'Last 3 days', days: 3 }];
+
+  const [selectedPeriodIdx, setSelectedPeriodIdx] = useState(0);
+  const exportDays = exportPeriodOptions[selectedPeriodIdx]?.days ?? 3;
   const childAgeMonths = currentChild?.ageMonths || 0;
   const analytics = useSignalAnalytics(currentChild?.id, exportDays);
   const [showPreview, setShowPreview] = useState(false);
