@@ -199,6 +199,42 @@ export const Export: React.FC = () => {
               </ul>
             </Card>
 
+            {/* Period selector */}
+            <Card variant="soft" className="p-5 animate-fade-in">
+              <h3 className="font-display font-semibold text-foreground mb-3">
+                Export period
+              </h3>
+              <div className="flex gap-2 flex-wrap">
+                {exportPeriodOptions.map((opt, idx) => (
+                  <Button
+                    key={opt.days}
+                    variant={selectedPeriodIdx === idx ? 'ocean' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedPeriodIdx(idx)}
+                  >
+                    {opt.label}
+                  </Button>
+                ))}
+                {!isPremium && (
+                  <>
+                    <Button variant="outline" size="sm" disabled className="opacity-50 gap-1">
+                      <Lock className="w-3 h-3" /> 30 days
+                    </Button>
+                    <Button variant="outline" size="sm" disabled className="opacity-50 gap-1">
+                      <Lock className="w-3 h-3" /> 3 months
+                    </Button>
+                    <Button variant="outline" size="sm" disabled className="opacity-50 gap-1">
+                      <Lock className="w-3 h-3" /> 1 year
+                    </Button>
+                  </>
+                )}
+              </div>
+              {!isPremium && (
+                <p className="text-xs text-muted-foreground mt-2">
+                  Upgrade to Premium for extended export periods.
+                </p>
+              )}
+            </Card>
             <Card variant="soft" className="p-5 animate-fade-in">
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
