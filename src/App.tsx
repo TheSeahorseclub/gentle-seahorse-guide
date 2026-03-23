@@ -25,6 +25,7 @@ import { MicroLessons } from "./pages/MicroLessons";
 import { WeeklyReflection } from "./pages/WeeklyReflection";
 import { Export } from "./pages/Export";
 import { SleepHistory } from "./pages/SleepHistory";
+import { Upgrade } from "./pages/Upgrade";
 import NotFound from "./pages/NotFound";
 
 // Admin

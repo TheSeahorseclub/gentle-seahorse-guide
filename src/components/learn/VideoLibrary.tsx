@@ -19,11 +19,20 @@ export const VideoLibrary: React.FC = () => {
     setModalOpen(true);
   };
 
-  if (isLoading) {
+  if (isLoading || planLoading) {
     return (
       <div className="flex items-center justify-center py-12">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
+    );
+  }
+
+  if (!isPremium) {
+    return (
+      <PremiumGate
+        title="Video Library"
+        description="Unlock our full library of gentle, evidence-informed video lessons to support your parenting journey."
+      />
     );
   }
 
