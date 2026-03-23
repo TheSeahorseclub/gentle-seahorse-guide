@@ -5,11 +5,13 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useCurrentChild } from '@/hooks/useCurrentChild';
 import { useSubscription } from '@/hooks/useSubscription';
+import { usePremiumAccess } from '@/hooks/usePremiumAccess';
 import { useSignalAnalytics } from '@/hooks/useSignalAnalytics';
 import { getDevelopmentalContext } from '@/utils/developmentalContext';
 import { generateClinicalPdf } from '@/utils/generateClinicalPdf';
 import { ClinicalSummaryPreview } from '@/components/export/ClinicalSummaryPreview';
-import { FileText, Download, Eye, Loader2, AlertCircle } from 'lucide-react';
+import { PremiumGate } from '@/components/shared/PremiumGate';
+import { FileText, Download, Eye, Loader2, AlertCircle, Lock } from 'lucide-react';
 
 function generateClinicalReflection(
   analytics: ReturnType<typeof useSignalAnalytics>,
