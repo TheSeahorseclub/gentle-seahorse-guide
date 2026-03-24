@@ -58,7 +58,29 @@ const generateInsight = (signals: SignalEntry[]) => {
   return { title, meaning, suggestions };
 };
 
+// Get weekly learning content based on child's age
+const getWeeklyContext = (ageMonths: number) => {
+  const monthData = allMonths.find(m => m.month === ageMonths);
+  if (!monthData || monthData.weeks.length === 0) return null;
+
+  // Estimate which week within the month based on the day of the month
+  const dayOfMonth = new Date().getDate();
+  const weekIndex = Math.min(Math.floor((dayOfMonth - 1) / 7), monthData.weeks.length - 1);
+  const weekData = monthData.weeks[weekIndex];
+
+  return {
+    monthTitle: monthData.title,
+    monthSubtitle: monthData.subtitle,
+    weekNumber: weekData.week,
+    weekTitle: weekData.title,
+    gentleFocus: weekData.gentleFocus,
+    introduction: weekData.introduction,
+    neurodevelopmentalNote: weekData.neurodevelopmentalNote,
+  };
+};
+
 export const DailyInsight: React.FC = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { data: currentChild, isLoading: childLoading } = useCurrentChild();
   const [isLoading, setIsLoading] = useState(true);
