@@ -229,6 +229,54 @@ export const DailyInsight: React.FC = () => {
               </div>
             </Card>
 
+            {/* Weekly Learning Context */}
+            {currentChild && (() => {
+              const weeklyContext = getWeeklyContext(currentChild.ageMonths);
+              if (!weeklyContext) return null;
+              return (
+                <Card variant="soft" className="p-5 animate-fade-in">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
+                      <BookOpen className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-display font-semibold text-foreground">
+                          This week's learning focus
+                        </h3>
+                      </div>
+                      <p className="text-xs text-muted-foreground mb-2">
+                        {weeklyContext.monthTitle} — Week {weeklyContext.weekNumber}
+                      </p>
+                      <p className="font-medium text-foreground text-sm mb-1">
+                        {weeklyContext.weekTitle}
+                      </p>
+                      <p className="text-sm text-muted-foreground mb-2 italic">
+                        {weeklyContext.gentleFocus}
+                      </p>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                        {weeklyContext.introduction.split('\n')[0]}
+                      </p>
+                      <div className="bg-muted/50 rounded-lg p-3 border border-border/50 mb-3">
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          <span className="font-medium">🧠 Neurodevelopmental note:</span>{' '}
+                          {weeklyContext.neurodevelopmentalNote}
+                        </p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-primary text-xs px-0 hover:bg-transparent"
+                        onClick={() => navigate('/lessons')}
+                      >
+                        Explore full weekly content →
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              );
+            })()}
+
             <Card variant="soft" className="p-4 animate-fade-in-slow">
               <p className="text-center text-sm text-muted-foreground italic">
                 Educational only — not medical advice. Every child is unique, and you know yours best.
