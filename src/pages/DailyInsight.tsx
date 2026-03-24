@@ -3,10 +3,12 @@ import { MobileLayout } from '@/components/layout/MobileLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Brain, Heart, Loader2 } from 'lucide-react';
+import { Sparkles, Brain, Heart, Loader2, BookOpen } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { useCurrentChild } from '@/hooks/useCurrentChild';
+import { allMonths } from '@/data/weeklyContent';
+import { useNavigate } from 'react-router-dom';
 
 interface SignalEntry {
   id: string;
@@ -56,7 +58,29 @@ const generateInsight = (signals: SignalEntry[]) => {
   return { title, meaning, suggestions };
 };
 
+// Get weekly learning content based on child's age
+const getWeeklyContext = (ageMonths: number) => {
+  const monthData = allMonths.find(m => m.month === ageMonths);
+  if (!monthData || monthData.weeks.length === 0) return null;
+
+  // Estimate which week within the month based on the day of the month
+  const dayOfMonth = new Date().getDate();
+  const weekIndex = Math.min(Math.floor((dayOfMonth - 1) / 7), monthData.weeks.length - 1);
+  const weekData = monthData.weeks[weekIndex];
+
+  return {
+    monthTitle: monthData.title,
+    monthSubtitle: monthData.subtitle,
+    weekNumber: weekData.week,
+    weekTitle: weekData.title,
+    gentleFocus: weekData.gentleFocus,
+    introduction: weekData.introduction,
+    neurodevelopmentalNote: weekData.neurodevelopmentalNote,
+  };
+};
+
 export const DailyInsight: React.FC = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { data: currentChild, isLoading: childLoading } = useCurrentChild();
   const [isLoading, setIsLoading] = useState(true);
@@ -204,6 +228,54 @@ export const DailyInsight: React.FC = () => {
                 </div>
               </div>
             </Card>
+
+            {/* Weekly Learning Context */}
+            {currentChild && (() => {
+              const weeklyContext = getWeeklyContext(currentChild.ageMonths);
+              if (!weeklyContext) return null;
+              return (
+                <Card variant="soft" className="p-5 animate-fade-in">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
+                      <BookOpen className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-display font-semibold text-foreground">
+                          This week's learning focus
+                        </h3>
+                      </div>
+                      <p className="text-xs text-muted-foreground mb-2">
+                        {weeklyContext.monthTitle} — Week {weeklyContext.weekNumber}
+                      </p>
+                      <p className="font-medium text-foreground text-sm mb-1">
+                        {weeklyContext.weekTitle}
+                      </p>
+                      <p className="text-sm text-muted-foreground mb-2 italic">
+                        {weeklyContext.gentleFocus}
+                      </p>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                        {weeklyContext.introduction.split('\n')[0]}
+                      </p>
+                      <div className="bg-muted/50 rounded-lg p-3 border border-border/50 mb-3">
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          <span className="font-medium">🧠 Neurodevelopmental note:</span>{' '}
+                          {weeklyContext.neurodevelopmentalNote}
+                        </p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-primary text-xs px-0 hover:bg-transparent"
+                        onClick={() => navigate('/lessons')}
+                      >
+                        Explore full weekly content →
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              );
+            })()}
 
             <Card variant="soft" className="p-4 animate-fade-in-slow">
               <p className="text-center text-sm text-muted-foreground italic">
