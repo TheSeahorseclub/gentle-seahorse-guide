@@ -3,10 +3,12 @@ import { MobileLayout } from '@/components/layout/MobileLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Brain, Heart, Loader2 } from 'lucide-react';
+import { Sparkles, Brain, Heart, Loader2, BookOpen } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { useCurrentChild } from '@/hooks/useCurrentChild';
+import { allMonths } from '@/data/weeklyContent';
+import { useNavigate } from 'react-router-dom';
 
 interface SignalEntry {
   id: string;
