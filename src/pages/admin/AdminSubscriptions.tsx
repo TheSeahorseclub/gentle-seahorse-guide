@@ -96,9 +96,10 @@ export const AdminSubscriptions: React.FC = () => {
                     <TableHead>User</TableHead>
                     <TableHead>Plan</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead>Billing</TableHead>
-                    <TableHead>Price</TableHead>
+                    <TableHead>Entitlement</TableHead>
+                    <TableHead>Platform</TableHead>
                     <TableHead>Provider</TableHead>
+                    <TableHead>Price</TableHead>
                     <TableHead>Trial</TableHead>
                     <TableHead>Started</TableHead>
                     <TableHead>Renewal</TableHead>
