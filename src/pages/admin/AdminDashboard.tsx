@@ -60,6 +60,8 @@ export const AdminDashboard: React.FC = () => {
   const mostViewed = (metrics?.most_viewed_content ?? []) as any[];
   const signupsByMonth = (metrics?.signups_by_month ?? []) as any[];
   const subsByPlan = (metrics?.subscriptions_by_plan ?? []) as any[];
+  const subsByProvider = (metrics?.subscriptions_by_provider ?? []) as any[];
+  const subsByPlatform = (metrics?.subscriptions_by_platform ?? []) as any[];
 
   return (
     <div className="space-y-8">
