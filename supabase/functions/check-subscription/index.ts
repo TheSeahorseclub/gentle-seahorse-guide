@@ -72,6 +72,9 @@ serve(async (req) => {
 
       // Sync to database
       const isYearly = priceId === "price_1TFHPFHB4GxrSvgspzaJH1gE";
+      const periodStart = new Date(sub.current_period_start * 1000).toISOString();
+      const startedAt = sub.created ? new Date(sub.created * 1000).toISOString() : periodStart;
+
       await supabaseClient
         .from("user_subscriptions")
         .upsert({
@@ -87,10 +90,10 @@ serve(async (req) => {
           price: isYearly ? 88.80 : 8.88,
           currency: "GBP",
           export_days_limit: 365,
-          current_period_start: new Date(sub.current_period_start * 1000).toISOString(),
+          current_period_start: periodStart,
           current_period_end: subscriptionEnd,
           renewal_date: subscriptionEnd,
-          started_at: new Date(sub.start_date * 1000).toISOString(),
+          started_at: startedAt,
         }, { onConflict: "user_id" });
 
       // Also sync profiles table
