@@ -7,7 +7,7 @@ export interface CurrentChild {
   name: string;
   ageMonths: number;
   familyId: string | null;
-  role: 'admin' | 'caregiver';
+  familyRole: 'owner' | 'caregiver' | 'viewer';
 }
 
 export function useCurrentChild() {
@@ -18,28 +18,32 @@ export function useCurrentChild() {
     queryFn: async (): Promise<CurrentChild | null> => {
       if (!user) return null;
 
-      const { data, error } = await supabase
-        .from('child_caregivers')
-        .select('role, children(id, name, age_months, family_id)')
+      // Get family membership first
+      const { data: membership, error: memError } = await supabase
+        .from('family_members')
+        .select('family_id, role')
         .eq('user_id', user.id)
         .limit(1)
         .maybeSingle();
 
-      if (error || !data?.children) return null;
+      if (memError || !membership) return null;
 
-      const child = data.children as unknown as {
-        id: string;
-        name: string;
-        age_months: number;
-        family_id: string | null;
-      };
+      // Get first child in this family
+      const { data: child, error: childError } = await supabase
+        .from('children')
+        .select('id, name, age_months, family_id')
+        .eq('family_id', membership.family_id)
+        .limit(1)
+        .maybeSingle();
+
+      if (childError || !child) return null;
 
       return {
         id: child.id,
         name: child.name,
         ageMonths: child.age_months,
         familyId: child.family_id,
-        role: data.role as 'admin' | 'caregiver',
+        familyRole: membership.role as 'owner' | 'caregiver' | 'viewer',
       };
     },
     enabled: !!user,

@@ -241,18 +241,56 @@ export type Database = {
           created_at: string
           id: string
           name: string
+          owner_user_id: string | null
         }
         Insert: {
           created_at?: string
           id?: string
           name?: string
+          owner_user_id?: string | null
         }
         Update: {
           created_at?: string
           id?: string
           name?: string
+          owner_user_id?: string | null
         }
         Relationships: []
+      }
+      family_members: {
+        Row: {
+          created_at: string
+          family_id: string
+          id: string
+          invited_by: string | null
+          role: Database["public"]["Enums"]["family_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          family_id: string
+          id?: string
+          invited_by?: string | null
+          role?: Database["public"]["Enums"]["family_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          family_id?: string
+          id?: string
+          invited_by?: string | null
+          role?: Database["public"]["Enums"]["family_role"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "family_members_family_id_fkey"
+            columns: ["family_id"]
+            isOneToOne: false
+            referencedRelation: "families"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -568,6 +606,14 @@ export type Database = {
         }
         Returns: boolean
       }
+      has_family_role: {
+        Args: {
+          _family_id: string
+          _role: Database["public"]["Enums"]["family_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -587,10 +633,15 @@ export type Database = {
         Args: { _family_id: string; _user_id: string }
         Returns: boolean
       }
+      is_family_owner: {
+        Args: { _family_id: string; _user_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       app_role: "admin" | "user"
       caregiver_role: "admin" | "caregiver"
+      family_role: "owner" | "caregiver" | "viewer"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -720,6 +771,7 @@ export const Constants = {
     Enums: {
       app_role: ["admin", "user"],
       caregiver_role: ["admin", "caregiver"],
+      family_role: ["owner", "caregiver", "viewer"],
     },
   },
 } as const
