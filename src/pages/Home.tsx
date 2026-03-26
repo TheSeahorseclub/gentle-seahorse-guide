@@ -181,6 +181,38 @@ export const Home: React.FC = () => {
           </Card>
         </div>
 
+        {/* Subscription Management */}
+        <Card 
+          variant="interactive" 
+          className="p-4 mb-6 animate-slide-up"
+          onClick={isPremium ? handleManageSubscription : () => navigate('/upgrade')}
+        >
+          <div className="flex items-center gap-4">
+            <div className={`w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 ${isPremium ? 'gradient-ocean' : 'bg-muted'}`}>
+              {portalLoading ? (
+                <Loader2 className="w-7 h-7 text-primary-foreground animate-spin" />
+              ) : isPremium ? (
+                <Crown className="w-7 h-7 text-primary-foreground" />
+              ) : (
+                <Crown className="w-7 h-7 text-muted-foreground" />
+              )}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-medium text-foreground">
+                {isPremium ? 'Premium Plan' : 'Free Plan'}
+              </p>
+              <p className="text-sm text-muted-foreground mt-0.5">
+                {isPremium ? 'Manage your subscription' : 'Upgrade to unlock all features'}
+              </p>
+            </div>
+            {isPremium ? (
+              <Settings className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+            ) : (
+              <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+            )}
+          </div>
+        </Card>
+
         {/* Calm reminder */}
         <Card variant="soft" className="p-5 animate-fade-in-slow">
           <p className="text-center text-muted-foreground italic leading-relaxed">
