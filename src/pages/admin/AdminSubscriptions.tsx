@@ -125,11 +125,16 @@ export const AdminSubscriptions: React.FC = () => {
                           {s.status}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-sm">{s.billing_cycle || '—'}</TableCell>
+                      <TableCell>
+                        <Badge variant={s.entitlement_status === 'active' ? 'default' : 'secondary'} className="text-xs capitalize">
+                          {s.entitlement_status || 'none'}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-sm capitalize">{s.platform || 'web'}</TableCell>
+                      <TableCell className="text-sm text-muted-foreground capitalize">{s.payment_provider || '—'}</TableCell>
                       <TableCell className="text-sm">
                         {s.price > 0 ? `${s.currency || 'GBP'} ${Number(s.price).toFixed(2)}` : 'Free'}
                       </TableCell>
-                      <TableCell className="text-sm text-muted-foreground">{s.payment_provider || '—'}</TableCell>
                       <TableCell>
                         {s.trial_active ? (
                           <Badge variant="default" className="text-xs">Active</Badge>
