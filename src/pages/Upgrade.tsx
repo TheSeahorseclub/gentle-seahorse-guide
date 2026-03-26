@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MobileLayout } from '@/components/layout/MobileLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, X, Sparkles, Crown } from 'lucide-react';
+import { Check, X, Sparkles, Crown, Settings, Loader2 } from 'lucide-react';
 import { usePremiumAccess } from '@/hooks/usePremiumAccess';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
+import { useQueryClient } from '@tanstack/react-query';
+import { useSearchParams } from 'react-router-dom';
+
+const PRICES = {
+  monthly: { id: 'price_1TFHJrHB4GxrSvgshSfUEA0j', label: '£8.88 / month', amount: '£8.88' },
+  yearly: { id: 'price_1TFHPFHB4GxrSvgspzaJH1gE', label: '£88.80 / year (save 17%)', amount: '£88.80' },
+};
 
 const freeFeatures = [
   { text: '1 child profile', included: true },
@@ -31,7 +41,73 @@ const premiumFeatures = [
 ];
 
 export const Upgrade: React.FC = () => {
-  const { isPremium } = usePremiumAccess();
+  const { isPremium, isLoading: premiumLoading } = usePremiumAccess();
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
+  const [searchParams] = useSearchParams();
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [portalLoading, setPortalLoading] = useState(false);
+
+  // After successful checkout, re-check subscription
+  useEffect(() => {
+    if (searchParams.get('success') === 'true') {
+      toast.success('Welcome to Premium! 🎉 Your subscription is active.');
+      checkSubscription();
+    }
+    if (searchParams.get('cancelled') === 'true') {
+      toast.info('Checkout was cancelled.');
+    }
+  }, [searchParams]);
+
+  const checkSubscription = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('check-subscription');
+      if (!error && data?.subscribed) {
+        queryClient.invalidateQueries({ queryKey: ['entitlement'] });
+        queryClient.invalidateQueries({ queryKey: ['subscription'] });
+      }
+    } catch (err) {
+      console.error('Error checking subscription:', err);
+    }
+  };
+
+  const handleCheckout = async () => {
+    if (!user) {
+      toast.error('Please sign in first.');
+      return;
+    }
+    setCheckoutLoading(true);
+    try {
+      const priceId = PRICES[billingCycle].id;
+      const { data, error } = await supabase.functions.invoke('create-checkout', {
+        body: { priceId },
+      });
+      if (error) throw error;
+      if (data?.url) {
+        window.open(data.url, '_blank');
+      }
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to start checkout');
+    } finally {
+      setCheckoutLoading(false);
+    }
+  };
+
+  const handleManageSubscription = async () => {
+    setPortalLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('customer-portal');
+      if (error) throw error;
+      if (data?.url) {
+        window.open(data.url, '_blank');
+      }
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to open billing portal');
+    } finally {
+      setPortalLoading(false);
+    }
+  };
 
   return (
     <MobileLayout>
@@ -82,10 +158,34 @@ export const Upgrade: React.FC = () => {
             <div>
               <h3 className="font-display font-semibold text-coral-foreground">Premium</h3>
               <p className="text-sm text-coral-foreground/80">
-                <span className="text-2xl font-display font-bold">£8.88</span> / month
+                <span className="text-2xl font-display font-bold">{PRICES[billingCycle].amount}</span>
+                {billingCycle === 'monthly' ? ' / month' : ' / year'}
               </p>
             </div>
           </div>
+
+          {/* Billing toggle */}
+          {!isPremium && (
+            <div className="flex gap-2 mb-4">
+              <Button
+                variant={billingCycle === 'monthly' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setBillingCycle('monthly')}
+                className="flex-1 text-xs"
+              >
+                Monthly
+              </Button>
+              <Button
+                variant={billingCycle === 'yearly' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setBillingCycle('yearly')}
+                className="flex-1 text-xs"
+              >
+                Yearly (save 17%)
+              </Button>
+            </div>
+          )}
+
           <ul className="space-y-2 mb-5">
             {premiumFeatures.map((f, i) => (
               <li key={i} className="flex items-center gap-2 text-sm">
@@ -96,13 +196,39 @@ export const Upgrade: React.FC = () => {
           </ul>
 
           {isPremium ? (
-            <Button variant="outline" size="lg" className="w-full" disabled>
-              You're on Premium ✨
-            </Button>
+            <div className="space-y-2">
+              <Button variant="outline" size="lg" className="w-full" disabled>
+                You're on Premium ✨
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="w-full"
+                onClick={handleManageSubscription}
+                disabled={portalLoading}
+              >
+                {portalLoading ? (
+                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                ) : (
+                  <Settings className="w-4 h-4 mr-2" />
+                )}
+                Manage Subscription
+              </Button>
+            </div>
           ) : (
-            <Button variant="ocean" size="lg" className="w-full">
-              <Sparkles className="w-5 h-5" />
-              Start Premium — £8.88/mo
+            <Button
+              variant="ocean"
+              size="lg"
+              className="w-full"
+              onClick={handleCheckout}
+              disabled={checkoutLoading}
+            >
+              {checkoutLoading ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <Sparkles className="w-5 h-5" />
+              )}
+              Start Premium — {PRICES[billingCycle].label}
             </Button>
           )}
         </Card>
