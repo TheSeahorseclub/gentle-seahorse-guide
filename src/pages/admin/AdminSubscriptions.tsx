@@ -155,8 +155,6 @@ export const AdminSubscriptions: React.FC = () => {
                       <TableCell colSpan={10} className="text-center text-muted-foreground py-12">No subscriptions found</TableCell>
                     </TableRow>
                   )}
-                    </TableRow>
-                  )}
                 </TableBody>
               </Table>
             </div>
