@@ -468,10 +468,12 @@ export type Database = {
           currency: string | null
           current_period_end: string | null
           current_period_start: string | null
+          entitlement_status: string
           export_days_limit: number
           id: string
           payment_provider: string | null
           plan: string
+          platform: string
           price: number | null
           renewal_date: string | null
           started_at: string | null
@@ -491,10 +493,12 @@ export type Database = {
           currency?: string | null
           current_period_end?: string | null
           current_period_start?: string | null
+          entitlement_status?: string
           export_days_limit?: number
           id?: string
           payment_provider?: string | null
           plan?: string
+          platform?: string
           price?: number | null
           renewal_date?: string | null
           started_at?: string | null
@@ -514,10 +518,12 @@ export type Database = {
           currency?: string | null
           current_period_end?: string | null
           current_period_start?: string | null
+          entitlement_status?: string
           export_days_limit?: number
           id?: string
           payment_provider?: string | null
           plan?: string
+          platform?: string
           price?: number | null
           renewal_date?: string | null
           started_at?: string | null
