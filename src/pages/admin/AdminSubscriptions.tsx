@@ -96,9 +96,10 @@ export const AdminSubscriptions: React.FC = () => {
                     <TableHead>User</TableHead>
                     <TableHead>Plan</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead>Billing</TableHead>
-                    <TableHead>Price</TableHead>
+                    <TableHead>Entitlement</TableHead>
+                    <TableHead>Platform</TableHead>
                     <TableHead>Provider</TableHead>
+                    <TableHead>Price</TableHead>
                     <TableHead>Trial</TableHead>
                     <TableHead>Started</TableHead>
                     <TableHead>Renewal</TableHead>
@@ -124,11 +125,16 @@ export const AdminSubscriptions: React.FC = () => {
                           {s.status}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-sm">{s.billing_cycle || '—'}</TableCell>
+                      <TableCell>
+                        <Badge variant={s.entitlement_status === 'active' ? 'default' : 'secondary'} className="text-xs capitalize">
+                          {s.entitlement_status || 'none'}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-sm capitalize">{s.platform || 'web'}</TableCell>
+                      <TableCell className="text-sm text-muted-foreground capitalize">{s.payment_provider || '—'}</TableCell>
                       <TableCell className="text-sm">
                         {s.price > 0 ? `${s.currency || 'GBP'} ${Number(s.price).toFixed(2)}` : 'Free'}
                       </TableCell>
-                      <TableCell className="text-sm text-muted-foreground">{s.payment_provider || '—'}</TableCell>
                       <TableCell>
                         {s.trial_active ? (
                           <Badge variant="default" className="text-xs">Active</Badge>
@@ -146,7 +152,7 @@ export const AdminSubscriptions: React.FC = () => {
                   ))}
                   {filtered.length === 0 && (
                     <TableRow>
-                      <TableCell colSpan={9} className="text-center text-muted-foreground py-12">No subscriptions found</TableCell>
+                      <TableCell colSpan={10} className="text-center text-muted-foreground py-12">No subscriptions found</TableCell>
                     </TableRow>
                   )}
                 </TableBody>

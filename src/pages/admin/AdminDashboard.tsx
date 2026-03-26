@@ -60,6 +60,8 @@ export const AdminDashboard: React.FC = () => {
   const mostViewed = (metrics?.most_viewed_content ?? []) as any[];
   const signupsByMonth = (metrics?.signups_by_month ?? []) as any[];
   const subsByPlan = (metrics?.subscriptions_by_plan ?? []) as any[];
+  const subsByProvider = (metrics?.subscriptions_by_provider ?? []) as any[];
+  const subsByPlatform = (metrics?.subscriptions_by_platform ?? []) as any[];
 
   return (
     <div className="space-y-8">
@@ -161,6 +163,75 @@ export const AdminDashboard: React.FC = () => {
               </div>
             ) : (
               <div className="h-[220px] flex items-center justify-center text-muted-foreground text-sm">No plan data yet</div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Provider & Platform breakdown */}
+      <div className="grid lg:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base">By Billing Provider</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {subsByProvider.length > 0 ? (
+              <div className="flex items-center gap-6">
+                <ResponsiveContainer width="50%" height={180}>
+                  <PieChart>
+                    <Pie data={subsByProvider} dataKey="count" nameKey="provider" cx="50%" cy="50%" outerRadius={65} innerRadius={30}>
+                      {subsByProvider.map((_: any, i: number) => (
+                        <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid hsl(205, 35%, 88%)', fontSize: '13px' }} />
+                  </PieChart>
+                </ResponsiveContainer>
+                <div className="space-y-2">
+                  {subsByProvider.map((item: any, i: number) => (
+                    <div key={item.provider} className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: CHART_COLORS[i % CHART_COLORS.length] }} />
+                      <span className="text-sm capitalize">{item.provider}</span>
+                      <span className="text-sm font-semibold ml-auto">{item.count}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="h-[180px] flex items-center justify-center text-muted-foreground text-sm">No provider data yet</div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base">By Platform</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {subsByPlatform.length > 0 ? (
+              <div className="flex items-center gap-6">
+                <ResponsiveContainer width="50%" height={180}>
+                  <PieChart>
+                    <Pie data={subsByPlatform} dataKey="count" nameKey="platform" cx="50%" cy="50%" outerRadius={65} innerRadius={30}>
+                      {subsByPlatform.map((_: any, i: number) => (
+                        <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip contentStyle={{ borderRadius: '12px', border: '1px solid hsl(205, 35%, 88%)', fontSize: '13px' }} />
+                  </PieChart>
+                </ResponsiveContainer>
+                <div className="space-y-2">
+                  {subsByPlatform.map((item: any, i: number) => (
+                    <div key={item.platform} className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: CHART_COLORS[i % CHART_COLORS.length] }} />
+                      <span className="text-sm capitalize">{item.platform}</span>
+                      <span className="text-sm font-semibold ml-auto">{item.count}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="h-[180px] flex items-center justify-center text-muted-foreground text-sm">No platform data yet</div>
             )}
           </CardContent>
         </Card>
