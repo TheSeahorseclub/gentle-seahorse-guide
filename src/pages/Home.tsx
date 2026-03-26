@@ -28,11 +28,26 @@ export const Home: React.FC = () => {
   const { getTodaySignal } = useAppStore();
   const { signOut } = useAuth();
   const { data: currentChild } = useCurrentChild();
+  const { isPremium } = usePremiumAccess();
+  const [portalLoading, setPortalLoading] = useState(false);
   const todaySignal = getTodaySignal();
   const childAge = currentChild?.ageMonths || 0;
   const currentWindow = developmentWindows.find(
     w => childAge >= w.ageRange[0] && childAge <= w.ageRange[1]
   ) || developmentWindows[0];
+
+  const handleManageSubscription = async () => {
+    setPortalLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('customer-portal');
+      if (error) throw error;
+      if (data?.url) window.location.href = data.url;
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to open billing portal');
+    } finally {
+      setPortalLoading(false);
+    }
+  };
 
   const greeting = () => {
     const hour = new Date().getHours();
