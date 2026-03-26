@@ -6,7 +6,11 @@ import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/store/appStore';
 import { useAuth } from '@/contexts/AuthContext';
 import { useCurrentChild } from '@/hooks/useCurrentChild';
-import { Activity, Sparkles, BookOpen, Calendar, ChevronRight, LogOut, Moon } from 'lucide-react';
+import { Activity, Sparkles, BookOpen, Calendar, ChevronRight, LogOut, Moon, Crown, Settings, Loader2 } from 'lucide-react';
+import { usePremiumAccess } from '@/hooks/usePremiumAccess';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
+import { useState } from 'react';
 
 const developmentWindows = [
   { ageRange: [0, 3], focus: 'Regulation and co-regulation', description: 'Your child is learning to feel safe in the world through your presence.' },
@@ -24,11 +28,26 @@ export const Home: React.FC = () => {
   const { getTodaySignal } = useAppStore();
   const { signOut } = useAuth();
   const { data: currentChild } = useCurrentChild();
+  const { isPremium } = usePremiumAccess();
+  const [portalLoading, setPortalLoading] = useState(false);
   const todaySignal = getTodaySignal();
   const childAge = currentChild?.ageMonths || 0;
   const currentWindow = developmentWindows.find(
     w => childAge >= w.ageRange[0] && childAge <= w.ageRange[1]
   ) || developmentWindows[0];
+
+  const handleManageSubscription = async () => {
+    setPortalLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('customer-portal');
+      if (error) throw error;
+      if (data?.url) window.location.href = data.url;
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to open billing portal');
+    } finally {
+      setPortalLoading(false);
+    }
+  };
 
   const greeting = () => {
     const hour = new Date().getHours();
@@ -161,6 +180,38 @@ export const Home: React.FC = () => {
             </div>
           </Card>
         </div>
+
+        {/* Subscription Management */}
+        <Card 
+          variant="interactive" 
+          className="p-4 mb-6 animate-slide-up"
+          onClick={isPremium ? handleManageSubscription : () => navigate('/upgrade')}
+        >
+          <div className="flex items-center gap-4">
+            <div className={`w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 ${isPremium ? 'gradient-ocean' : 'bg-muted'}`}>
+              {portalLoading ? (
+                <Loader2 className="w-7 h-7 text-primary-foreground animate-spin" />
+              ) : isPremium ? (
+                <Crown className="w-7 h-7 text-primary-foreground" />
+              ) : (
+                <Crown className="w-7 h-7 text-muted-foreground" />
+              )}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-medium text-foreground">
+                {isPremium ? 'Premium Plan' : 'Free Plan'}
+              </p>
+              <p className="text-sm text-muted-foreground mt-0.5">
+                {isPremium ? 'Manage your subscription' : 'Upgrade to unlock all features'}
+              </p>
+            </div>
+            {isPremium ? (
+              <Settings className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+            ) : (
+              <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+            )}
+          </div>
+        </Card>
 
         {/* Calm reminder */}
         <Card variant="soft" className="p-5 animate-fade-in-slow">
