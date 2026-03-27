@@ -107,6 +107,9 @@ const AppRoutes = () => {
       <Route path="/onboarding/age" element={
         <RequireAuth><ChildAge /></RequireAuth>
       } />
+      <Route path="/onboarding/baby-details" element={
+        <RequireAuth><BabyDetails /></RequireAuth>
+      } />
       <Route path="/onboarding/caregiver" element={
         <RequireAuth><CaregiverTypePage /></RequireAuth>
       } />
