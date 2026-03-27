@@ -13,7 +13,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const PRICES = {
   monthly: { id: 'price_1TFinFHB4GxrSvgsQDOIYEZE', label: '£8.88 / month', amount: '£8.88' },
-  yearly: { id: 'price_1TFioPHB4GxrSvgsUASb5lI3', label: '£88.80 / year (save 17%)', amount: '£88.80' },
+  yearly: { id: 'price_1TFioPHB4GxrSvgsUASb5lI3', label: '£79.00 / year (save 26%)', amount: '£79.00' },
 };
 
 const freeFeatures = [
