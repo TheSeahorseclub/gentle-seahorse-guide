@@ -27,14 +27,6 @@ export const VideoLibrary: React.FC = () => {
     );
   }
 
-  if (!isPremium) {
-    return (
-      <PremiumGate
-        title="Video Library"
-        description="Unlock our full library of gentle, evidence-informed video lessons to support your parenting journey."
-      />
-    );
-  }
 
   if (error) {
     return (
