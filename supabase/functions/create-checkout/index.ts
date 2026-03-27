@@ -47,6 +47,11 @@ serve(async (req) => {
 
     const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
 
+    // Fetch the price to determine if it's recurring or one-time
+    const price = await stripe.prices.retrieve(priceId);
+    const isRecurring = price.type === "recurring";
+    logStep("Price type determined", { type: price.type, isRecurring });
+
     // Check for existing Stripe customer
     const customers = await stripe.customers.list({ email, limit: 1 });
     let customerId: string | undefined;
@@ -61,7 +66,7 @@ serve(async (req) => {
       customer: customerId,
       customer_email: customerId ? undefined : email,
       line_items: [{ price: priceId, quantity: 1 }],
-      mode: "subscription",
+      mode: isRecurring ? "subscription" : "payment",
       success_url: `${origin}/upgrade?success=true`,
       cancel_url: `${origin}/upgrade?cancelled=true`,
       metadata: { user_id: userId },
