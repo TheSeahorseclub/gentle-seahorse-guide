@@ -25,7 +25,7 @@ export const ChildAge: React.FC = () => {
   const handleContinue = () => {
     if (selectedAge !== null) {
       updateOnboarding({ childAgeMonths: selectedAge });
-      navigate('/onboarding/caregiver');
+      navigate('/onboarding/baby-details');
     }
   };
 
