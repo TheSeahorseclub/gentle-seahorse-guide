@@ -12,8 +12,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 
 const PRICES = {
-  monthly: { id: 'price_1TFHJrHB4GxrSvgshSfUEA0j', label: '£8.88 / month', amount: '£8.88' },
-  yearly: { id: 'price_1TFHPFHB4GxrSvgspzaJH1gE', label: '£88.80 / year (save 17%)', amount: '£88.80' },
+  monthly: { id: 'price_1TFinFHB4GxrSvgsQDOIYEZE', label: '£8.88 / month', amount: '£8.88' },
+  yearly: { id: 'price_1TFioPHB4GxrSvgsUASb5lI3', label: '£88.80 / year (save 17%)', amount: '£88.80' },
 };
 
 const freeFeatures = [
