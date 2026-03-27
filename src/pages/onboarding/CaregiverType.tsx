@@ -30,7 +30,7 @@ export const CaregiverTypePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <OnboardingProgress currentStep={1} totalSteps={3} />
+      <OnboardingProgress currentStep={2} totalSteps={4} />
       
       <div className="flex-1 px-6 py-4">
         <div className="max-w-sm mx-auto">

@@ -35,11 +35,13 @@ export const Confidence: React.FC = () => {
     
     try {
       const ageMonths = userProfile?.childAgeMonths || 0;
+      const babyName = userProfile?.babyName || '';
 
       // Use RPC function for atomic onboarding
       const { data, error: rpcError } = await supabase.rpc('complete_onboarding', {
         _user_id: user.id,
         _child_age_months: ageMonths,
+        _child_name: babyName,
       });
 
       if (rpcError) throw rpcError;
@@ -74,7 +76,7 @@ export const Confidence: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <OnboardingProgress currentStep={2} totalSteps={3} />
+      <OnboardingProgress currentStep={3} totalSteps={4} />
       
       <div className="flex-1 px-6 py-4">
         <div className="max-w-sm mx-auto">

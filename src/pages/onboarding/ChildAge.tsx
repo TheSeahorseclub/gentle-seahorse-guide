@@ -25,13 +25,13 @@ export const ChildAge: React.FC = () => {
   const handleContinue = () => {
     if (selectedAge !== null) {
       updateOnboarding({ childAgeMonths: selectedAge });
-      navigate('/onboarding/caregiver');
+      navigate('/onboarding/baby-details');
     }
   };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <OnboardingProgress currentStep={0} totalSteps={3} />
+      <OnboardingProgress currentStep={0} totalSteps={4} />
       
       <div className="flex-1 px-6 py-4">
         <div className="max-w-sm mx-auto">

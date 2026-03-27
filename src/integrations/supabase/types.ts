@@ -597,10 +597,19 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      complete_onboarding: {
-        Args: { _child_age_months: number; _user_id: string }
-        Returns: Json
-      }
+      complete_onboarding:
+        | {
+            Args: { _child_age_months: number; _user_id: string }
+            Returns: Json
+          }
+        | {
+            Args: {
+              _child_age_months: number
+              _child_name?: string
+              _user_id: string
+            }
+            Returns: Json
+          }
       get_admin_metrics: { Args: never; Returns: Json }
       get_admin_subscriptions: { Args: never; Returns: Json }
       get_admin_users: { Args: never; Returns: Json }

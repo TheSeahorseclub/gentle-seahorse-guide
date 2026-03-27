@@ -12,6 +12,7 @@ import { Auth } from "./pages/Auth";
 // Onboarding
 import { Welcome } from "./pages/onboarding/Welcome";
 import { ChildAge } from "./pages/onboarding/ChildAge";
+import { BabyDetails } from "./pages/onboarding/BabyDetails";
 import { CaregiverTypePage } from "./pages/onboarding/CaregiverType";
 import { Confidence } from "./pages/onboarding/Confidence";
 
@@ -105,6 +106,9 @@ const AppRoutes = () => {
       } />
       <Route path="/onboarding/age" element={
         <RequireAuth><ChildAge /></RequireAuth>
+      } />
+      <Route path="/onboarding/baby-details" element={
+        <RequireAuth><BabyDetails /></RequireAuth>
       } />
       <Route path="/onboarding/caregiver" element={
         <RequireAuth><CaregiverTypePage /></RequireAuth>
