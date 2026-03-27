@@ -181,7 +181,7 @@ export const Upgrade: React.FC = () => {
                 onClick={() => setBillingCycle('yearly')}
                 className="flex-1 text-xs"
               >
-                Yearly (save 17%)
+                Yearly (save 26%)
               </Button>
             </div>
           )}
