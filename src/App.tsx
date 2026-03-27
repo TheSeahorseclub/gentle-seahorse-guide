@@ -12,6 +12,7 @@ import { Auth } from "./pages/Auth";
 // Onboarding
 import { Welcome } from "./pages/onboarding/Welcome";
 import { ChildAge } from "./pages/onboarding/ChildAge";
+import { BabyDetails } from "./pages/onboarding/BabyDetails";
 import { CaregiverTypePage } from "./pages/onboarding/CaregiverType";
 import { Confidence } from "./pages/onboarding/Confidence";
 
