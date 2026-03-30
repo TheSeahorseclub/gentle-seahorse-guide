@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import { AlertCircle, Calendar, Baby, TrendingUp, BookOpen, Stethoscope, BarChart3 } from 'lucide-react';
 import { SignalFrequencyChart } from './SignalFrequencyChart';
 import { DailyTrendChart } from './DailyTrendChart';
+import { ParentAgenda } from './ParentAgenda';
 import type { AnalyticsData } from '@/hooks/useSignalAnalytics';
 import type { DevelopmentalContext } from '@/utils/developmentalContext';
 
