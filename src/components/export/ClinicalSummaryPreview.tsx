@@ -157,6 +157,9 @@ export const ClinicalSummaryPreview: React.FC<ClinicalSummaryPreviewProps> = ({
           </p>
         </div>
       </Card>
+
+      {/* Section 7: Parent Activity Log */}
+      <ParentAgenda days={30} />
     </div>
   );
 };

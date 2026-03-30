@@ -94,6 +94,11 @@ export const SleepHistory: React.FC = () => {
           ))}
         </div>
 
+        {/* AI Sleep Prediction */}
+        <div className="mb-5">
+          <SleepPredictionCard />
+        </div>
+
         <Tabs defaultValue="timeline" className="mb-6">
           <TabsList className="w-full">
             <TabsTrigger value="timeline" className="flex-1 gap-1.5">
