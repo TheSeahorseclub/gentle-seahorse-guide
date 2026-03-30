@@ -11,7 +11,8 @@ export const BabyDetails: React.FC = () => {
   const [babyName, setBabyName] = useState('');
 
   const ageMonths = userProfile?.childAgeMonths ?? 0;
-  const weeks = Math.round(ageMonths * 4.33);
+  const ageWeeks = userProfile?.childAgeWeeks ?? 0;
+  const totalWeeks = Math.round(ageMonths * 4.33) + ageWeeks;
 
   const handleContinue = () => {
     updateOnboarding({ babyName: babyName.trim() || undefined });
@@ -49,7 +50,10 @@ export const BabyDetails: React.FC = () => {
             <div className="bg-primary/5 rounded-2xl p-5 border border-primary/10">
               <p className="text-sm text-muted-foreground mb-1">Based on your selection</p>
               <p className="font-display text-lg font-semibold text-foreground">
-                ~{ageMonths} months old · Week {weeks}
+                {ageMonths} {ageMonths === 1 ? 'month' : 'months'} and {ageWeeks} {ageWeeks === 1 ? 'week' : 'weeks'}
+              </p>
+              <p className="text-sm text-primary font-medium mt-1">
+                Week {totalWeeks} of development
               </p>
               <p className="text-sm text-muted-foreground mt-1">
                 We'll tailor content to this developmental stage.
