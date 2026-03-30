@@ -42,7 +42,7 @@ const tourSteps = [
   {
     icon: Users,
     emoji: '👀',
-    title: 'Monitor the nanny from afar',
+    title: 'Stay connected with your nanny, wherever you are',
     description: 'Each caregiver can log signals. Even when you\'re away, you\'ll know exactly what happened during the day and who provided the information.',
     highlight: 'Full history with caregiver identification.',
     color: 'bg-calm/30 text-calm-foreground',
