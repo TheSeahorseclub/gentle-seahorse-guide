@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/chart';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { cn } from '@/lib/utils';
+import { SleepPredictionCard } from '@/components/sleep/SleepPredictionCard';
 
 const qualityColor: Record<string, string> = {
   deep: 'hsl(var(--primary))',
@@ -92,6 +93,11 @@ export const SleepHistory: React.FC = () => {
               {d}d
             </button>
           ))}
+        </div>
+
+        {/* AI Sleep Prediction */}
+        <div className="mb-5">
+          <SleepPredictionCard />
         </div>
 
         <Tabs defaultValue="timeline" className="mb-6">
