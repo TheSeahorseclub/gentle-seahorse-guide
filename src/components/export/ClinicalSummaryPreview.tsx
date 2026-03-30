@@ -23,6 +23,7 @@ export const ClinicalSummaryPreview: React.FC<ClinicalSummaryPreviewProps> = ({
   analytics,
   developmentalContext,
   clinicalReflection,
+  exportDays,
 }) => {
   return (
     <div className="space-y-4">
