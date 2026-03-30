@@ -11,7 +11,8 @@ export const BabyDetails: React.FC = () => {
   const [babyName, setBabyName] = useState('');
 
   const ageMonths = userProfile?.childAgeMonths ?? 0;
-  const weeks = Math.round(ageMonths * 4.33);
+  const ageWeeks = userProfile?.childAgeWeeks ?? 0;
+  const totalWeeks = Math.round(ageMonths * 4.33) + ageWeeks;
 
   const handleContinue = () => {
     updateOnboarding({ babyName: babyName.trim() || undefined });

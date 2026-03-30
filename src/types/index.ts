@@ -1,6 +1,7 @@
 // User and Onboarding Types
 export interface UserProfile {
   childAgeMonths: number;
+  childAgeWeeks?: number;
   babyName?: string;
   caregiverType: CaregiverType;
   confidenceLevel: ConfidenceLevel;
