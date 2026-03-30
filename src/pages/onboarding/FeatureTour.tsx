@@ -104,8 +104,6 @@ export const FeatureTour: React.FC = () => {
             <Icon className="w-10 h-10" />
           </div>
 
-          {/* Emoji */}
-          <span className="text-4xl mb-4 block">{step.emoji}</span>
 
           {/* Title */}
           <h2 className="font-display text-2xl font-bold text-foreground mb-4">
