@@ -161,7 +161,7 @@ export const ClinicalSummaryPreview: React.FC<ClinicalSummaryPreviewProps> = ({
       </Card>
 
       {/* Section 7: Parent Activity Log */}
-      <ParentAgenda days={30} />
+      <ParentAgenda days={exportDays} />
     </div>
   );
 };
