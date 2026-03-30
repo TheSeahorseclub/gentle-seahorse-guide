@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/chart';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { cn } from '@/lib/utils';
+import { SleepPredictionCard } from '@/components/sleep/SleepPredictionCard';
 
 const qualityColor: Record<string, string> = {
   deep: 'hsl(var(--primary))',
