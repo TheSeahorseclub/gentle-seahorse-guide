@@ -89,7 +89,7 @@ export const FeatureTour: React.FC = () => {
           onClick={() => navigate('/home')}
           className="text-sm text-muted-foreground hover:text-foreground transition-colors py-1 px-2"
         >
-          Pular tour
+          Skip tour
         </button>
       </div>
 
