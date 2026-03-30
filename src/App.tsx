@@ -15,6 +15,7 @@ import { ChildAge } from "./pages/onboarding/ChildAge";
 import { BabyDetails } from "./pages/onboarding/BabyDetails";
 import { CaregiverTypePage } from "./pages/onboarding/CaregiverType";
 import { Confidence } from "./pages/onboarding/Confidence";
+import { FeatureTour } from "./pages/onboarding/FeatureTour";
 
 // Main app
 import { Home } from "./pages/Home";
