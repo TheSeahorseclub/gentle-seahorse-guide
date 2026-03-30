@@ -36,11 +36,10 @@ const premiumFeatures = [
   { text: 'Full milestone tracking', included: true },
   { text: 'Weekly learning (text)', included: true },
   { text: 'Full video library access', included: true },
-  { text: 'Download any date range you choose', included: true },
   { text: 'Personalised recommendations', included: true },
   { text: 'Full content library (0–3 years)', included: true },
-  { text: 'Clinical summary for doctor visits', included: true },
-  { text: 'Monitor nanny activity remotely', included: true },
+  { text: 'Download anytime the Clinical summary for doctor visits or for your family records', included: true },
+  { text: 'Monitor nanny activity or any caregiver remotely', included: true },
 ];
 
 export const Upgrade: React.FC = () => {
