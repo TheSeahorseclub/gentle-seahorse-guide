@@ -153,10 +153,10 @@ export const FeatureTour: React.FC = () => {
             }}
           >
             {isLast ? (
-              'Começar a usar!'
+              'Start using the app!'
             ) : (
               <>
-                Próximo
+                Next
                 <ChevronRight className="w-4 h-4 ml-1" />
               </>
             )}
