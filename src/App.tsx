@@ -117,6 +117,9 @@ const AppRoutes = () => {
       <Route path="/onboarding/confidence" element={
         <RequireAuth><Confidence /></RequireAuth>
       } />
+      <Route path="/onboarding/tour" element={
+        <RequireAuth><FeatureTour /></RequireAuth>
+      } />
       
       {/* Main app routes (require auth + onboarding) */}
       <Route path="/home" element={
