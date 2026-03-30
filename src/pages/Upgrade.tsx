@@ -29,12 +29,11 @@ const freeFeatures = [
 ];
 
 const premiumFeatures = [
-  { text: '1 child profile', included: true },
+  { text: 'Multiple caregivers PER child (mammy, dad, nanny) 3 profiles', included: true },
   { text: 'Daily signal tracking', included: true },
   { text: 'Full milestone tracking', included: true },
   { text: 'Weekly learning (text)', included: true },
   { text: 'Full video library access', included: true },
-  { text: 'Multiple caregivers per child', included: true },
   { text: 'Export 30 days, 3 months or 1 year', included: true },
   { text: 'Personalised recommendations', included: true },
   { text: 'Full content library (0–3 years)', included: true },
