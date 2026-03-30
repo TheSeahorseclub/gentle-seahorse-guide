@@ -84,7 +84,7 @@ export const Home: React.FC = () => {
             onClick={() => navigate('/tracker')}
           >
             <Activity className="w-6 h-6 text-primary mb-2" />
-            <p className="font-medium text-foreground">Log signals</p>
+            <p className="font-medium text-foreground">Log daily updates</p>
             <p className="text-sm text-muted-foreground mt-1">
               {todaySignal ? 'Update today' : 'Not logged today'}
             </p>
