@@ -61,7 +61,7 @@ export const Confidence: React.FC = () => {
         role: 'admin' as const,
       });
 
-      navigate('/home');
+      navigate('/onboarding/tour');
     } catch (error) {
       console.error('Onboarding error:', error);
       toast({
