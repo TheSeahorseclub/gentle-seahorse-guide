@@ -51,7 +51,7 @@ const tourSteps = [
     icon: BookOpen,
     emoji: '📚',
     title: 'Learn at your own pace',
-    description: 'Short video micro-lessons on child development, emotional regulation and more. Brief, practical content for busy parents.',
+    description: 'Week-by-week micro-lessons and short video content on child development, emotional regulation and more. Brief, practical guidance for busy parents.',
     highlight: 'Video library available free for all users.',
     color: 'bg-lavender text-lavender-foreground',
   },
