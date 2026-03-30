@@ -15,6 +15,7 @@ interface ClinicalSummaryPreviewProps {
   analytics: AnalyticsData;
   developmentalContext: DevelopmentalContext;
   clinicalReflection: string;
+  exportDays: number;
 }
 
 export const ClinicalSummaryPreview: React.FC<ClinicalSummaryPreviewProps> = ({
