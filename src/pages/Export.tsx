@@ -302,6 +302,7 @@ export const Export: React.FC = () => {
               analytics={analytics}
               developmentalContext={developmentalContext}
               clinicalReflection={clinicalReflection}
+              exportDays={exportDays}
             />
             
             <div className="pt-4 sticky bottom-4">

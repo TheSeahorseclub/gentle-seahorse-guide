@@ -15,6 +15,7 @@ interface ClinicalSummaryPreviewProps {
   analytics: AnalyticsData;
   developmentalContext: DevelopmentalContext;
   clinicalReflection: string;
+  exportDays: number;
 }
 
 export const ClinicalSummaryPreview: React.FC<ClinicalSummaryPreviewProps> = ({
@@ -22,6 +23,7 @@ export const ClinicalSummaryPreview: React.FC<ClinicalSummaryPreviewProps> = ({
   analytics,
   developmentalContext,
   clinicalReflection,
+  exportDays,
 }) => {
   return (
     <div className="space-y-4">
@@ -159,7 +161,7 @@ export const ClinicalSummaryPreview: React.FC<ClinicalSummaryPreviewProps> = ({
       </Card>
 
       {/* Section 7: Parent Activity Log */}
-      <ParentAgenda days={30} />
+      <ParentAgenda days={exportDays} />
     </div>
   );
 };
