@@ -18,25 +18,29 @@ const PRICES = {
 
 const freeFeatures = [
   { text: '1 child profile', included: true },
+  { text: '1 caregiver login', included: true },
   { text: 'Daily signal tracking', included: true },
   { text: 'Basic milestone tracking', included: true },
   { text: 'Weekly learning (text)', included: true },
   { text: 'Export last 3 days only', included: true },
-  { text: 'Video library', included: false },
+  { text: 'Video library access', included: true },
   { text: 'Multiple caregivers', included: false },
-  { text: 'Extended export history', included: false },
+  { text: 'Download any date range', included: false },
   { text: 'Personalised recommendations', included: false },
+  { text: 'Full content library (0–3 years)', included: false },
 ];
 
 const premiumFeatures = [
-  { text: 'Multiple caregivers PER child (mammy, dad, nanny) 3 profiles', included: true },
+  { text: 'Up to 3 caregiver profiles per child (mum, dad, nanny)', included: true },
   { text: 'Daily signal tracking', included: true },
   { text: 'Full milestone tracking', included: true },
   { text: 'Weekly learning (text)', included: true },
   { text: 'Full video library access', included: true },
-  { text: 'Export 30 days, 3 months or 1 year', included: true },
+  { text: 'Download any date range you choose', included: true },
   { text: 'Personalised recommendations', included: true },
   { text: 'Full content library (0–3 years)', included: true },
+  { text: 'Clinical summary for doctor visits', included: true },
+  { text: 'Monitor nanny activity remotely', included: true },
 ];
 
 export const Upgrade: React.FC = () => {
