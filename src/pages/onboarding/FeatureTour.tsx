@@ -162,7 +162,7 @@ export const FeatureTour: React.FC = () => {
         </div>
 
         <p className="text-center text-xs text-muted-foreground">
-          {currentStep + 1} de {tourSteps.length}
+          {currentStep + 1} of {tourSteps.length}
         </p>
       </div>
     </div>
