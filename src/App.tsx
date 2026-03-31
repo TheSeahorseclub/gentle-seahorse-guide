@@ -16,6 +16,7 @@ import { BabyDetails } from "./pages/onboarding/BabyDetails";
 import { CaregiverTypePage } from "./pages/onboarding/CaregiverType";
 import { Confidence } from "./pages/onboarding/Confidence";
 import { FeatureTour } from "./pages/onboarding/FeatureTour";
+import { PremiumOffer } from "./pages/onboarding/PremiumOffer";
 
 // Main app
 import { Home } from "./pages/Home";
