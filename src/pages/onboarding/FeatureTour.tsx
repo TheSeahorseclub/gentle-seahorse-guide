@@ -143,8 +143,8 @@ export const FeatureTour: React.FC = () => {
             size="lg"
             className="flex-1"
             onClick={() => {
-              if (isLast) {
-                navigate('/home');
+          if (isLast) {
+                navigate('/onboarding/premium');
               } else {
                 setCurrentStep(currentStep + 1);
               }
