@@ -181,6 +181,21 @@ const AppRoutes = () => {
           {onboardingComplete ? <Upgrade /> : <Navigate to="/welcome" replace />}
         </RequireAuth>
       } />
+      <Route path="/trends" element={
+        <RequireAuth>
+          {onboardingComplete ? <Trends /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/settings" element={
+        <RequireAuth>
+          {onboardingComplete ? <Settings /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/invite-caregiver" element={
+        <RequireAuth>
+          {onboardingComplete ? <InviteCaregiver /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
 
       {/* Admin routes (require auth + admin role) */}
       <Route path="/admin" element={
