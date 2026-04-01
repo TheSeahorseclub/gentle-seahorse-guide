@@ -126,7 +126,7 @@ export const Home: React.FC = () => {
         {/* Sleep History shortcut */}
         <Card 
           variant="interactive" 
-          className="p-4 mb-6 animate-slide-up"
+          className="p-4 mb-3 animate-slide-up"
           onClick={() => navigate('/sleep-history')}
         >
           <div className="flex items-center gap-4">
@@ -137,6 +137,26 @@ export const Home: React.FC = () => {
               <p className="font-medium text-foreground">Sleep patterns</p>
               <p className="text-sm text-muted-foreground mt-0.5">
                 View sleep logs &amp; wake windows
+              </p>
+            </div>
+            <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+          </div>
+        </Card>
+
+        {/* Trends shortcut */}
+        <Card 
+          variant="interactive" 
+          className="p-4 mb-6 animate-slide-up"
+          onClick={() => navigate('/trends')}
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-xl bg-coral/20 flex items-center justify-center flex-shrink-0">
+              <TrendingUp className="w-7 h-7 text-coral-foreground" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-medium text-foreground">Trends &amp; insights</p>
+              <p className="text-sm text-muted-foreground mt-0.5">
+                Charts and patterns over time
               </p>
             </div>
             <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />
