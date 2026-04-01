@@ -20,62 +20,42 @@ const COLORS = [
 export const Trends: React.FC = () => {
   const navigate = useNavigate();
   const { data: currentChild } = useCurrentChild();
-  const analytics = useSignalAnalytics(14);
-  const sleepHistory = useSleepHistory(14);
+  const analytics = useSignalAnalytics(currentChild?.id, 14);
+  const { sleepLogs } = useSleepHistory(14);
 
-  // Aggregate signals by type
+  // Signal type distribution from aggregations
   const signalsByType = useMemo(() => {
-    if (!signalData || !Array.isArray(signalData)) return [];
-    const counts: Record<string, number> = {};
-    (signalData as any[]).forEach((entry: any) => {
-      const type = entry.signal_type || 'Unknown';
-      counts[type] = (counts[type] || 0) + 1;
-    });
-    return Object.entries(counts).map(([name, value]) => ({ name, value }));
-  }, [signalData]);
+    return analytics.aggregations.map((agg) => ({
+      name: agg.label,
+      value: agg.daysLogged,
+    }));
+  }, [analytics.aggregations]);
 
-  // Signals per day (last 14 days)
+  // Signals per day from dailySignals
   const signalsByDay = useMemo(() => {
-    if (!signalData || !Array.isArray(signalData)) return [];
-    const now = new Date();
-    const days: Record<string, number> = {};
-    for (let i = 13; i >= 0; i--) {
-      const d = new Date(now);
-      d.setDate(d.getDate() - i);
-      const key = d.toISOString().split('T')[0];
-      days[key] = 0;
-    }
-    (signalData as any[]).forEach((entry: any) => {
-      const day = entry.created_at?.split('T')[0];
-      if (day && days[day] !== undefined) days[day]++;
+    return analytics.dailySignals.map((day) => {
+      const count = Object.values(day.signals).reduce((sum, arr) => sum + arr.length, 0);
+      const d = new Date(day.date);
+      return {
+        date: d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
+        count,
+      };
     });
-    return Object.entries(days).map(([date, count]) => ({
-      date: new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
-      count,
-    }));
-  }, [signalData]);
+  }, [analytics.dailySignals]);
 
-  // Sleep duration per day (last 14 days)
+  // Sleep duration per day
   const sleepByDay = useMemo(() => {
-    if (!sleepData || !Array.isArray(sleepData)) return [];
-    const now = new Date();
-    const days: Record<string, number> = {};
-    for (let i = 13; i >= 0; i--) {
-      const d = new Date(now);
-      d.setDate(d.getDate() - i);
-      days[d.toISOString().split('T')[0]] = 0;
-    }
-    (sleepData as any[]).forEach((entry: any) => {
-      const day = entry.log_date;
-      if (day && days[day] !== undefined) {
-        days[day] += (entry.duration_minutes || 0);
-      }
+    const byDate: Record<string, number> = {};
+    sleepLogs.forEach((log) => {
+      byDate[log.log_date] = (byDate[log.log_date] || 0) + (log.duration_minutes || 0);
     });
-    return Object.entries(days).map(([date, mins]) => ({
-      date: new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
-      hours: +(mins / 60).toFixed(1),
-    }));
-  }, [sleepData]);
+    return Object.entries(byDate)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([date, mins]) => ({
+        date: new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
+        hours: +(mins / 60).toFixed(1),
+      }));
+  }, [sleepLogs]);
 
   return (
     <MobileLayout>
@@ -147,6 +127,19 @@ export const Trends: React.FC = () => {
               <p className="text-sm text-muted-foreground text-center py-8">No signals recorded yet.</p>
             )}
           </Card>
+
+          {/* Overall trend */}
+          {analytics.overallTrend && (
+            <Card className="p-5 bg-primary/5 border-primary/10">
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingUp className="w-4 h-4 text-primary" />
+                <h3 className="font-display font-semibold text-foreground text-sm capitalize">
+                  {analytics.overallTrend.trend.replace(/-/g, ' ')}
+                </h3>
+              </div>
+              <p className="text-sm text-muted-foreground">{analytics.overallTrend.description}</p>
+            </Card>
+          )}
 
           {/* Sleep trends */}
           <Card className="p-5">
