@@ -68,11 +68,11 @@ export const Home: React.FC = () => {
             </h1>
           </div>
           <button
-            onClick={signOut}
+            onClick={() => navigate('/settings')}
             className="p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-            aria-label="Sign out"
+            aria-label="Settings"
           >
-            <LogOut className="w-5 h-5" />
+            <Settings className="w-5 h-5" />
           </button>
         </div>
 
