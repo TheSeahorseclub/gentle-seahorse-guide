@@ -26,7 +26,7 @@ const developmentWindows = [
 export const Home: React.FC = () => {
   const navigate = useNavigate();
   const { getTodaySignal } = useAppStore();
-  const { signOut } = useAuth();
+  const { } = useAuth();
   const { data: currentChild } = useCurrentChild();
   const { isPremium } = usePremiumAccess();
   const [portalLoading, setPortalLoading] = useState(false);
