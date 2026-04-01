@@ -20,8 +20,8 @@ const COLORS = [
 export const Trends: React.FC = () => {
   const navigate = useNavigate();
   const { data: currentChild } = useCurrentChild();
-  const { data: signalData } = useSignalAnalytics(currentChild?.id || '');
-  const { data: sleepData } = useSleepHistory(currentChild?.id || '');
+  const analytics = useSignalAnalytics(14);
+  const sleepHistory = useSleepHistory(14);
 
   // Aggregate signals by type
   const signalsByType = useMemo(() => {
