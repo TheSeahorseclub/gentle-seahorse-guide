@@ -29,6 +29,10 @@ import { WeeklyReflection } from "./pages/WeeklyReflection";
 import { Export } from "./pages/Export";
 import { SleepHistory } from "./pages/SleepHistory";
 import { Upgrade } from "./pages/Upgrade";
+import { Trends } from "./pages/Trends";
+import { Settings } from "./pages/Settings";
+import { InviteCaregiver } from "./pages/InviteCaregiver";
+import { ResetPassword } from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
 // Admin
@@ -99,8 +103,9 @@ const AppRoutes = () => {
         } 
       />
 
-      {/* Auth route */}
+      {/* Auth routes */}
       <Route path="/auth" element={<Auth defaultRedirectPath={defaultAuthenticatedRoute} />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       
       {/* Onboarding routes (require auth) */}
       <Route path="/welcome" element={
@@ -174,6 +179,21 @@ const AppRoutes = () => {
       <Route path="/upgrade" element={
         <RequireAuth>
           {onboardingComplete ? <Upgrade /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/trends" element={
+        <RequireAuth>
+          {onboardingComplete ? <Trends /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/settings" element={
+        <RequireAuth>
+          {onboardingComplete ? <Settings /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/invite-caregiver" element={
+        <RequireAuth>
+          {onboardingComplete ? <InviteCaregiver /> : <Navigate to="/welcome" replace />}
         </RequireAuth>
       } />
 

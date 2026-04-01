@@ -4,9 +4,8 @@ import { MobileLayout } from '@/components/layout/MobileLayout';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/store/appStore';
-import { useAuth } from '@/contexts/AuthContext';
 import { useCurrentChild } from '@/hooks/useCurrentChild';
-import { Activity, Sparkles, BookOpen, Calendar, ChevronRight, LogOut, Moon, Crown, Settings, Loader2 } from 'lucide-react';
+import { Activity, Sparkles, BookOpen, Calendar, ChevronRight, Moon, Crown, Settings, Loader2, TrendingUp } from 'lucide-react';
 import { usePremiumAccess } from '@/hooks/usePremiumAccess';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
@@ -26,7 +25,7 @@ const developmentWindows = [
 export const Home: React.FC = () => {
   const navigate = useNavigate();
   const { getTodaySignal } = useAppStore();
-  const { signOut } = useAuth();
+  
   const { data: currentChild } = useCurrentChild();
   const { isPremium } = usePremiumAccess();
   const [portalLoading, setPortalLoading] = useState(false);
@@ -68,11 +67,11 @@ export const Home: React.FC = () => {
             </h1>
           </div>
           <button
-            onClick={signOut}
+            onClick={() => navigate('/settings')}
             className="p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-            aria-label="Sign out"
+            aria-label="Settings"
           >
-            <LogOut className="w-5 h-5" />
+            <Settings className="w-5 h-5" />
           </button>
         </div>
 
@@ -126,7 +125,7 @@ export const Home: React.FC = () => {
         {/* Sleep History shortcut */}
         <Card 
           variant="interactive" 
-          className="p-4 mb-6 animate-slide-up"
+          className="p-4 mb-3 animate-slide-up"
           onClick={() => navigate('/sleep-history')}
         >
           <div className="flex items-center gap-4">
@@ -137,6 +136,26 @@ export const Home: React.FC = () => {
               <p className="font-medium text-foreground">Sleep patterns</p>
               <p className="text-sm text-muted-foreground mt-0.5">
                 View sleep logs &amp; wake windows
+              </p>
+            </div>
+            <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+          </div>
+        </Card>
+
+        {/* Trends shortcut */}
+        <Card 
+          variant="interactive" 
+          className="p-4 mb-6 animate-slide-up"
+          onClick={() => navigate('/trends')}
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-xl bg-coral/20 flex items-center justify-center flex-shrink-0">
+              <TrendingUp className="w-7 h-7 text-coral-foreground" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-medium text-foreground">Trends &amp; insights</p>
+              <p className="text-sm text-muted-foreground mt-0.5">
+                Charts and patterns over time
               </p>
             </div>
             <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />
