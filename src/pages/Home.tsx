@@ -5,7 +5,6 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/store/appStore';
 import { useCurrentChild } from '@/hooks/useCurrentChild';
-import { useCurrentChild } from '@/hooks/useCurrentChild';
 import { Activity, Sparkles, BookOpen, Calendar, ChevronRight, Moon, Crown, Settings, Loader2, TrendingUp } from 'lucide-react';
 import { usePremiumAccess } from '@/hooks/usePremiumAccess';
 import { supabase } from '@/integrations/supabase/client';
