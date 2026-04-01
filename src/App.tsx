@@ -29,6 +29,10 @@ import { WeeklyReflection } from "./pages/WeeklyReflection";
 import { Export } from "./pages/Export";
 import { SleepHistory } from "./pages/SleepHistory";
 import { Upgrade } from "./pages/Upgrade";
+import { Trends } from "./pages/Trends";
+import { Settings } from "./pages/Settings";
+import { InviteCaregiver } from "./pages/InviteCaregiver";
+import { ResetPassword } from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
 // Admin
