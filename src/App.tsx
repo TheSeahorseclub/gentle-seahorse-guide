@@ -103,8 +103,9 @@ const AppRoutes = () => {
         } 
       />
 
-      {/* Auth route */}
+      {/* Auth routes */}
       <Route path="/auth" element={<Auth defaultRedirectPath={defaultAuthenticatedRoute} />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       
       {/* Onboarding routes (require auth) */}
       <Route path="/welcome" element={
