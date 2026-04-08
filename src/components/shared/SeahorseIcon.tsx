@@ -23,8 +23,8 @@ export const SeahorseIcon: React.FC<SeahorseIconProps> = ({
       {/* Stylized seahorse shape */}
       <defs>
         <linearGradient id="seahorseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="hsl(174, 42%, 55%)" />
-          <stop offset="100%" stopColor="hsl(185, 45%, 60%)" />
+          <stop offset="0%" stopColor="hsl(174, 55%, 42%)" />
+          <stop offset="100%" stopColor="hsl(180, 45%, 50%)" />
         </linearGradient>
       </defs>
       
