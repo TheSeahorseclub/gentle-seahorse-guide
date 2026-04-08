@@ -8,12 +8,9 @@ import { cn } from '@/lib/utils';
 import type { CaregiverType } from '@/types';
 
 const caregiverOptions: { label: string; value: CaregiverType }[] = [
-  { label: 'Mother', value: 'mother' },
-  { label: 'Father', value: 'father' },
-  { label: 'Grandparent', value: 'grandparent' },
-  { label: 'Other family member', value: 'other-family' },
-  { label: 'Foster carer', value: 'foster-carer' },
-  { label: 'Other', value: 'other' },
+  { label: 'Mãe', value: 'mother' },
+  { label: 'Pai', value: 'father' },
+  { label: 'Nanny', value: 'other' },
 ];
 
 export const CaregiverTypePage: React.FC = () => {
