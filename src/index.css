@@ -10,78 +10,78 @@
 
 @layer base {
   :root {
-    /* Baby Blue Palette */
-    --background: 205 55% 97%;
-    --foreground: 210 30% 18%;
+    /* Clean White + Turquoise */
+    --background: 0 0% 100%;
+    --foreground: 200 25% 15%;
 
-    --card: 205 45% 99%;
-    --card-foreground: 210 30% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 200 25% 15%;
 
-    --popover: 205 45% 99%;
-    --popover-foreground: 210 30% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 25% 15%;
 
-    /* Soft baby blue - primary brand */
-    --primary: 205 70% 65%;
+    /* Turquoise primary */
+    --primary: 174 60% 46%;
     --primary-foreground: 0 0% 100%;
 
-    /* Lighter sky */
-    --secondary: 208 55% 94%;
-    --secondary-foreground: 210 35% 25%;
+    /* Very light turquoise tint */
+    --secondary: 174 30% 96%;
+    --secondary-foreground: 200 25% 20%;
 
-    /* Soft cloud mist */
-    --muted: 205 40% 94%;
-    --muted-foreground: 210 22% 45%;
+    /* Neutral light */
+    --muted: 200 10% 96%;
+    --muted-foreground: 200 15% 45%;
 
-    /* Powder blue accent */
-    --accent: 200 55% 88%;
-    --accent-foreground: 210 45% 28%;
+    /* Light turquoise wash */
+    --accent: 174 35% 93%;
+    --accent-foreground: 174 50% 25%;
 
-    /* Deeper sky */
-    --coral: 210 60% 72%;
-    --coral-foreground: 210 45% 20%;
+    /* Deeper turquoise */
+    --coral: 174 50% 38%;
+    --coral-foreground: 0 0% 100%;
 
-    /* Soft periwinkle */
-    --calm: 215 55% 78%;
-    --calm-foreground: 210 40% 18%;
+    /* Soft teal */
+    --calm: 180 30% 80%;
+    --calm-foreground: 200 25% 18%;
 
-    /* Ice blue */
-    --lavender: 200 45% 92%;
-    --lavender-foreground: 210 30% 35%;
+    /* Ice mint */
+    --lavender: 174 25% 95%;
+    --lavender-foreground: 200 20% 35%;
 
-    /* Cloud white */
-    --cream: 205 35% 97%;
-    --cream-foreground: 210 28% 28%;
+    /* Pure white */
+    --cream: 0 0% 100%;
+    --cream-foreground: 200 20% 25%;
 
     --destructive: 0 55% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 205 35% 88%;
-    --input: 205 35% 88%;
-    --ring: 205 70% 65%;
+    --border: 200 15% 91%;
+    --input: 200 15% 91%;
+    --ring: 174 60% 46%;
 
     --radius: 1rem;
 
-    /* Custom shadows - blue tinted */
-    --shadow-soft: 0 4px 20px -4px hsl(205 55% 50% / 0.15);
-    --shadow-card: 0 2px 12px -2px hsl(205 55% 50% / 0.10);
-    --shadow-float: 0 8px 30px -8px hsl(205 55% 50% / 0.18);
+    /* Turquoise-tinted shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(174 40% 40% / 0.12);
+    --shadow-card: 0 2px 12px -2px hsl(174 40% 40% / 0.08);
+    --shadow-float: 0 8px 30px -8px hsl(174 40% 40% / 0.15);
 
-    /* Baby blue gradients */
-    --gradient-ocean: linear-gradient(135deg, hsl(205 70% 65%), hsl(200 60% 72%));
-    --gradient-sunrise: linear-gradient(135deg, hsl(208 55% 92%), hsl(205 50% 85%));
-    --gradient-calm: linear-gradient(180deg, hsl(205 55% 97%), hsl(208 50% 94%));
-    --gradient-lagoon: linear-gradient(135deg, hsl(200 60% 70%), hsl(215 55% 68%));
-    --gradient-shallow: linear-gradient(180deg, hsl(205 60% 88%), hsl(210 55% 75%));
+    /* Turquoise gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(174 60% 46%), hsl(180 50% 52%));
+    --gradient-sunrise: linear-gradient(135deg, hsl(174 30% 95%), hsl(174 25% 88%));
+    --gradient-calm: linear-gradient(180deg, hsl(0 0% 100%), hsl(174 20% 97%));
+    --gradient-lagoon: linear-gradient(135deg, hsl(174 55% 44%), hsl(185 50% 42%));
+    --gradient-shallow: linear-gradient(180deg, hsl(174 30% 90%), hsl(174 45% 60%));
 
-    /* Sidebar - blue themed */
-    --sidebar-background: 205 55% 97%;
-    --sidebar-foreground: 210 30% 22%;
-    --sidebar-primary: 205 70% 65%;
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 200 25% 18%;
+    --sidebar-primary: 174 60% 46%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 205 45% 94%;
-    --sidebar-accent-foreground: 210 35% 22%;
-    --sidebar-border: 205 35% 90%;
-    --sidebar-ring: 205 70% 65%;
+    --sidebar-accent: 174 25% 95%;
+    --sidebar-accent-foreground: 200 25% 20%;
+    --sidebar-border: 200 15% 93%;
+    --sidebar-ring: 174 60% 46%;
   }
 
   .dark {
