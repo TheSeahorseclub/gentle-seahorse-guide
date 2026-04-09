@@ -352,7 +352,7 @@ export function generateClinicalPdf(options: PdfOptions): jsPDF {
   if (analytics.dailySignals.length > 0) {
     checkNewPage(90);
     nextSection('Daily Observations');
-
+    addParagraph('Number of signals logged per day. Higher points indicate days with more recorded observations — not better or worse days. Peaks may reflect days when the caregiver logged more details.', 0, 8.5);
     const chartStartX = margin + 10;
     const chartEndX = margin + contentWidth - 5;
     const chartW = chartEndX - chartStartX;
