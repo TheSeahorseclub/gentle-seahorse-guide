@@ -137,11 +137,11 @@ export function generateClinicalPdf(options: PdfOptions): jsPDF {
   setColor(TEXT_LIGHT);
   doc.text('Parent-Reported Observations', margin + 6, 33);
 
-  if (childName) {
+  if (childName && childName.trim().length > 0) {
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
     setColor(BLUE_DARK);
-    doc.text(`Child: ${childName}`, margin + 6, 40);
+    doc.text(`Child: ${childName}  •  ${childAgeMonths} months`, margin + 6, 40);
   }
 
   doc.setFontSize(8);
