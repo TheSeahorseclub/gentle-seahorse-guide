@@ -3,6 +3,7 @@ import autoTable from 'jspdf-autotable';
 import { format } from 'date-fns';
 import type { AnalyticsData } from '@/hooks/useSignalAnalytics';
 import type { DevelopmentalContext } from './developmentalContext';
+import { SEAHORSE_LOGO_BASE64 } from '@/assets/seahorseLogo';
 
 interface PdfOptions {
   childAgeMonths: number;
@@ -109,17 +110,14 @@ export function generateClinicalPdf(options: PdfOptions): jsPDF {
   doc.setFillColor(BG_SUBTLE.r, BG_SUBTLE.g, BG_SUBTLE.b);
   doc.roundedRect(margin, 12, contentWidth, 32, 4, 4, 'F');
 
-  // Decorative circle
-  doc.setFillColor(BLUE_LIGHT.r, BLUE_LIGHT.g, BLUE_LIGHT.b);
-  doc.circle(margin + 18, 28, 10, 'F');
-  doc.setFillColor(BLUE.r, BLUE.g, BLUE.b);
-  doc.circle(margin + 18, 28, 6, 'F');
-
-  // Seahorse icon placeholder - simple wave
-  setColor(WHITE);
-  doc.setFontSize(14);
-  doc.setFont('helvetica', 'bold');
-  doc.text('🌊', margin + 14, 31);
+  // Seahorse logo
+  try {
+    doc.addImage(SEAHORSE_LOGO_BASE64, 'JPEG', margin + 4, 16, 24, 24);
+  } catch {
+    // Fallback if image fails
+    doc.setFillColor(BLUE_LIGHT.r, BLUE_LIGHT.g, BLUE_LIGHT.b);
+    doc.circle(margin + 18, 28, 10, 'F');
+  }
 
   // Title text
   doc.setFontSize(18);
