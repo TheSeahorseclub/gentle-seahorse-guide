@@ -124,7 +124,7 @@ export const Export: React.FC = () => {
     }
   };
 
-  if (analytics.isLoading) {
+  if (analytics.isLoading || clinicalSleep.isLoading) {
     return (
       <MobileLayout>
         <PageHeader 
