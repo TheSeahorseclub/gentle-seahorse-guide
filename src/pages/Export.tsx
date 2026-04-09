@@ -105,6 +105,7 @@ export const Export: React.FC = () => {
       
       const pdf = generateClinicalPdf({
         childAgeMonths,
+        childName: currentChild?.name,
         analytics,
         developmentalContext,
         clinicalReflection,
