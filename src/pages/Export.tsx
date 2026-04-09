@@ -7,6 +7,7 @@ import { useCurrentChild } from '@/hooks/useCurrentChild';
 import { useSubscription } from '@/hooks/useSubscription';
 import { usePremiumAccess } from '@/hooks/usePremiumAccess';
 import { useSignalAnalytics } from '@/hooks/useSignalAnalytics';
+import { useClinicalSleepData } from '@/hooks/useClinicalSleepData';
 import { getDevelopmentalContext } from '@/utils/developmentalContext';
 import { generateClinicalPdf } from '@/utils/generateClinicalPdf';
 import { ClinicalSummaryPreview } from '@/components/export/ClinicalSummaryPreview';
@@ -85,6 +86,7 @@ export const Export: React.FC = () => {
   const exportDays = exportPeriodOptions[selectedPeriodIdx]?.days ?? 3;
   const childAgeMonths = currentChild?.ageMonths || 0;
   const analytics = useSignalAnalytics(currentChild?.id, exportDays);
+  const clinicalSleep = useClinicalSleepData(currentChild?.id, currentChild?.familyId ?? undefined, exportDays);
   const [showPreview, setShowPreview] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -109,6 +111,11 @@ export const Export: React.FC = () => {
         analytics,
         developmentalContext,
         clinicalReflection,
+        sleepSummary: clinicalSleep.sleepSummary,
+        wakeSummary: clinicalSleep.wakeSummary,
+        correlation: clinicalSleep.correlation,
+        caregiverBreakdown: clinicalSleep.caregiverBreakdown,
+        weeklyPatterns: clinicalSleep.weeklyPatterns,
       });
       
       pdf.save(`clinical-signals-summary-${new Date().toISOString().split('T')[0]}.pdf`);
@@ -117,7 +124,7 @@ export const Export: React.FC = () => {
     }
   };
 
-  if (analytics.isLoading) {
+  if (analytics.isLoading || clinicalSleep.isLoading) {
     return (
       <MobileLayout>
         <PageHeader 
@@ -191,11 +198,19 @@ export const Export: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
-                  <span>Neutral trend description</span>
+                  <span>Sleep summary & wake window analysis</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
-                  <span>Age-appropriate developmental context</span>
+                  <span>Sleep-signal correlation insights</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
+                  <span>Caregiver reporting breakdown</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
+                  <span>Weekly patterns & developmental context</span>
                 </li>
               </ul>
             </Card>
