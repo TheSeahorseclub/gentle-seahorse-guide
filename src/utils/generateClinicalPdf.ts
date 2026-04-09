@@ -3,6 +3,7 @@ import autoTable from 'jspdf-autotable';
 import { format } from 'date-fns';
 import type { AnalyticsData } from '@/hooks/useSignalAnalytics';
 import type { DevelopmentalContext } from './developmentalContext';
+import { SEAHORSE_LOGO_BASE64 } from '@/assets/seahorseLogo';
 
 interface PdfOptions {
   childAgeMonths: number;
