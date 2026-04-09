@@ -198,11 +198,19 @@ export const Export: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
-                  <span>Neutral trend description</span>
+                  <span>Sleep summary & wake window analysis</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
-                  <span>Age-appropriate developmental context</span>
+                  <span>Sleep-signal correlation insights</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
+                  <span>Caregiver reporting breakdown</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-coral-foreground/60 mt-2 flex-shrink-0" />
+                  <span>Weekly patterns & developmental context</span>
                 </li>
               </ul>
             </Card>
