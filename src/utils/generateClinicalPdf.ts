@@ -112,7 +112,7 @@ export function generateClinicalPdf(options: PdfOptions): jsPDF {
 
   // Seahorse logo
   try {
-    doc.addImage(SEAHORSE_LOGO_BASE64, 'JPEG', margin + 4, 16, 24, 24);
+    doc.addImage(SEAHORSE_LOGO_BASE64, 'PNG', margin + 4, 16, 24, 24);
   } catch {
     // Fallback if image fails
     doc.setFillColor(BLUE_LIGHT.r, BLUE_LIGHT.g, BLUE_LIGHT.b);
