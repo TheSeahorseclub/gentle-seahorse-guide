@@ -86,6 +86,7 @@ export const Export: React.FC = () => {
   const exportDays = exportPeriodOptions[selectedPeriodIdx]?.days ?? 3;
   const childAgeMonths = currentChild?.ageMonths || 0;
   const analytics = useSignalAnalytics(currentChild?.id, exportDays);
+  const clinicalSleep = useClinicalSleepData(currentChild?.id, currentChild?.familyId ?? undefined, exportDays);
   const [showPreview, setShowPreview] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
