@@ -7,6 +7,7 @@ import { useCurrentChild } from '@/hooks/useCurrentChild';
 import { useSubscription } from '@/hooks/useSubscription';
 import { usePremiumAccess } from '@/hooks/usePremiumAccess';
 import { useSignalAnalytics } from '@/hooks/useSignalAnalytics';
+import { useClinicalSleepData } from '@/hooks/useClinicalSleepData';
 import { getDevelopmentalContext } from '@/utils/developmentalContext';
 import { generateClinicalPdf } from '@/utils/generateClinicalPdf';
 import { ClinicalSummaryPreview } from '@/components/export/ClinicalSummaryPreview';
