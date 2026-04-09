@@ -111,6 +111,11 @@ export const Export: React.FC = () => {
         analytics,
         developmentalContext,
         clinicalReflection,
+        sleepSummary: clinicalSleep.sleepSummary,
+        wakeSummary: clinicalSleep.wakeSummary,
+        correlation: clinicalSleep.correlation,
+        caregiverBreakdown: clinicalSleep.caregiverBreakdown,
+        weeklyPatterns: clinicalSleep.weeklyPatterns,
       });
       
       pdf.save(`clinical-signals-summary-${new Date().toISOString().split('T')[0]}.pdf`);
