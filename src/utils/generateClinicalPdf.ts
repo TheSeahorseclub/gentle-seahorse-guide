@@ -3,10 +3,9 @@ import autoTable from 'jspdf-autotable';
 import { format } from 'date-fns';
 import type { AnalyticsData } from '@/hooks/useSignalAnalytics';
 import type { DevelopmentalContext } from './developmentalContext';
-import { SEAHORSE_LOGO_BASE64 } from '@/assets/seahorseLogo';
-
 interface PdfOptions {
   childAgeMonths: number;
+  childName?: string;
   analytics: AnalyticsData;
   developmentalContext: DevelopmentalContext;
   clinicalReflection: string;
@@ -32,7 +31,7 @@ const CHART_COLORS = [
 ];
 
 export function generateClinicalPdf(options: PdfOptions): jsPDF {
-  const { childAgeMonths, analytics, developmentalContext, clinicalReflection } = options;
+  const { childAgeMonths, childName, analytics, developmentalContext, clinicalReflection } = options;
 
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -110,25 +109,23 @@ export function generateClinicalPdf(options: PdfOptions): jsPDF {
   doc.setFillColor(BG_SUBTLE.r, BG_SUBTLE.g, BG_SUBTLE.b);
   doc.roundedRect(margin, 12, contentWidth, 32, 4, 4, 'F');
 
-  // Seahorse logo
-  try {
-    doc.addImage(SEAHORSE_LOGO_BASE64, 'PNG', margin + 4, 16, 24, 24);
-  } catch {
-    // Fallback if image fails
-    doc.setFillColor(BLUE_LIGHT.r, BLUE_LIGHT.g, BLUE_LIGHT.b);
-    doc.circle(margin + 18, 28, 10, 'F');
-  }
-
   // Title text
   doc.setFontSize(18);
   doc.setFont('helvetica', 'bold');
   setColor(TEXT_DARK);
-  doc.text('Clinical Signals Summary', margin + 35, 25);
+  doc.text('Clinical Signals Summary', margin + 6, 25);
 
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   setColor(TEXT_LIGHT);
-  doc.text('Parent-Reported Observations', margin + 35, 33);
+  doc.text('Parent-Reported Observations', margin + 6, 33);
+
+  if (childName) {
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    setColor(BLUE_DARK);
+    doc.text(`Child: ${childName}`, margin + 6, 40);
+  }
 
   // Date stamp
   doc.setFontSize(8);
