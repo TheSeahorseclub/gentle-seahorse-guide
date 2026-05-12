@@ -48,6 +48,17 @@ export const Auth: React.FC<AuthProps> = ({ defaultRedirectPath = '/welcome' }) 
     setLoading(false);
   };
 
+  const handleAppleSignIn = async () => {
+    setLoading(true);
+    const { error } = await lovable.auth.signInWithOAuth('apple', {
+      redirect_uri: window.location.origin,
+    });
+    if (error) {
+      toast.error('Could not sign in with Apple. Please try again.');
+    }
+    setLoading(false);
+  };
+
   const handleEmailSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) return;
