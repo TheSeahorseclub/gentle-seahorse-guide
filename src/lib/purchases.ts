@@ -21,7 +21,10 @@ export async function getOfferings() {
 }
 
 export async function purchasePackage(aPackage: any) {
-  return Purchases.purchasePackage({ aPackage });
+  return Purchases.purchasePackage({
+    identifier: aPackage.identifier,
+    offeringIdentifier: aPackage.offeringIdentifier,
+  });
 }
 
 export async function restorePurchases() {
