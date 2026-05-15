@@ -12,8 +12,9 @@ import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import {
-  User, Baby, Shield, Moon, Sun, ChevronLeft, Save, Users, Crown, LogOut, Loader2,
+  User, Baby, Shield, Moon, Sun, ChevronLeft, Save, Users, Crown, LogOut, Loader2, RotateCcw,
 } from 'lucide-react';
+import { restorePurchases, hasActiveEntitlement } from '@/lib/purchases';
 import { useTheme } from '@/hooks/useTheme';
 
 export const Settings: React.FC = () => {
@@ -27,6 +28,7 @@ export const Settings: React.FC = () => {
   const [fullName, setFullName] = useState('');
   const [childName, setChildName] = useState('');
   const [saving, setSaving] = useState(false);
+  const [restoring, setRestoring] = useState(false);
   const [caregivers, setCaregivers] = useState<any[]>([]);
 
   useEffect(() => {
@@ -237,6 +239,41 @@ export const Settings: React.FC = () => {
             )}
             Save changes
           </Button>
+
+          {/* Restore purchases */}
+          {!isPremium && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="w-full text-muted-foreground"
+              disabled={restoring}
+              onClick={async () => {
+                setRestoring(true);
+                try {
+                  const { customerInfo } = await restorePurchases();
+                  if (hasActiveEntitlement(customerInfo)) {
+                    await supabase.from('user_subscriptions').upsert({
+                      user_id: user!.id,
+                      entitlement_status: 'active',
+                      plan: 'premium',
+                      status: 'active',
+                    }, { onConflict: 'user_id' });
+                    queryClient.invalidateQueries({ queryKey: ['entitlement'] });
+                    toast.success('Purchases restored!');
+                  } else {
+                    toast.info('No active subscription found.');
+                  }
+                } catch {
+                  toast.error('Restore failed. Please try again.');
+                } finally {
+                  setRestoring(false);
+                }
+              }}
+            >
+              {restoring ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <RotateCcw className="w-4 h-4 mr-2" />}
+              Restore Purchases
+            </Button>
+          )}
 
           {/* Sign out */}
           <Button
