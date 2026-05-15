@@ -1,35 +1,32 @@
+## Debug RevenueCat 401
 
-# Fix: Update Database Paths to Match Actual Storage Files
+Add temporary logs to `supabase/functions/revenuecat-webhook/index.ts` before the auth check to capture:
+- whether `REVENUECAT_WEBHOOK_SECRET` is loaded (length only, never the value)
+- Authorization header presence, whether it has the `Bearer ` prefix
+- token length and whether it matches the secret length
 
-## Problem
-Videos from cycles 5-12 may fail because the database paths don't match the actual filenames in storage. Supabase Storage is case-sensitive.
+Then deploy, trigger a RevenueCat webhook, fetch the function logs, and identify which condition fails (env missing, header missing, prefix mismatch, value mismatch).
 
-## Solution
-Update the database `video_path` entries to match the **exact** filenames in your storage bucket.
+After diagnosis, apply the real fix (e.g. accept raw token without `Bearer`, trim whitespace, or update RC config) and remove the diagnostic logs.
 
-## Steps
+### Code change
 
-1. **Verify actual filenames in storage**
-   - Check your storage bucket to confirm the exact casing of each video file
-   - Example: Is it `module5.mp4` or `Module5.mp4`?
+```ts
+const authHeader = req.headers.get('Authorization') ?? '';
+const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
 
-2. **Update database paths to match storage**
-   - Once we know the correct casing, update the `content_videos` table to use the exact paths
+console.log('auth-debug', {
+  secret_loaded: WEBHOOK_SECRET.length > 0,
+  secret_len: WEBHOOK_SECRET.length,
+  header_present: authHeader.length > 0,
+  header_has_bearer: authHeader.startsWith('Bearer '),
+  token_len: token.length,
+  lengths_match: token.length === WEBHOOK_SECRET.length,
+});
 
-## What You Need to Do
-
-Please confirm the **exact** filenames in your storage for cycles 5-12:
-- Are they lowercase like `module5.mp4`, `module6.mp4`, etc.?
-- Or Title Case like `Module5.mp4`, `Module6.mp4`, etc.?
-
-Once confirmed, I'll update the database to match exactly.
-
----
-
-## Technical Note
-The storage URL is correctly configured to use:
-```
-https://pybzakbvislqmveosmcz.supabase.co/storage/v1/object/public/videos/{video_path}
+if (!WEBHOOK_SECRET || token !== WEBHOOK_SECRET) {
+  return new Response('Unauthorized', { status: 401 });
+}
 ```
 
-The issue is purely a path/filename casing mismatch between database records and actual storage files.
+No DB or schema changes.
