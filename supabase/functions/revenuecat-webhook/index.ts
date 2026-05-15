@@ -36,6 +36,15 @@ serve(async (req: Request) => {
   const authHeader = req.headers.get('Authorization') ?? '';
   const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
 
+  console.log('auth-debug', {
+    secret_loaded: WEBHOOK_SECRET.length > 0,
+    secret_len: WEBHOOK_SECRET.length,
+    header_present: authHeader.length > 0,
+    header_has_bearer: authHeader.startsWith('Bearer '),
+    token_len: token.length,
+    lengths_match: token.length === WEBHOOK_SECRET.length,
+  });
+
   if (!WEBHOOK_SECRET || token !== WEBHOOK_SECRET) {
     return new Response('Unauthorized', { status: 401 });
   }
