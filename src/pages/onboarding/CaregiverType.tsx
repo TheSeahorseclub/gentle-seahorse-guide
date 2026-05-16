@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils';
 import type { CaregiverType } from '@/types';
 
 const caregiverOptions: { label: string; value: CaregiverType }[] = [
-  { label: 'Mãe', value: 'mother' },
-  { label: 'Pai', value: 'father' },
+  { label: 'Mum', value: 'mother' },
+  { label: 'Dad', value: 'father' },
   { label: 'Nanny', value: 'other' },
 ];
 
