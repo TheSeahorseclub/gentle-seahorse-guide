@@ -240,6 +240,21 @@ const AppRoutes = () => {
           {onboardingComplete ? <InviteCaregiver /> : <Navigate to="/welcome" replace />}
         </RequireAuth>
       } />
+      <Route path="/content" element={
+        <RequireAuth>
+          {onboardingComplete ? <Content /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/content/item/:id" element={
+        <RequireAuth>
+          {onboardingComplete ? <ContentDetail /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/content/:stage/:section" element={
+        <RequireAuth>
+          {onboardingComplete ? <ContentSection /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
 
       {/* Admin routes (require auth + admin role) */}
       <Route path="/admin" element={
