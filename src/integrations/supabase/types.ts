@@ -18,35 +18,53 @@ export type Database = {
         Row: {
           access_level: string
           age_group: string | null
+          age_stage: string | null
+          body: string | null
           category: string | null
           content_type: string
           created_at: string
           description: string | null
           id: string
+          image_url: string | null
+          is_published: boolean
+          section: string | null
           title: string
           updated_at: string
+          week_recommended: number[] | null
         }
         Insert: {
           access_level?: string
           age_group?: string | null
+          age_stage?: string | null
+          body?: string | null
           category?: string | null
           content_type?: string
           created_at?: string
           description?: string | null
           id?: string
+          image_url?: string | null
+          is_published?: boolean
+          section?: string | null
           title: string
           updated_at?: string
+          week_recommended?: number[] | null
         }
         Update: {
           access_level?: string
           age_group?: string | null
+          age_stage?: string | null
+          body?: string | null
           category?: string | null
           content_type?: string
           created_at?: string
           description?: string | null
           id?: string
+          image_url?: string | null
+          is_published?: boolean
+          section?: string | null
           title?: string
           updated_at?: string
+          week_recommended?: number[] | null
         }
         Relationships: []
       }

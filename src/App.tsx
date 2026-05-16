@@ -38,6 +38,9 @@ import { Upgrade } from "./pages/Upgrade";
 import { Trends } from "./pages/Trends";
 import { Settings } from "./pages/Settings";
 import { InviteCaregiver } from "./pages/InviteCaregiver";
+import { Content } from "./pages/Content";
+import { ContentSection } from "./pages/ContentSection";
+import { ContentDetail } from "./pages/ContentDetail";
 import { ResetPassword } from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
@@ -235,6 +238,21 @@ const AppRoutes = () => {
       <Route path="/invite-caregiver" element={
         <RequireAuth>
           {onboardingComplete ? <InviteCaregiver /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/content" element={
+        <RequireAuth>
+          {onboardingComplete ? <Content /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/content/item/:id" element={
+        <RequireAuth>
+          {onboardingComplete ? <ContentDetail /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/content/:stage/:section" element={
+        <RequireAuth>
+          {onboardingComplete ? <ContentSection /> : <Navigate to="/welcome" replace />}
         </RequireAuth>
       } />
 
