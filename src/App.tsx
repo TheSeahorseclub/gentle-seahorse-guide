@@ -38,6 +38,9 @@ import { Upgrade } from "./pages/Upgrade";
 import { Trends } from "./pages/Trends";
 import { Settings } from "./pages/Settings";
 import { InviteCaregiver } from "./pages/InviteCaregiver";
+import { Content } from "./pages/Content";
+import { ContentSection } from "./pages/ContentSection";
+import { ContentDetail } from "./pages/ContentDetail";
 import { ResetPassword } from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
