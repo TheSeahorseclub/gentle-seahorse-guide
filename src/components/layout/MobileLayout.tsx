@@ -13,7 +13,7 @@ const navItems = [
   { path: '/home', icon: Home, label: 'Home' },
   { path: '/tracker', icon: Activity, label: 'Signals' },
   { path: '/insight', icon: Sparkles, label: 'Insight' },
-  { path: '/lessons', icon: BookOpen, label: 'Learn' },
+  { path: '/content', icon: BookOpen, label: 'Library' },
   { path: '/export', icon: FileText, label: 'Export' },
 ];
 
