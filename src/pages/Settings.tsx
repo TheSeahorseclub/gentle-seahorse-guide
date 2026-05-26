@@ -12,8 +12,9 @@ import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import {
-  User, Baby, Shield, Moon, Sun, ChevronLeft, Save, Users, Crown, LogOut, Loader2, RotateCcw,
+  User, Baby, Shield, Moon, Sun, ChevronLeft, Save, Users, Crown, LogOut, Loader2, RotateCcw, AlertTriangle,
 } from 'lucide-react';
+import { DeleteAccountButton } from '@/components/shared/DeleteAccountButton';
 import { restorePurchases, hasActiveEntitlement } from '@/lib/purchases';
 import { useTheme } from '@/hooks/useTheme';
 
@@ -285,6 +286,18 @@ export const Settings: React.FC = () => {
             <LogOut className="w-5 h-5 mr-2" />
             Sign out
           </Button>
+
+          {/* Danger zone */}
+          <Card className="p-5 border-destructive/30">
+            <div className="flex items-center gap-3 mb-4">
+              <AlertTriangle className="w-5 h-5 text-destructive" />
+              <h2 className="font-display font-semibold text-destructive">Danger zone</h2>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              Permanently delete your account and all associated data. This action cannot be undone.
+            </p>
+            <DeleteAccountButton />
+          </Card>
         </div>
       </div>
     </MobileLayout>

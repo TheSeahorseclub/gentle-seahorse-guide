@@ -48,16 +48,33 @@ export const Upgrade: React.FC = () => {
   const [restoring, setRestoring] = useState(false);
 
   useEffect(() => {
-    getOfferings()
-      .then((o) => {
-        setOfferings(o);
-        // Default to annual if available
-        const annual = o?.current?.availablePackages?.find((p: any) => p.packageType === 'ANNUAL');
-        const monthly = o?.current?.availablePackages?.find((p: any) => p.packageType === 'MONTHLY');
-        setSelectedPackage(annual || monthly || o?.current?.availablePackages?.[0]);
-      })
-      .catch(() => toast.error('Could not load subscription options.'))
-      .finally(() => setOfferingsLoading(false));
+    let cancelled = false;
+    const load = (attempt = 0) => {
+      getOfferings()
+        .then((o) => {
+          if (cancelled) return;
+          console.log('[RC] offerings:', JSON.stringify(o, null, 2));
+          setOfferings(o);
+          const annual = o?.current?.availablePackages?.find((p: any) => p.packageType === 'ANNUAL');
+          const monthly = o?.current?.availablePackages?.find((p: any) => p.packageType === 'MONTHLY');
+          setSelectedPackage(annual || monthly || o?.current?.availablePackages?.[0]);
+          setOfferingsLoading(false);
+        })
+        .catch((err) => {
+          if (cancelled) return;
+          if (err?.message === 'rc-not-ready' && attempt < 5) {
+            setTimeout(() => load(attempt + 1), 600);
+            return;
+          }
+          if (err?.message !== 'not-native') {
+            console.error('[RC] getOfferings error:', err);
+            toast.error('Could not load subscription options.');
+          }
+          setOfferingsLoading(false);
+        });
+    };
+    load();
+    return () => { cancelled = true; };
   }, []);
 
   const syncEntitlementToDb = async () => {
