@@ -20,7 +20,7 @@ import { supabase } from '@/integrations/supabase/client';
 const CONFIRM_PHRASE = 'DELETE';
 
 export const DeleteAccountButton: React.FC = () => {
-  const { signOut, session } = useAuth();
+  const { signOut } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
@@ -29,16 +29,26 @@ export const DeleteAccountButton: React.FC = () => {
   const confirmed = input === CONFIRM_PHRASE;
 
   const handleDelete = async () => {
-    if (!confirmed || !session) return;
+    if (!confirmed) return;
     setLoading(true);
     try {
-      const { error } = await supabase.functions.invoke('delete-account', {
-        headers: { Authorization: `Bearer ${session.access_token}` },
+      console.log('[DeleteAccount] getting session...');
+      const { data: { session: freshSession }, error: sessionError } = await supabase.auth.getSession();
+      console.log('[DeleteAccount] session result:', { hasSession: !!freshSession, hasToken: !!freshSession?.access_token, sessionError });
+      if (!freshSession?.access_token) throw new Error('Not signed in');
+
+      console.log('[DeleteAccount] invoking edge function...');
+      const { data, error } = await supabase.functions.invoke('delete-account', {
+        headers: { Authorization: `Bearer ${freshSession.access_token}` },
       });
+      console.log('[DeleteAccount] function result:', { data, error, errorMessage: error?.message, errorContext: (error as any)?.context });
       if (error) throw error;
+
+      console.log('[DeleteAccount] success, signing out...');
       await signOut();
       navigate('/auth');
     } catch (err) {
+      console.error('[DeleteAccount] caught error:', err);
       const message = err instanceof Error ? err.message : 'Account deletion failed';
       toast.error(message);
       setLoading(false);
