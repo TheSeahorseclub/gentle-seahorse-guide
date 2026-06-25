@@ -42,7 +42,17 @@ export const DeleteAccountButton: React.FC = () => {
         headers: { Authorization: `Bearer ${freshSession.access_token}` },
       });
       console.log('[DeleteAccount] function result:', { data, error, errorMessage: error?.message, errorContext: (error as any)?.context });
-      if (error) throw error;
+      if (error) {
+        let message = error.message;
+        try {
+          const ctx = (error as any).context;
+          if (ctx?.json) {
+            const body = await ctx.json();
+            if (body?.error) message = body.error;
+          }
+        } catch { /* ignore parse errors */ }
+        throw new Error(message);
+      }
 
       console.log('[DeleteAccount] success, signing out...');
       await signOut();

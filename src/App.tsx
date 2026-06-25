@@ -42,6 +42,7 @@ import { Content } from "./pages/Content";
 import { ContentSection } from "./pages/ContentSection";
 import { ContentDetail } from "./pages/ContentDetail";
 import { ResetPassword } from "./pages/ResetPassword";
+import { DeleteAccountRequest } from "./pages/DeleteAccountRequest";
 import NotFound from "./pages/NotFound";
 
 // Admin
@@ -150,6 +151,8 @@ const AppRoutes = () => {
       {/* Auth routes */}
       <Route path="/auth" element={<Auth defaultRedirectPath={defaultAuthenticatedRoute} />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      {/* Public account/data deletion request page (Play/Apple data-safety URL) */}
+      <Route path="/delete-account" element={<DeleteAccountRequest />} />
       
       {/* Onboarding routes (require auth) */}
       <Route path="/welcome" element={
