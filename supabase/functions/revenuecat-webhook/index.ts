@@ -32,25 +32,15 @@ function mapEvent(event: any): {
   }
 }
 
-async function verifySignature(body: string, header: string): Promise<boolean> {
-  if (!WEBHOOK_SECRET) return false;
-  const encoder = new TextEncoder();
-  const key = await crypto.subtle.importKey(
-    'raw', encoder.encode(WEBHOOK_SECRET), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify'],
-  );
-  const [, sigHex] = header.split('=');
-  if (!sigHex) return false;
-  const sig = new Uint8Array(sigHex.match(/../g)!.map((h) => parseInt(h, 16)));
-  return crypto.subtle.verify('HMAC', key, sig, encoder.encode(body));
-}
+serve(async (req: Request) => {
+  const authHeader = req.headers.get('Authorization') ?? '';
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
 
-serve(async (req) => {
-  const body = await req.text();
-  const sig = req.headers.get('X-RevenueCat-Signature') ?? '';
-
-  if (!(await verifySignature(body, sig))) {
+  if (!WEBHOOK_SECRET || token !== WEBHOOK_SECRET) {
     return new Response('Unauthorized', { status: 401 });
   }
+
+  const body = await req.text();
 
   const payload = JSON.parse(body);
   const event = payload.event;

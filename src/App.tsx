@@ -2,9 +2,15 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { useCurrentChild } from "@/hooks/useCurrentChild";
+import { useDeepLink } from "@/hooks/useDeepLink";
+import { App as CapApp } from "@capacitor/app";
+import { Capacitor } from "@capacitor/core";
+import { useEffect } from "react";
+import { initPurchases, getCustomerInfo, hasActiveEntitlement } from "@/lib/purchases";
+import { supabase } from "@/integrations/supabase/client";
 
 // Auth
 import { Auth } from "./pages/Auth";
@@ -32,7 +38,11 @@ import { Upgrade } from "./pages/Upgrade";
 import { Trends } from "./pages/Trends";
 import { Settings } from "./pages/Settings";
 import { InviteCaregiver } from "./pages/InviteCaregiver";
+import { Content } from "./pages/Content";
+import { ContentSection } from "./pages/ContentSection";
+import { ContentDetail } from "./pages/ContentDetail";
 import { ResetPassword } from "./pages/ResetPassword";
+import { DeleteAccountRequest } from "./pages/DeleteAccountRequest";
 import NotFound from "./pages/NotFound";
 
 // Admin
@@ -82,8 +92,43 @@ const LoadingScreen = () => (
 const AppRoutes = () => {
   const { user, loading: authLoading } = useAuth();
   const { data: currentChild, isLoading: childLoading } = useCurrentChild();
+  const navigate = useNavigate();
   const onboardingComplete = !!currentChild;
   const defaultAuthenticatedRoute = onboardingComplete ? "/home" : "/welcome";
+
+  useDeepLink();
+
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) return;
+    const listener = CapApp.addListener('backButton', () => navigate(-1));
+    return () => { listener.then((l) => l.remove()); };
+  }, [navigate]);
+
+  // Init RevenueCat when user logs in
+  useEffect(() => {
+    if (!user) return;
+    initPurchases(user.id).catch(console.error);
+  }, [user?.id]);
+
+  // Sync entitlement from RC on app foreground
+  useEffect(() => {
+    if (!user) return;
+    const listener = CapApp.addListener('appStateChange', async ({ isActive }) => {
+      if (!isActive) return;
+      try {
+        const customerInfo = await getCustomerInfo();
+        if (hasActiveEntitlement(customerInfo)) {
+          await supabase.from('user_subscriptions').upsert({
+            user_id: user.id,
+            entitlement_status: 'active',
+            plan: 'premium',
+            status: 'active',
+          }, { onConflict: 'user_id' });
+        }
+      } catch { /* offline or RC not ready */ }
+    });
+    return () => { listener.then((l) => l.remove()); };
+  }, [user?.id]);
 
   if (authLoading || (user && childLoading)) {
     return <LoadingScreen />;
@@ -106,6 +151,8 @@ const AppRoutes = () => {
       {/* Auth routes */}
       <Route path="/auth" element={<Auth defaultRedirectPath={defaultAuthenticatedRoute} />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      {/* Public account/data deletion request page (Play/Apple data-safety URL) */}
+      <Route path="/delete-account" element={<DeleteAccountRequest />} />
       
       {/* Onboarding routes (require auth) */}
       <Route path="/welcome" element={
@@ -194,6 +241,21 @@ const AppRoutes = () => {
       <Route path="/invite-caregiver" element={
         <RequireAuth>
           {onboardingComplete ? <InviteCaregiver /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/content" element={
+        <RequireAuth>
+          {onboardingComplete ? <Content /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/content/item/:id" element={
+        <RequireAuth>
+          {onboardingComplete ? <ContentDetail /> : <Navigate to="/welcome" replace />}
+        </RequireAuth>
+      } />
+      <Route path="/content/:stage/:section" element={
+        <RequireAuth>
+          {onboardingComplete ? <ContentSection /> : <Navigate to="/welcome" replace />}
         </RequireAuth>
       } />
 

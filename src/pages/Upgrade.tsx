@@ -3,18 +3,13 @@ import { MobileLayout } from '@/components/layout/MobileLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, X, Sparkles, Crown, Settings, Loader2 } from 'lucide-react';
+import { Check, X, Sparkles, Crown, Loader2, RotateCcw } from 'lucide-react';
 import { usePremiumAccess } from '@/hooks/usePremiumAccess';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useQueryClient } from '@tanstack/react-query';
-import { useSearchParams } from 'react-router-dom';
-
-const PRICES = {
-  monthly: { id: 'price_1TFinFHB4GxrSvgsQDOIYEZE', label: '£8.88 / month', amount: '£8.88' },
-  yearly: { id: 'price_1TFioPHB4GxrSvgsUASb5lI3', label: '£79.00 / year (save 26%)', amount: '£79.00' },
-};
+import { getOfferings, purchasePackage, restorePurchases, hasActiveEntitlement } from '@/lib/purchases';
+import { supabase } from '@/integrations/supabase/client';
 
 const freeFeatures = [
   { text: '1 child profile', included: true },
@@ -31,85 +26,99 @@ const freeFeatures = [
 ];
 
 const premiumFeatures = [
-  { text: 'Up to 3 caregiver profiles per child (mum, dad, nanny)', included: true },
+  { text: 'Up to 3 caregiver profiles per child', included: true },
   { text: 'Daily signal tracking', included: true },
   { text: 'Full milestone tracking', included: true },
-  { text: 'Weekly learning (text)', included: true },
   { text: 'Full video library access', included: true },
   { text: 'Personalised recommendations', included: true },
   { text: 'Full content library (0–3 years)', included: true },
-  { text: 'Download anytime the Clinical summary for doctor visits or for your family records', included: true },
-  { text: 'Monitor nanny activity or any caregiver remotely', included: true },
+  { text: 'Clinical summary export — any date range', included: true },
+  { text: 'Monitor caregiver activity remotely', included: true },
 ];
 
 export const Upgrade: React.FC = () => {
   const { isPremium, isLoading: premiumLoading } = usePremiumAccess();
   const { user } = useAuth();
   const queryClient = useQueryClient();
-  const [searchParams] = useSearchParams();
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
-  const [checkoutLoading, setCheckoutLoading] = useState(false);
-  const [portalLoading, setPortalLoading] = useState(false);
 
-  // After successful checkout, re-check subscription
+  const [offerings, setOfferings] = useState<any>(null);
+  const [offeringsLoading, setOfferingsLoading] = useState(true);
+  const [offeringsError, setOfferingsError] = useState<string | null>(null);
+  const [selectedPackage, setSelectedPackage] = useState<any>(null);
+  const [purchasing, setPurchasing] = useState(false);
+  const [restoring, setRestoring] = useState(false);
+
   useEffect(() => {
-    if (searchParams.get('success') === 'true') {
-      toast.success('Welcome to Premium! 🎉 Your subscription is active.');
-      checkSubscription();
-    }
-    if (searchParams.get('cancelled') === 'true') {
-      toast.info('Checkout was cancelled.');
-    }
-  }, [searchParams]);
+    let cancelled = false;
+    getOfferings()
+      .then((o) => {
+        if (cancelled) return;
+        setOfferings(o);
+        const annual = o?.current?.availablePackages?.find((p: any) => p.packageType === 'ANNUAL');
+        const monthly = o?.current?.availablePackages?.find((p: any) => p.packageType === 'MONTHLY');
+        setSelectedPackage(annual || monthly || o?.current?.availablePackages?.[0]);
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        if (err?.message !== 'not-native') {
+          console.error('[RC] getOfferings error:', err);
+          setOfferingsError('Could not load subscription offers. Please ensure RevenueCat is configured and try again.');
+          toast.error('Could not load subscription options.');
+        }
+      })
+      .finally(() => { if (!cancelled) setOfferingsLoading(false); });
+    return () => { cancelled = true; };
+  }, []);
 
-  const checkSubscription = async () => {
-    try {
-      const { data, error } = await supabase.functions.invoke('check-subscription');
-      if (!error && data?.subscribed) {
-        queryClient.invalidateQueries({ queryKey: ['entitlement'] });
-        queryClient.invalidateQueries({ queryKey: ['subscription'] });
-      }
-    } catch (err) {
-      console.error('Error checking subscription:', err);
-    }
+  const syncEntitlementToDb = async () => {
+    if (!user) return;
+    await supabase.from('user_subscriptions').upsert({
+      user_id: user.id,
+      entitlement_status: 'active',
+      plan: 'premium',
+      status: 'active',
+    }, { onConflict: 'user_id' });
+    queryClient.invalidateQueries({ queryKey: ['entitlement'] });
+    queryClient.invalidateQueries({ queryKey: ['subscription'] });
   };
 
-  const handleCheckout = async () => {
-    if (!user) {
-      toast.error('Please sign in first.');
-      return;
-    }
-    setCheckoutLoading(true);
+  const handlePurchase = async () => {
+    if (!selectedPackage) return;
+    setPurchasing(true);
     try {
-      const priceId = PRICES[billingCycle].id;
-      const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: { priceId },
-      });
-      if (error) throw error;
-      if (data?.url) {
-        window.location.href = data.url;
-      }
-    } catch (err: any) {
-      toast.error(err.message || 'Failed to start checkout');
-    } finally {
-      setCheckoutLoading(false);
-    }
-  };
-
-  const handleManageSubscription = async () => {
-    setPortalLoading(true);
-    try {
-      const { data, error } = await supabase.functions.invoke('customer-portal');
-      if (error) throw error;
-      if (data?.url) {
-        window.open(data.url, '_blank');
+      const { customerInfo } = await purchasePackage(selectedPackage);
+      if (hasActiveEntitlement(customerInfo)) {
+        await syncEntitlementToDb();
+        toast.success('Welcome to Premium!');
       }
     } catch (err: any) {
-      toast.error(err.message || 'Failed to open billing portal');
+      if (err?.code !== '1') { // 1 = user cancelled
+        toast.error('Purchase failed. Please try again.');
+      }
     } finally {
-      setPortalLoading(false);
+      setPurchasing(false);
     }
   };
+
+  const handleRestore = async () => {
+    setRestoring(true);
+    try {
+      const { customerInfo } = await restorePurchases();
+      if (hasActiveEntitlement(customerInfo)) {
+        await syncEntitlementToDb();
+        toast.success('Purchases restored!');
+      } else {
+        toast.info('No active subscription found.');
+      }
+    } catch {
+      toast.error('Restore failed. Please try again.');
+    } finally {
+      setRestoring(false);
+    }
+  };
+
+  const monthly = offerings?.current?.availablePackages?.find((p: any) => p.packageType === 'MONTHLY');
+  const annual = offerings?.current?.availablePackages?.find((p: any) => p.packageType === 'ANNUAL');
 
   return (
     <MobileLayout>
@@ -119,6 +128,11 @@ export const Upgrade: React.FC = () => {
       />
 
       <div className="px-6 pb-8 space-y-5">
+        {offeringsError && (
+          <Card variant="soft" className="p-4 border border-destructive/10 text-destructive animate-fade-in">
+            <p className="text-sm">{offeringsError}</p>
+          </Card>
+        )}
         {/* Free Tier */}
         <Card variant="soft" className="p-5 animate-fade-in">
           <div className="flex items-center gap-3 mb-4">
@@ -133,11 +147,9 @@ export const Upgrade: React.FC = () => {
           <ul className="space-y-2">
             {freeFeatures.map((f, i) => (
               <li key={i} className="flex items-center gap-2 text-sm">
-                {f.included ? (
-                  <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                ) : (
-                  <X className="w-4 h-4 text-muted-foreground/40 flex-shrink-0" />
-                )}
+                {f.included
+                  ? <Check className="w-4 h-4 text-primary flex-shrink-0" />
+                  : <X className="w-4 h-4 text-muted-foreground/40 flex-shrink-0" />}
                 <span className={f.included ? 'text-foreground' : 'text-muted-foreground/60'}>
                   {f.text}
                 </span>
@@ -153,39 +165,58 @@ export const Upgrade: React.FC = () => {
               Recommended
             </span>
           </div>
+
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-xl gradient-ocean flex items-center justify-center">
               <Crown className="w-5 h-5 text-primary-foreground" />
             </div>
             <div>
               <h3 className="font-display font-semibold text-coral-foreground">Premium</h3>
-              <p className="text-sm text-coral-foreground/80">
-                <span className="text-2xl font-display font-bold">{PRICES[billingCycle].amount}</span>
-                {billingCycle === 'monthly' ? ' / month' : ' / year'}
-              </p>
+              {selectedPackage && (
+                <p className="text-sm text-coral-foreground/80">
+                  <span className="text-2xl font-display font-bold">
+                    {selectedPackage.product?.priceString}
+                  </span>
+                  {selectedPackage.packageType === 'MONTHLY' ? ' / month' : ' / year'}
+                </p>
+              )}
             </div>
           </div>
 
-          {/* Billing toggle */}
-          {!isPremium && (
+          {/* Package picker */}
+          {!isPremium && !offeringsLoading && (monthly || annual) && (
             <div className="flex gap-2 mb-4">
-              <Button
-                variant={billingCycle === 'monthly' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setBillingCycle('monthly')}
-                className="flex-1 text-xs"
-              >
-                Monthly
-              </Button>
-              <Button
-                variant={billingCycle === 'yearly' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setBillingCycle('yearly')}
-                className="flex-1 text-xs"
-              >
-                Yearly (save 26%)
-              </Button>
+              {monthly && (
+                <Button
+                  variant={selectedPackage?.packageType === 'MONTHLY' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedPackage(monthly)}
+                  className="flex-1 text-xs"
+                >
+                  Monthly
+                </Button>
+              )}
+              {annual && (
+                <Button
+                  variant={selectedPackage?.packageType === 'ANNUAL' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedPackage(annual)}
+                  className="flex-1 text-xs"
+                >
+                  Yearly (save ~26%)
+                </Button>
+              )}
             </div>
+          )}
+          {selectedPackage?.product?.description && (
+            <p className="text-xs text-muted-foreground mb-4">{selectedPackage.product.description}</p>
+          )}
+          {!isPremium && !offeringsLoading && !monthly && !annual && (
+            <Card variant="soft" className="p-4 border border-muted-foreground/20">
+              <p className="text-sm text-muted-foreground">
+                Subscription offers are currently unavailable. Please test on a native device with RevenueCat configured.
+              </p>
+            </Card>
           )}
 
           <ul className="space-y-2 mb-5">
@@ -198,46 +229,70 @@ export const Upgrade: React.FC = () => {
           </ul>
 
           {isPremium ? (
-            <div className="space-y-2">
-              <Button variant="outline" size="lg" className="w-full" disabled>
-                You're on Premium ✨
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-full"
-                onClick={handleManageSubscription}
-                disabled={portalLoading}
-              >
-                {portalLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                ) : (
-                  <Settings className="w-4 h-4 mr-2" />
-                )}
-                Manage Subscription
-              </Button>
-            </div>
+            <Button variant="outline" size="lg" className="w-full" disabled>
+              You're on Premium ✨
+            </Button>
           ) : (
             <Button
               variant="ocean"
               size="lg"
               className="w-full"
-              onClick={handleCheckout}
-              disabled={checkoutLoading}
+              onClick={handlePurchase}
+              disabled={purchasing || offeringsLoading || !selectedPackage}
             >
-              {checkoutLoading ? (
+              {purchasing || offeringsLoading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
               ) : (
                 <Sparkles className="w-5 h-5" />
               )}
-              Start Premium — {PRICES[billingCycle].label}
+              {offeringsLoading
+                ? 'Loading...'
+                : selectedPackage
+                  ? `Start Premium — ${selectedPackage.product?.priceString}`
+                  : 'Unavailable'}
             </Button>
           )}
         </Card>
 
-        <p className="text-xs text-center text-muted-foreground leading-relaxed px-4">
-          Cancel anytime. Your data is always yours. Premium supports continued development of evidence-based content.
-        </p>
+        {/* Restore + legal */}
+        {!isPremium && (
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full text-muted-foreground"
+            onClick={handleRestore}
+            disabled={restoring}
+          >
+            {restoring ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <RotateCcw className="w-4 h-4 mr-2" />}
+            Restore Purchases
+          </Button>
+        )}
+
+        <div className="space-y-3 px-4">
+          <p className="text-xs text-center text-muted-foreground leading-relaxed">
+            Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current period.
+            Manage or cancel in your App Store account settings. Cancel anytime.
+          </p>
+          <div className="flex gap-4 justify-center text-xs">
+            <a
+              href="https://theseahorseclub.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline hover:text-primary/80"
+            >
+              Privacy Policy
+            </a>
+            <span className="text-muted-foreground/40">·</span>
+            <a
+              href="https://theseahorseclub.com/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline hover:text-primary/80"
+            >
+              Terms of Service
+            </a>
+          </div>
+        </div>
       </div>
     </MobileLayout>
   );

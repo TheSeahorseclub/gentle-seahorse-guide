@@ -13,7 +13,7 @@ const navItems = [
   { path: '/home', icon: Home, label: 'Home' },
   { path: '/tracker', icon: Activity, label: 'Signals' },
   { path: '/insight', icon: Sparkles, label: 'Insight' },
-  { path: '/lessons', icon: BookOpen, label: 'Learn' },
+  { path: '/content', icon: BookOpen, label: 'Library' },
   { path: '/export', icon: FileText, label: 'Export' },
 ];
 
@@ -36,7 +36,7 @@ export const MobileLayout: React.FC<MobileLayoutProps> = ({ children, showNav = 
         <nav className="fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-md border-t border-border shadow-float z-50 pb-safe-bottom">
           <div className="flex items-center justify-around h-20 max-w-lg mx-auto px-2">
             {navItems.map((item) => {
-              const isActive = location.pathname === item.path;
+              const isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/');
               return (
                 <NavLink
                   key={item.path}

@@ -7,9 +7,9 @@ import { useAppStore } from '@/store/appStore';
 import { useCurrentChild } from '@/hooks/useCurrentChild';
 import { Activity, Sparkles, BookOpen, Calendar, ChevronRight, Moon, Crown, Settings, Loader2, TrendingUp } from 'lucide-react';
 import { usePremiumAccess } from '@/hooks/usePremiumAccess';
-import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useState } from 'react';
+import { Capacitor } from '@capacitor/core';
 
 const developmentWindows = [
   { ageRange: [0, 3], focus: 'Regulation and co-regulation', description: 'Your child is learning to feel safe in the world through your presence.' },
@@ -36,8 +36,17 @@ export const Home: React.FC = () => {
   ) || developmentWindows[0];
 
   const handleManageSubscription = async () => {
+    if (Capacitor.isNativePlatform()) {
+      const url = Capacitor.getPlatform() === 'android'
+        ? 'https://play.google.com/store/account/subscriptions'
+        : 'itms-apps://apps.apple.com/account/subscriptions';
+      window.open(url, '_system');
+      return;
+    }
+    // Web: use Stripe portal
     setPortalLoading(true);
     try {
+      const { supabase } = await import('@/integrations/supabase/client');
       const { data, error } = await supabase.functions.invoke('customer-portal');
       if (error) throw error;
       if (data?.url) window.location.href = data.url;
