@@ -43,37 +43,30 @@ export const Upgrade: React.FC = () => {
 
   const [offerings, setOfferings] = useState<any>(null);
   const [offeringsLoading, setOfferingsLoading] = useState(true);
+  const [offeringsError, setOfferingsError] = useState<string | null>(null);
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
   const [purchasing, setPurchasing] = useState(false);
   const [restoring, setRestoring] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    const load = (attempt = 0) => {
-      getOfferings()
-        .then((o) => {
-          if (cancelled) return;
-          console.log('[RC] offerings:', JSON.stringify(o, null, 2));
-          setOfferings(o);
-          const annual = o?.current?.availablePackages?.find((p: any) => p.packageType === 'ANNUAL');
-          const monthly = o?.current?.availablePackages?.find((p: any) => p.packageType === 'MONTHLY');
-          setSelectedPackage(annual || monthly || o?.current?.availablePackages?.[0]);
-          setOfferingsLoading(false);
-        })
-        .catch((err) => {
-          if (cancelled) return;
-          if (err?.message === 'rc-not-ready' && attempt < 5) {
-            setTimeout(() => load(attempt + 1), 600);
-            return;
-          }
-          if (err?.message !== 'not-native') {
-            console.error('[RC] getOfferings error:', err);
-            toast.error('Could not load subscription options.');
-          }
-          setOfferingsLoading(false);
-        });
-    };
-    load();
+    getOfferings()
+      .then((o) => {
+        if (cancelled) return;
+        setOfferings(o);
+        const annual = o?.current?.availablePackages?.find((p: any) => p.packageType === 'ANNUAL');
+        const monthly = o?.current?.availablePackages?.find((p: any) => p.packageType === 'MONTHLY');
+        setSelectedPackage(annual || monthly || o?.current?.availablePackages?.[0]);
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        if (err?.message !== 'not-native') {
+          console.error('[RC] getOfferings error:', err);
+          setOfferingsError('Could not load subscription offers. Please ensure RevenueCat is configured and try again.');
+          toast.error('Could not load subscription options.');
+        }
+      })
+      .finally(() => { if (!cancelled) setOfferingsLoading(false); });
     return () => { cancelled = true; };
   }, []);
 
@@ -135,6 +128,11 @@ export const Upgrade: React.FC = () => {
       />
 
       <div className="px-6 pb-8 space-y-5">
+        {offeringsError && (
+          <Card variant="soft" className="p-4 border border-destructive/10 text-destructive animate-fade-in">
+            <p className="text-sm">{offeringsError}</p>
+          </Card>
+        )}
         {/* Free Tier */}
         <Card variant="soft" className="p-5 animate-fade-in">
           <div className="flex items-center gap-3 mb-4">
@@ -210,6 +208,16 @@ export const Upgrade: React.FC = () => {
               )}
             </div>
           )}
+          {selectedPackage?.product?.description && (
+            <p className="text-xs text-muted-foreground mb-4">{selectedPackage.product.description}</p>
+          )}
+          {!isPremium && !offeringsLoading && !monthly && !annual && (
+            <Card variant="soft" className="p-4 border border-muted-foreground/20">
+              <p className="text-sm text-muted-foreground">
+                Subscription offers are currently unavailable. Please test on a native device with RevenueCat configured.
+              </p>
+            </Card>
+          )}
 
           <ul className="space-y-2 mb-5">
             {premiumFeatures.map((f, i) => (
@@ -260,10 +268,31 @@ export const Upgrade: React.FC = () => {
           </Button>
         )}
 
-        <p className="text-xs text-center text-muted-foreground leading-relaxed px-4">
-          Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current period.
-          Manage or cancel in your App Store account settings. Cancel anytime.
-        </p>
+        <div className="space-y-3 px-4">
+          <p className="text-xs text-center text-muted-foreground leading-relaxed">
+            Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current period.
+            Manage or cancel in your App Store account settings. Cancel anytime.
+          </p>
+          <div className="flex gap-4 justify-center text-xs">
+            <a
+              href="https://theseahorseclub.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline hover:text-primary/80"
+            >
+              Privacy Policy
+            </a>
+            <span className="text-muted-foreground/40">·</span>
+            <a
+              href="https://theseahorseclub.com/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline hover:text-primary/80"
+            >
+              Terms of Service
+            </a>
+          </div>
+        </div>
       </div>
     </MobileLayout>
   );
